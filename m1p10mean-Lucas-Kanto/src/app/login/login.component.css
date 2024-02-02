@@ -1,0 +1,6 @@
+.bouton{
+    :hover{
+        color:var(--bs-primary);
+        background-color:#fff  ;
+    }
+}
