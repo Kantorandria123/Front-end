@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { RendezvousComponent } from './rendezvous/rendezvous.component';
+import { HistoriqueRDVComponent } from './historique-rdv/historique-rdv.component';
+import { ProfilClientComponent } from './profil-client/profil-client.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { RendezvousComponent } from './rendezvous/rendezvous.component';
     FooterComponent,
     LoginComponent,
     InscriptionComponent,
-    RendezvousComponent
+    RendezvousComponent,
+    HistoriqueRDVComponent,
+    ProfilClientComponent
    
   ],
   imports: [
