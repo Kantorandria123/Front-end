@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { RendezvousComponent } from './rendezvous/rendezvous.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    RendezvousComponent
    
   ],
   imports: [
