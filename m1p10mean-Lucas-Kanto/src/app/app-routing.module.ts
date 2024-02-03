@@ -8,6 +8,7 @@ import { HistoriqueRDVComponent } from './historique-rdv/historique-rdv.componen
 import { ProfilClientComponent } from './profil-client/profil-client.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PreferenceComponent } from './preference/preference.component';
+import { PaiementComponent } from './paiement/paiement.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path:'preference',
     component: PreferenceComponent
+  },
+  {
+    path:'paiement',
+    component: PaiementComponent
   }
 ];
 

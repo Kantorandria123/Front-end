@@ -15,6 +15,7 @@ import { HistoriqueRDVComponent } from './historique-rdv/historique-rdv.componen
 import { ProfilClientComponent } from './profil-client/profil-client.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PreferenceComponent } from './preference/preference.component';
+import { PaiementComponent } from './paiement/paiement.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PreferenceComponent } from './preference/preference.component';
     HistoriqueRDVComponent,
     ProfilClientComponent,
     EmployeeComponent,
-    PreferenceComponent
+    PreferenceComponent,
+    PaiementComponent
    
   ],
   imports: [
