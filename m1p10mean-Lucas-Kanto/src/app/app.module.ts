@@ -13,6 +13,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { RendezvousComponent } from './rendezvous/rendezvous.component';
 import { HistoriqueRDVComponent } from './historique-rdv/historique-rdv.component';
 import { ProfilClientComponent } from './profil-client/profil-client.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ProfilClientComponent } from './profil-client/profil-client.component';
     InscriptionComponent,
     RendezvousComponent,
     HistoriqueRDVComponent,
-    ProfilClientComponent
+    ProfilClientComponent,
+    EmployeeComponent
    
   ],
   imports: [
