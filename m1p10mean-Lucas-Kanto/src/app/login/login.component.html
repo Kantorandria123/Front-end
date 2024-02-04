@@ -14,7 +14,28 @@
     height: 100%;
     background-color: white;
   }
+  .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+  }
+
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .closebtn:hover {
+    color: black;
+  }
 </style>
+
 <div class="container-fluid RSVP-form py-5" id="weddingRsvp">
     <div class="position-absolute" style="top: -35px; right: 0;">
         <img src="./assets/img/tamp-bg-1.png" class="img-fluid" alt="">
@@ -33,6 +54,11 @@
                         Veuillez-vous connecter s'il vous plaît
                     </div>
                     <form>
+                      <div  *ngIf="erroMessage"class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Erreur!</strong>  {{ erroMessage }}
+                      </div>
+
                         <div class="row justify-content-center gy-3">
                             <div class="col-8">
                                 <div class="form-group">
@@ -58,11 +84,6 @@
                             <div class="col-lg-6 text-center wow fadeIn" data-wow-delay="0.1s">
                                 <button  (click)="login()" class="bouton btn-primary btn-primary-outline-0 py-3 px-5">Se connecter</button>
                             </div>
-
-                        <div *ngIf="erroMessage" class="alert alert-danger" role="alert">
-                          {{ erroMessage }}
-                        </div>
-
 
                             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
                                 <p class="text-dark mb-0" style="line-height: 30px;">Je n'ai pas de compte? <a [routerLink]="['/inscription']" class="border-bottom">S'inscrire</a></p>

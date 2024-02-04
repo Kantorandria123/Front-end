@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-rendezvous',
@@ -9,13 +10,23 @@ import { HttpClient } from '@angular/common/http';
 export class RendezvousComponent implements OnInit {
   services: any[] = [];
   employes: any[] = [];
-
-  constructor(private http: HttpClient) {}
+  daty: string = '';
+  horaire: string = '';
+  description: string = '';
+  employee_id: number  = 0;
+  service_id: number  = 0;
+  client_id: number  = 0;
+  nonConnecter: string = "";
+  erroMessage:string="";
+  msg_rendevous:string="";
+  isError:boolean=false;
+  constructor(private http: HttpClient,private cookieService: CookieService) {}
 
   ngOnInit() {
     console.log("*************Rendez-vous******************");
-    this.getListService();
     this.getListEmploye();
+    this.getListService();
+
   }
 
   getListService() {
@@ -41,7 +52,6 @@ export class RendezvousComponent implements OnInit {
 
     this.http.get<any>(url).subscribe(
       (response) => {
-        // La réponse contient la liste des services
         if (response.status && response.employes) {
           this.employes = response.employes;
           console.log('Liste des services :', this.employes);
@@ -54,4 +64,54 @@ export class RendezvousComponent implements OnInit {
       }
     );
   }
+  creerRendezVous()
+  {
+    const client_idCookie = this.cookieService.get('id');
+    const emailCookie = this.cookieService.get('email');
+    const tokenCookie = this.cookieService.get('token');
+
+    if (client_idCookie && emailCookie && tokenCookie)
+    {
+        var message="";
+        /*console.log("this.description : "+this.description);
+        if(this.description==="lucas")
+        {
+          this.isError=true;
+          message="Lucas aona lesy";
+        }
+        else{
+          this.isError=false;
+        }
+        console.log("isError : "+this.isError);*/
+        if(!this.isError)
+        {
+              this.client_id=parseInt(client_idCookie);
+              let bodyData =
+              {
+                "daty" : this.daty,
+                "horaire" : this.horaire,
+                "description" : this.description,
+                "service_id" : this.service_id,
+                "employee_id" : this.employee_id,
+                "client_id": this.client_id
+              };
+              this.http.post("http://localhost:3000/rendezvous/creer",bodyData).subscribe((resultData: any)=>
+              {
+                  console.log(resultData);
+                  this.msg_rendevous="C'est fait! vous avez faire un nouveau rendez-vous";
+                  //alert("rendez-vous Registered Successfully")
+              });
+        }
+        else
+        {
+            this.msg_rendevous=message;
+        }
+
+     }
+     else {
+       //alert("il faut que vous connecter!!");
+       this.nonConnecter="Veuillez connecter pour faire de rendez-vous";
+     }
+  }
+
 }

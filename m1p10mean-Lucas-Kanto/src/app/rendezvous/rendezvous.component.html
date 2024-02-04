@@ -1,3 +1,25 @@
+<style>
+  .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+  }
+
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .closebtn:hover {
+    color: black;
+  }
+  </style>
   <app-header></app-header>
   <!-- RSVP Form Start -->
   <div class="container-fluid  RSVP-form py-5" id="weddingRsvp">
@@ -18,29 +40,38 @@
                         Renseignez votre rendez-vous !
                     </div>
                     <form>
+                      <div  *ngIf="nonConnecter"class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Erreur!</strong>  {{ nonConnecter }}
+                      </div>
+                      <div *ngIf="msg_rendevous" class="alert alert-dark" role="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        {{ msg_rendevous }}
+                      </div>
+
                         <div class="row gx-4 gy-3">
                             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="form-group">
                                     <label for="Examplename" class="form-label text-dark">Date du rendez-vous</label>
-                                    <input type="date" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="First Name">
+                                    <input [(ngModel)]="daty" [ngModelOptions]="{standalone: true}"  type="date" class="form-control py-3 border-0 text-dark"  required>
                                   </div>
                             </div>
                             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="form-group">
                                     <label for="Examplename" class="form-label text-dark"> Heure du rendez-vous </label>
-                                    <input type="time" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="First Name">
+                                    <input [(ngModel)]="horaire" [ngModelOptions]="{standalone: true}"  type="time" class="form-control py-3 border-0 text-dark"  required>
                                   </div>
                             </div>
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="form-group">
                                     <label for="exampletextarea" class="form-label text-dark">Description du rendez-vous</label>
-                                    <textarea name="text" class="form-control border-0" id="exampletextarea" cols="30" rows="5" placeholder="Description"></textarea>
+                                    <textarea [(ngModel)]="description" [ngModelOptions]="{standalone: true}"  name="text" class="form-control border-0" id="exampletextarea" cols="30" rows="5" placeholder="Description"></textarea>
                                 </div>
                             </div>
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                               <div class="form-group">
                                 <label for="exampleselect" class="form-label text-dark">Service</label>
-                                <select class="form-control bg-white text-dark py-3 border-0" id="exampleselect" placeholder="Number Of Guests">
+                                <select  [(ngModel)]="service_id" [ngModelOptions]="{standalone: true}"   class="form-control bg-white text-dark py-3 border-0" >
                                   <option *ngFor="let service of services" [value]="service.id">{{ service.nom }}</option>
                                 </select>
                               </div>
@@ -49,7 +80,7 @@
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                               <div class="form-group">
                                 <label for="exampleselect" class="form-label text-dark">Employ&eacute;</label>
-                                <select class="form-control bg-white text-dark py-3 border-0" id="exampleselect" placeholder="Number Of Guests">
+                                <select [(ngModel)]="employee_id" [ngModelOptions]="{standalone: true}"  class="form-control bg-white text-dark py-3 border-0">
                                   <option *ngFor="let employe of employes" [value]="employe.id">{{ employe.nom }}</option>
                                 </select>
                               </div>
@@ -57,7 +88,7 @@
 
 
                             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-                                <button class="btn btn-primary btn-primary-outline-0 py-3 px-5">Envoyer</button>
+                                <button (click)="creerRendezVous()" class="btn btn-primary btn-primary-outline-0 py-3 px-5">Envoyer</button>
                             </div>
                         </div>
                     </form>
