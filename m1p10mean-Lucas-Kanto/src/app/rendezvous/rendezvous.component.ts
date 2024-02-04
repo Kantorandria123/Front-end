@@ -19,6 +19,7 @@ export class RendezvousComponent implements OnInit {
   nonConnecter: string = "";
   erroMessage:string="";
   msg_rendevous:string="";
+  strong_msg:string="";
   isError:boolean=false;
   constructor(private http: HttpClient,private cookieService: CookieService) {}
 
@@ -73,16 +74,17 @@ export class RendezvousComponent implements OnInit {
     if (client_idCookie && emailCookie && tokenCookie)
     {
         var message="";
-        /*console.log("this.description : "+this.description);
-        if(this.description==="lucas")
-        {
-          this.isError=true;
-          message="Lucas aona lesy";
+        const currentDate = new Date();
+        const selectedDate = new Date(this.daty);
+        if (selectedDate < currentDate) {
+          this.isError = true;
+          this.strong_msg="Erreur! ";
+          message+="La date du rendez-vous ne peut pas être antérieure à la date actuelle.";
         }
         else{
           this.isError=false;
         }
-        console.log("isError : "+this.isError);*/
+        console.log("isError "+this.isError);
         if(!this.isError)
         {
               this.client_id=parseInt(client_idCookie);
@@ -98,7 +100,8 @@ export class RendezvousComponent implements OnInit {
               this.http.post("http://localhost:3000/rendezvous/creer",bodyData).subscribe((resultData: any)=>
               {
                   console.log(resultData);
-                  this.msg_rendevous="C'est fait! vous avez faire un nouveau rendez-vous";
+                  this.strong_msg="C'est fait! ";
+                  this.msg_rendevous="vous avez faire un nouveau rendez-vous";
                   //alert("rendez-vous Registered Successfully")
               });
         }

@@ -1,7 +1,7 @@
 <style>
   .alert {
     padding: 20px;
-    background-color: #f44336;
+    background-color: darkolivegreen;
     color: white;
   }
 
@@ -46,7 +46,7 @@
                       </div>
                       <div *ngIf="msg_rendevous" class="alert alert-dark" role="alert">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        {{ msg_rendevous }}
+                        <strong>{{strong_msg}}</strong>{{ msg_rendevous }}
                       </div>
 
                         <div class="row gx-4 gy-3">
@@ -65,7 +65,7 @@
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="form-group">
                                     <label for="exampletextarea" class="form-label text-dark">Description du rendez-vous</label>
-                                    <textarea [(ngModel)]="description" [ngModelOptions]="{standalone: true}"  name="text" class="form-control border-0" id="exampletextarea" cols="30" rows="5" placeholder="Description"></textarea>
+                                    <textarea style="color: black;" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"  name="text" class="form-control border-0" id="exampletextarea" cols="30" rows="5" placeholder="Description"></textarea>
                                 </div>
                             </div>
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
