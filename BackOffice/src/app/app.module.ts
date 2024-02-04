@@ -5,12 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { ProfilEmployeeComponent } from './profil-employee/profil-employee.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    ProfilEmployeeComponent
    
   ],
   imports: [
