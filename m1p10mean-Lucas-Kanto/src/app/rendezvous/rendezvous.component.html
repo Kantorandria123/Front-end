@@ -72,6 +72,7 @@
                               <div class="form-group">
                                 <label for="exampleselect" class="form-label text-dark">Service</label>
                                 <select  [(ngModel)]="service_id" [ngModelOptions]="{standalone: true}"   class="form-control bg-white text-dark py-3 border-0" >
+
                                   <option *ngFor="let service of services" [value]="service.id">{{ service.nom }}</option>
                                 </select>
                               </div>

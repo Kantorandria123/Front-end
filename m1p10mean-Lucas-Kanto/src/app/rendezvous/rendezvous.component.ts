@@ -13,8 +13,8 @@ export class RendezvousComponent implements OnInit {
   daty: string = '';
   horaire: string = '';
   description: string = '';
-  employee_id: number  = 0;
-  service_id: number  = 0;
+  employee_id: number  = 1;
+  service_id: number  = 1;
   client_id: number  = 0;
   nonConnecter: string = "";
   erroMessage:string="";
