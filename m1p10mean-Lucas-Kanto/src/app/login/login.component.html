@@ -1,4 +1,20 @@
 <!-- RSVP Form Start -->
+<style>
+  .input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .input-group-text i {
+    font-size: 1rem;
+  }
+  .btn
+  {
+    height: 100%;
+    background-color: white;
+  }
+</style>
 <div class="container-fluid RSVP-form py-5" id="weddingRsvp">
     <div class="position-absolute" style="top: -35px; right: 0;">
         <img src="./assets/img/tamp-bg-1.png" class="img-fluid" alt="">
@@ -24,10 +40,20 @@
                                     <input type="email"  [(ngModel)]="email" [ngModelOptions]="{standalone: true}"  class="form-control py-3 border-0 text-dark " id="Examplename" placeholder="Votre Email">
                                   </div>
 
-                                <div class="form-group">
-                                    <label for="Examplename" class="form-label text-dark">Mot de passe</label>
-                                    <input type="password"  [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}"  class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre mot de passe">
-                                  </div>
+                                          <div class="form-group">
+            <label for="Examplename" class="form-label text-dark">Mot de passe</label>
+            <div class="input-group">
+              <input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="mdp" [ngModelOptions]="{ standalone: true }" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre mot de passe">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary input-group-text" type="button" (click)="togglePasswordVisibility()">
+                  <i class="fas" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
                                 </div>
                             <div class="col-lg-6 text-center wow fadeIn" data-wow-delay="0.1s">
                                 <button  (click)="login()" class="bouton btn-primary btn-primary-outline-0 py-3 px-5">Se connecter</button>

@@ -16,8 +16,13 @@ export class LoginComponent {
 
   isLogin: boolean = true;
   erroMessage: string = "";
-
+  showPassword: boolean = false;
   constructor(private router: Router,private http: HttpClient, private cookieService: CookieService) {}
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   login() {
     console.log(this.email);
     console.log(this.mdp);
