@@ -8,12 +8,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RendezvousComponent implements OnInit {
   services: any[] = [];
+  employes: any[] = [];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     console.log("*************Rendez-vous******************");
     this.getListService();
+    this.getListEmploye();
   }
 
   getListService() {
@@ -31,6 +33,24 @@ export class RendezvousComponent implements OnInit {
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des services :', error);
+      }
+    );
+  }
+  getListEmploye() {
+    const url = 'http://localhost:3000/employe/lesEmployes';
+
+    this.http.get<any>(url).subscribe(
+      (response) => {
+        // La réponse contient la liste des services
+        if (response.status && response.employes) {
+          this.employes = response.employes;
+          console.log('Liste des services :', this.employes);
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des employes :', error);
       }
     );
   }

@@ -47,15 +47,12 @@
                             </div>
 
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
-                                <div class="form-group">
-                                    <label for="exampleselect" class="form-label text-dark">Employé</label>
-                                    <select class="form-control bg-white text-dark py-3 border-0" id="exampleselect" placeholder="Number Of Guests">
-                                      <option>Only Me</option>
-                                      <option>02 Guests</option>
-                                      <option>03 Guests</option>
-                                      <option>04 Guests</option>
-                                    </select>
-                                </div>
+                              <div class="form-group">
+                                <label for="exampleselect" class="form-label text-dark">Employ&eacute;</label>
+                                <select class="form-control bg-white text-dark py-3 border-0" id="exampleselect" placeholder="Number Of Guests">
+                                  <option *ngFor="let employe of employes" [value]="employe.id">{{ employe.nom }}</option>
+                                </select>
+                              </div>
                             </div>
 
 
