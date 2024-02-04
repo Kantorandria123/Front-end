@@ -1,4 +1,5 @@
 import { FormsModule } from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';3
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +39,8 @@ import { PaiementComponent } from './paiement/paiement.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
