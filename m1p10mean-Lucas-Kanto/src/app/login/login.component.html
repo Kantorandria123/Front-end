@@ -21,27 +21,33 @@
                             <div class="col-8">
                                 <div class="form-group">
                                     <label for="Examplename" class="form-label text-dark">Email</label>
-                                    <input type="email" class="form-control py-3 border-0 text-dark " id="Examplename" placeholder="Votre Email">
+                                    <input type="email"  [(ngModel)]="email" [ngModelOptions]="{standalone: true}"  class="form-control py-3 border-0 text-dark " id="Examplename" placeholder="Votre Email">
                                   </div>
-                            
+
                                 <div class="form-group">
                                     <label for="Examplename" class="form-label text-dark">Mot de passe</label>
-                                    <input type="password" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre mot de passe">
+                                    <input type="password"  [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}"  class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre mot de passe">
                                   </div>
                                 </div>
                             <div class="col-lg-6 text-center wow fadeIn" data-wow-delay="0.1s">
-                                <button class="bouton btn-primary btn-primary-outline-0 py-3 px-5">Se connecter</button>
+                                <button  (click)="login()" class="bouton btn-primary btn-primary-outline-0 py-3 px-5">Se connecter</button>
                             </div>
+
+                        <div *ngIf="erroMessage" class="alert alert-danger" role="alert">
+                          {{ erroMessage }}
+                        </div>
+
+
                             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
                                 <p class="text-dark mb-0" style="line-height: 30px;">Je n'ai pas de compte? <a [routerLink]="['/inscription']" class="border-bottom">S'inscrire</a></p>
-                              
+
                             </div>
                         </div>
                     </form>
                 </div>
-                
+
             </div>
-            
+
         </div>
         <div class="mt-5">
         <div class="row g-5 justify-content-center text-center">
@@ -63,7 +69,7 @@
                 <div class="p-4 border-secondary" style="border-style: double;">
                     <h4>Localisation</h4>
                     <p class="mb-0 text-dark">
-                        Beauty Care, 101 Antananarivo, Mahamasina. 
+                        Beauty Care, 101 Antananarivo, Mahamasina.
                     </p>
                 </div>
             </div>

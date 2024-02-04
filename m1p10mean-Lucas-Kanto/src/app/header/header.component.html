@@ -21,8 +21,21 @@
                     </div>
                     <div class="d-flex align-items-center flex-nowrap pt-xl-0">
                         <a [routerLink]="['/rendezvous']" class="btn btn-primary btn-primary-outline-0 py-2 px-4 ms-4">Rendez-vous</a>
-                        <a [routerLink]="['/login']" class="btn btn-primary btn-primary-outline-0 btn-md-square py-2 px-4 ms-4"><i class="fa fa-user" aria-hidden="true"></i>
+                        <a *ngIf="resultData === null || resultData === undefined" [routerLink]="['/login']" class="btn btn-primary btn-primary-outline-0 btn-md-square py-2 px-4 ms-4">
+                          <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
+
+                        <ng-container *ngIf="resultData !== null && resultData !== undefined">
+
+                          <a [routerLink]="['/deconnection']" class="btn btn-primary btn-primary-outline-0 btn-md-square py-1 px-2 ms-2">
+                            <i class="fas fa-sign-out-alt"></i>
+                          </a>
+
+                          <a [routerLink]="['/deconnection']" class="ms-auto">
+                            <i class="fa fa-user" aria-hidden="true"></i> {{ resultData?.client?.nom }}
+                          </a>
+
+                        </ng-container>
                     </div>
                 </div>
             </nav>
@@ -51,7 +64,7 @@
                         <a href="#weddingStory" class="nav-item nav-link">Préférences</a>
                         <a href="#weddingTimeline" class="nav-item nav-link">Les Employés</a>
                         <a [routerLink]="['/profil']" class="nav-item nav-link">Profil</a>
-                        
+
                     </div>
                     <div class="d-flex align-items-center flex-nowrap pt-xl-0">
                         <a [routerLink]="['/rendezvous']" class="btn btn-primary btn-primary-outline-0 py-2 px-4 ms-4">Rendez-vous</a>
