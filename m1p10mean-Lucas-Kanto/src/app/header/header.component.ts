@@ -32,4 +32,11 @@ export class HeaderComponent implements OnInit {
       console.log("Les cookies 'email' et 'token' n'existent pas.");
     }
   }
+  deconnection()
+  {
+    this.cookieService.delete('email');
+    this.cookieService.delete('token');
+    location.reload();
+  }
 }
+

@@ -27,11 +27,11 @@
 
                         <ng-container *ngIf="resultData !== null && resultData !== undefined">
 
-                          <a [routerLink]="['/deconnection']" class="btn btn-primary btn-primary-outline-0 btn-md-square py-1 px-2 ms-2">
+                          <a (click)="deconnection()" class="btn btn-primary btn-primary-outline-0 btn-md-square py-1 px-2 ms-2">
                             <i class="fas fa-sign-out-alt"></i>
                           </a>
 
-                          <a [routerLink]="['/deconnection']" class="ms-auto">
+                          <a [routerLink]="['/#']" class="ms-auto">
                             <i class="fa fa-user" aria-hidden="true"></i> {{ resultData?.client?.nom }}
                           </a>
 
