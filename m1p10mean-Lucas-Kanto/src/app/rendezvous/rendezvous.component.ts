@@ -15,7 +15,7 @@ export class RendezvousComponent implements OnInit {
   description: string = '';
   employee_id: string  = '';
   service_id: string  = '';
-  client_id: number  = 0;
+  client_id: string  = '';
   nonConnecter: string = "";
   erroMessage:string="";
   msg_rendevous:string="";
@@ -88,7 +88,7 @@ export class RendezvousComponent implements OnInit {
         console.log("isError "+this.isError);
         if(!this.isError)
         {
-              this.client_id=parseInt(client_idCookie);
+              this.client_id=client_idCookie;
               let bodyData =
               {
                 "daty" : this.daty,
