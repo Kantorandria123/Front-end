@@ -1,4 +1,26 @@
         <!-- RSVP Form Start -->
+<style>
+  .alert {
+    padding: 20px;
+    background-color: darkolivegreen;
+    color: white;
+  }
+
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .closebtn:hover {
+    color: black;
+  }
+</style>
         <div class="container-fluid RSVP-form py-5" id="weddingRsvp">
 
             <div class="container py-5">
@@ -9,43 +31,50 @@
                     <div class="col-md-10">
                         <div class="p-5 border-secondary position-relative" style="border-style: double;">
                             <div class="fw-bold text-primary bg-white d-flex align-items-center justify-content-center position-absolute border-secondary p-2 wow fadeIn" data-wow-delay="0.1s" style="width: 75%; border-style: double; top: 0; left: 50%; transform: translate(-50%, -50%);">
-                                Inscrivez-vous gratuitement 
+                                Inscrivez-vous gratuitement
                             </div>
                             <form>
+                              <div *ngIf="messageInscrit" class="alert">
+                                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                <strong>{{strongMessage}} </strong>  {{ messageInscrit }}
+                              </div>
                                 <div class="row gx-4 gy-3">
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
                                             <label  class="form-label text-dark">Nom</label>
-                                            <input type="text" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark"  placeholder="Votre nom">
+                                            <input type="text" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark"  placeholder="Votre nom..." required>
                                           </div>
                                     </div>
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
                                             <label  class="form-label text-dark">Email</label>
-                                            <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark"  placeholder="Votre email">
+                                            <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark"  placeholder="Votre email..." required>
                                           </div>
                                     </div>
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
                                             <label  class="form-label text-dark">Numéro téléphone</label>
-                                            <input type="text" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark" placeholder="Votre numéro de téléphone">
+                                            <input type="text" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark" placeholder="Votre numéro de téléphone...." required>
                                           </div>
                                     </div>
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="form-group">
-                                            <label class="form-label text-dark">Mot de passe</label>
-                                            <input type="password" [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark" placeholder="Votre mot depasse">
-                                          </div>
+                                      <label  class="form-label text-dark">Mot de passe</label>
+                                      <input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="mdp" [ngModelOptions]="{ standalone: true }" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre mot de passe" required>
+                                      <div class="col-lg-6 wow fadeIn-append">
+                                        <button class="btn btn-outline-secondary input-group-text" type="button" (click)="togglePasswordVisibility()">
+                                          <i class="fas" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+                                        </button>
+                                      </div>
                                     </div>
-                                   
-                                    
-                                   
+
+
+
                                     <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
                                         <button (click)="inscription()" class="btn btn-primary btn-primary-outline-0 py-3 px-5">S'inscrire'</button>
                                     </div>
                                     <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
                                         <p class="text-dark mb-0" style="line-height: 30px;">J'ai déjà un compte. <a [routerLink]="['/login']" class="border-bottom">Se connecter</a></p>
-                                      
+
                                     </div>
                                 </div>
                             </form>
@@ -72,11 +101,11 @@
                         <div class="p-4 border-secondary" style="border-style: double;">
                             <h4>Localisation</h4>
                             <p class="mb-0 text-dark">
-                                Beauty Care, 101 Antananarivo, Mahamasina. 
+                                Beauty Care, 101 Antananarivo, Mahamasina.
                             </p>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
             </div>

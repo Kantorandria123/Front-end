@@ -14,38 +14,42 @@ export class InscriptionComponent {
   mdp: string="";
   argent: number=0;
   token: string = "";
+  strongMessage: string="";
+  messageInscrit: string = "";
+  showPassword: boolean = false;
 
   constructor(private router: Router,private http: HttpClient)
   {
-   
-  }
 
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
   inscription() {
+    console.log("inscription");
     let bodyData = {
       "nom" : this.nom,
       "email" : this.email,
       "phone" : this.phone,
       "mdp" : this.mdp,
       "argent": this.argent,
-      "token": this.token,
-
+      "token": this.token
     };
-    this.http.post("http://localhost:3000/client/create",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
+    console.log("bodyData : "+bodyData);
+    this.http.post("http://localhost:3000/client/create",bodyData).subscribe((resultData: any)=>
     {
-        console.log(resultData);
-        alert("Registered Successfully");
 
-        if (resultData.status) 
+        if (resultData.status)
         {
-      
-           this.router.navigateByUrl('/login');
-    
-
-        } 
+          this.strongMessage="C'est fait! "
+          this.messageInscrit="inscription reussi."
+        }
         else
          {
-          console.log("Errror inscription");
-        }
+          this.strongMessage="Attention! "
+          this.messageInscrit="Erreur de l'inscription."
+         }
     });
   }
+
 }
