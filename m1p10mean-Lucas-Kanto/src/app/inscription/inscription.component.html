@@ -58,17 +58,18 @@
                                           </div>
                                     </div>
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                      <label  class="form-label text-dark">Mot de passe</label>
-                                      <input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="mdp" [ngModelOptions]="{ standalone: true }" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre mot de passe" required>
-                                      <div class="col-lg-6 wow fadeIn-append">
-                                        <button class="btn btn-outline-secondary input-group-text" type="button" (click)="togglePasswordVisibility()">
-                                          <i class="fas" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
-                                        </button>
-                                      </div>
-                                    </div>
-
-
-
+                                        <div class="form-group">
+                                            <label class="form-label text-dark">Mot de passe</label>
+                                            <div class="input-group">
+                                                <input type="password" [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark" placeholder="Votre mot depasse">
+                                                <div class="input-group-append">
+                                                    <button style="background-color: white;" class="btn btn-outline-secondary input-group-text py-3" type="button" (click)="togglePasswordVisibility()">
+                                                    <i class="fas" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+                                                    </button>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
                                     <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
                                         <button (click)="inscription()" class="btn btn-primary btn-primary-outline-0 py-3 px-5">S'inscrire'</button>
                                     </div>
