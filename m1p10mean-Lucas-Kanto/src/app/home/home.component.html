@@ -79,55 +79,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row g-4 align-items-center">
-                    <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
+
+                    <div *ngFor="let service of services" class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="d-flex">
-                            <div class="text-end my-auto pe-4">
-                                <h3 class="text-primary mb-3">L'art du bien-être !</h3>
-                                <p class="text-dark mb-0" style="line-height: 30px;">Un institut de beauté qui vous invite à un voyage des sens dans une véritable bulle de bien-être, de relaxation et de régénération</p>
-                            </div>
-                            <img src="./assets/img/image4.jpg" class="img-fluid img-border" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-2 wow fadeIn" data-wow-delay="0.5s">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <!-- <i class="fa fa-heart fa-5x text-primary"></i> -->
-                       </div>
-                    </div>
-                    <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="d-flex">
-                            <img src="./assets/img/image5.jpg" class="img-fluid img-border" alt="">
+                            <img src="./assets/img/{{service.image}}" class="img-fluid img-border" alt="">
                             <div class="my-auto ps-4">
-                                <h3 class="text-primary mb-3">La beauté permanente
+                                <h3 class="text-primary mb-3">{{service.nom}}
                                 </h3>
-                                <p class="text-dark mb-0" style="line-height: 30px;">Si vous êtes à la recherche d’un regain d’énergie ou d’un soin beauté de qualité pour prendre soin de vous de la tête aux pieds, vous êtes au bon endroit !</p>
+                                <p class="text-dark mb-0" style="line-height: 30px;">{{service.prix}} Ar/{{service.duree}} min </p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="d-flex">
-                            <div class="text-end my-auto pe-4">
-                                <h3 class="text-primary mb-3">L'art du bien-être !</h3>
-                                <p class="text-dark mb-0" style="line-height: 30px;">Ici, vous sont proposés les incontournables des soins de beauté : de l’épilation au maquillage en passant par la manucure, pédicure,etc.</p>
-                            </div>
-                            <img src="./assets/img/image4.jpg" class="img-fluid img-border" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-2 wow fadeIn" data-wow-delay="0.5s">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <!-- <i class="fa fa-heart fa-5x text-primary"></i> -->
-                       </div>
-                    </div>
-                    <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="d-flex">
-                            <img src="./assets/img/image5.jpg" class="img-fluid img-border" alt="">
-                            <div class="my-auto ps-4">
-                                <h3 class="text-primary mb-3">La beauté permanente
-                                </h3>
-                                <p class="text-dark mb-0" style="line-height: 30px;">Sous des mains expertes, les visiteurs expérimentent le meilleur de la beauté, car chez Beauty Care, on perpétue avec professionnalisme.</p>
-                            </div>
-                        </div>
-                    </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -140,7 +105,7 @@
     <div class="container position-relative py-5">
         <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
             <h1 class="display-2 text-dark">Nos offres spéciales</h1>
-            
+
         </div>
         <div class="row g-4">
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -203,10 +168,10 @@
                     </div>
                 </div>
             </div>
-           
-           
-           
-           
+
+
+
+
             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.2s">
                 <a class="btn btn-primary btn-primary-outline-0 py-3 px-5 me-2" href="#">View All <i class="fas fa-arrow-right"></i></a>
             </div>
