@@ -39,7 +39,7 @@ export class LoginComponent {
         {
           this.cookieService.set('email', resultData.client.email);
           this.cookieService.set('token', resultData.client.token);
-          this.cookieService.set('id', resultData.client.id);
+          this.cookieService.set('id', resultData.client._id);
            this.router.navigateByUrl('/');
         }
         else
