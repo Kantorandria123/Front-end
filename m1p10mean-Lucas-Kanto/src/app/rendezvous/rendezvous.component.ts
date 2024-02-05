@@ -75,7 +75,8 @@ export class RendezvousComponent implements OnInit {
     {
         var message="";
         const currentDate = new Date();
-        const selectedDate = new Date(this.daty);
+        const selectedDateStr = this.daty + ' ' + this.horaire;
+        const selectedDate = new Date(selectedDateStr);
         if (selectedDate < currentDate) {
           this.isError = true;
           this.strong_msg="Erreur! ";
