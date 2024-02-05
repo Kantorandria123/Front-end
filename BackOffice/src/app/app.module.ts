@@ -14,6 +14,7 @@ import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
 import { PersonnelComponent } from './personnel/personnel.component';
 import { ServiceComponent } from './service/service.component';
 import { DepenseComponent } from './depense/depense.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
 
 
 
@@ -28,7 +29,8 @@ import { DepenseComponent } from './depense/depense.component';
     SuivisTacheComponent,
     PersonnelComponent,
     ServiceComponent,
-    DepenseComponent
+    DepenseComponent,
+    StatistiqueComponent
    
   ],
   imports: [
