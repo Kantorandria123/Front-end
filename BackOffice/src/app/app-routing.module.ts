@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ProfilEmployeeComponent } from './profil-employee/profil-employee.component';
 import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
+import { PersonnelComponent } from './personnel/personnel.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'suivistache',
     component: SuivisTacheComponent
+  },
+  {
+    path:'personnel',
+    component: PersonnelComponent
   }
 ];
 

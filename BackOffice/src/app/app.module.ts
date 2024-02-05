@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ProfilEmployeeComponent } from './profil-employee/profil-employee.component';
 import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
+import { PersonnelComponent } from './personnel/personnel.component';
 
 
 
@@ -22,7 +23,8 @@ import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
     FooterComponent,
     LoginComponent,
     ProfilEmployeeComponent,
-    SuivisTacheComponent
+    SuivisTacheComponent,
+    PersonnelComponent
    
   ],
   imports: [
