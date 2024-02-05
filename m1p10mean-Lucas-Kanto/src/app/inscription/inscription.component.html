@@ -15,33 +15,33 @@
                                 <div class="row gx-4 gy-3">
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">Nom</label>
-                                            <input type="text" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre nom">
+                                            <label  class="form-label text-dark">Nom</label>
+                                            <input type="text" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark"  placeholder="Votre nom">
                                           </div>
                                     </div>
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">Email</label>
-                                            <input type="text" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre email">
+                                            <label  class="form-label text-dark">Email</label>
+                                            <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark"  placeholder="Votre email">
                                           </div>
                                     </div>
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">Numéro téléphone</label>
-                                            <input type="email" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre numéro de téléphone">
+                                            <label  class="form-label text-dark">Numéro téléphone</label>
+                                            <input type="text" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark" placeholder="Votre numéro de téléphone">
                                           </div>
                                     </div>
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">Mot de passe</label>
-                                            <input type="password" class="form-control py-3 border-0 text-dark" id="Examplename" placeholder="Votre mot depasse">
+                                            <label class="form-label text-dark">Mot de passe</label>
+                                            <input type="password" [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}" class="form-control py-3 border-0 text-dark" placeholder="Votre mot depasse">
                                           </div>
                                     </div>
                                    
                                     
                                    
                                     <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-                                        <button class="btn btn-primary btn-primary-outline-0 py-3 px-5">S'inscrire'</button>
+                                        <button (click)="inscription()" class="btn btn-primary btn-primary-outline-0 py-3 px-5">S'inscrire'</button>
                                     </div>
                                     <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
                                         <p class="text-dark mb-0" style="line-height: 30px;">J'ai déjà un compte. <a [routerLink]="['/login']" class="border-bottom">Se connecter</a></p>
