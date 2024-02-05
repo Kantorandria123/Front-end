@@ -1,27 +1,27 @@
 <app-header></app-header>
 
-<div class="container-fluid position-relative  RSVP-form py-5"> 
+<div class="container-fluid position-relative  RSVP-form py-5">
     <div class="container py-5">
         <div class="mb-5 text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 800px;">
             <h1 class="display-2 text-dark">Historique de votre rendez-vous</h1>
         </div>
-    <div class="card border-info"> 
-            <div class="card-header text-dark ">HTML</div> 
-            <div class="card-body"> 
-                <h5 class="card-title fw-bold"> 
-                    Hypertext Markup Language 
-                </h5> 
-                <p class="card-text text-dark"> 
-                    HTML stands for HyperText Markup  
-                    Language. It is used to design  
-                    web pages using the markup language 
-                </p> 
-            </div> 
-        </div> 
-    <br> 
+    <div *ngFor="let rdv of rendezvous" class="card border-info">
+            <div class="card-header text-dark ">{{rdv.daty}} a {{rdv.horaire}}</div>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">
+                  {{rdv.description}}
+                </h5>
+                <p class="card-text text-dark">
+                  {{rdv.employe_info.nom}} /
+                  {{rdv.service_info.nom}} /
+                  {{rdv.service_info.duree}} min
+                </p>
+            </div>
+        </div>
+    <br>
     </div>
 </div>
-   
+
 
 
 <app-footer></app-footer>
