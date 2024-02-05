@@ -8,6 +8,7 @@ import { ProfilEmployeeComponent } from './profil-employee/profil-employee.compo
 import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
 import { PersonnelComponent } from './personnel/personnel.component';
 import { ServiceComponent } from './service/service.component';
+import { DepenseComponent } from './depense/depense.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'service',
     component: ServiceComponent
+  },
+  {
+    path: 'depense',
+    component: DepenseComponent
   }
 ];
 

@@ -13,6 +13,7 @@ import { ProfilEmployeeComponent } from './profil-employee/profil-employee.compo
 import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
 import { PersonnelComponent } from './personnel/personnel.component';
 import { ServiceComponent } from './service/service.component';
+import { DepenseComponent } from './depense/depense.component';
 
 
 
@@ -26,7 +27,8 @@ import { ServiceComponent } from './service/service.component';
     ProfilEmployeeComponent,
     SuivisTacheComponent,
     PersonnelComponent,
-    ServiceComponent
+    ServiceComponent,
+    DepenseComponent
    
   ],
   imports: [
