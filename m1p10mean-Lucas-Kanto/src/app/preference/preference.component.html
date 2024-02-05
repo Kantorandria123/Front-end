@@ -6,154 +6,74 @@
         </div>
     <section id="menu" class="menu">
         <div class="container" data-aos="fade-up">
-    
+
           <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
-  
+
             <li class="nav-item">
               <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
                 <h4 class="text-primary mb-3">Nos Services</h4>
               </a>
             </li>
-  
+
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
                 <h4 class="text-primary mb-3">Nos Employés</h4>
               </a>
-  
+
           </ul>
-  
+
           <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-  
+
             <div class="tab-pane fade active show" id="menu-starters">
-  
+
               <div class="tab-header text-center">
                 <h3 class="text-dark fw-bold mb-3 py-5">Nos Services</h3>
               </div>
-  
+
               <div class="row gy-5">
-  
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
+
+                <div *ngFor="let service of services" class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="gallery-item">
                         <div class="gallery-img">
-                            <img class="img-fluid w-100" src="./assets/img/image10.jpg" alt="">
+                            <img class="img-fluid w-100" src="./assets/img/{{service.image}}" alt="">
                             <div class="hover-style"></div>
                             <div class="search-icon">
                                 <i class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto"></i>
                             </div>
                         </div>
                         <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                            <h5 class="fw-bold">Promotion spéciale pour le relooking</h5>
-                            <p class="text-dark mb-0">June 28, 2024</p>
-                        </div>
-                    </div>
-                </div>
-  
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img class="img-fluid w-100" src="./assets/img/image10.jpg" alt="">
-                            <div class="hover-style"></div>
-                            <div class="search-icon">
-                                <i class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                            <h5 class="fw-bold">Promotion spéciale pour le relooking</h5>
-                            <p class="text-dark mb-0">June 28, 2024</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img class="img-fluid w-100" src="./assets/img/image10.jpg" alt="">
-                            <div class="hover-style"></div>
-                            <div class="search-icon">
-                                <i class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                            <h5 class="fw-bold">Promotion spéciale pour le relooking</h5>
-                            <p class="text-dark mb-0">June 28, 2024</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img class="img-fluid w-100" src="./assets/img/image10.jpg" alt="">
-                            <div class="hover-style"></div>
-                            <div class="search-icon">
-                                <i class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                            <h5 class="fw-bold">Promotion spéciale pour le relooking</h5>
-                            <p class="text-dark mb-0">June 28, 2024</p>
+                            <h5 class="fw-bold">{{service.nom}}</h5>
+                            <p class="text-dark mb-0">{{service.prix}} Ar/{{service.duree}} min</p>
                         </div>
                     </div>
                 </div>
 
+
+
+
+
               </div>
             </div>
-  
+
             <div class="tab-pane fade team" id="menu-breakfast">
-  
+
               <div class="tab-header text-center">
                 <h3 class="text-dark fw-bold mb-3 py-5">Nos Employés</h3>
               </div>
-  
+
               <div class="row gy-5">
-  
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+
+                <div *ngFor="let employe of employes"  class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="team-item">
                         <div class="team-img">
                             <div class="team-img-main">
-                              <img src="./assets/img/bridesmaid-1.png" class="img-fluid w-100" alt=""> 
+                              <img src="./assets/img/{{employe.image}}" class="img-fluid w-100" alt="">
                             </div>
                         </div>
                         <div class="team-content">
                             <div class="d-flex flex-column p-4">
-                                <a [routerLink]="['/rendezvous']">  <h5 class="text-white display-6 mb-1">Amelia Alex</h5> </a>
-                                <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
-                            </div>
-                        </div>
-                        <div class="team-social d-flex flex-column">
-                            <i class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto"></i>
-                        </div>
-                    </div>
-                </div>
-  
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <div class="team-img-main">
-                              <img src="./assets/img/bridesmaid-1.png" class="img-fluid w-100" alt=""> 
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <div class="d-flex flex-column p-4">
-                                <a [routerLink]="['/rendezvous']">  <h5 class="text-white display-6 mb-1">Amelia Alex</h5> </a>
-                                <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
-                            </div>
-                        </div>
-                        <div class="team-social d-flex flex-column">
-                            <i class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto"></i>
-                        </div>
-                    </div>
-                </div>
-  
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <div class="team-img-main">
-                              <img src="./assets/img/bridesmaid-1.png" class="img-fluid w-100" alt=""> 
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <div class="d-flex flex-column p-4">
-                                <a [routerLink]="['/rendezvous']">  <h5 class="text-white display-6 mb-1">Amelia Alex</h5> </a>
-                                <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
+                                <a [routerLink]="['/rendezvous']">  <h5 class="text-white display-6 mb-1">{{employe.nom}}</h5> </a>
+                                <h5 class="text-white fs-5 mb-0">{{employe.horaireTravail}}</h5>
                             </div>
                         </div>
                         <div class="team-social d-flex flex-column">
@@ -162,34 +82,20 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <div class="team-img-main">
-                              <img src="./assets/img/bridesmaid-1.png" class="img-fluid w-100" alt=""> 
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <div class="d-flex flex-column p-4">
-                                <a [routerLink]="['/rendezvous']">  <h5 class="text-white display-6 mb-1">Amelia Alex</h5> </a>
-                                <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
-                            </div>
-                        </div>
-                        <div class="team-social d-flex flex-column">
-                            <i class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto"></i>
-                        </div>
-                    </div>
-                </div>
-  
+
+
+
+
+
               </div>
             </div>
-  
 
-  
-            
-  
+
+
+
+
           </div>
-  
+
         </div>
       </section>
     </div>
