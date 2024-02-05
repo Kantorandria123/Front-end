@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfilEmployeeComponent } from './profil-employee/profil-employee.component';
 import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
 import { PersonnelComponent } from './personnel/personnel.component';
+import { ServiceComponent } from './service/service.component';
 
 
 
@@ -24,7 +25,8 @@ import { PersonnelComponent } from './personnel/personnel.component';
     LoginComponent,
     ProfilEmployeeComponent,
     SuivisTacheComponent,
-    PersonnelComponent
+    PersonnelComponent,
+    ServiceComponent
    
   ],
   imports: [
