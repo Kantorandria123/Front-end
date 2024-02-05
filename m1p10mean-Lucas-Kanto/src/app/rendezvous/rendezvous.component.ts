@@ -38,6 +38,9 @@ export class RendezvousComponent implements OnInit {
         // La réponse contient la liste des services
         if (response.status && response.services) {
           this.services = response.services;
+          if (this.services.length > 0) {
+            this.service_id = this.services[0]._id;
+          }
           console.log('Liste des services :', this.services);
         } else {
           console.error('Réponse inattendue du serveur :', response);
@@ -55,6 +58,9 @@ export class RendezvousComponent implements OnInit {
       (response) => {
         if (response.status && response.employes) {
           this.employes = response.employes;
+          if (this.employes.length > 0) {
+            this.employee_id = this.employes[0]._id;
+          }
           console.log('Liste des services :', this.employes);
         } else {
           console.error('Réponse inattendue du serveur :', response);
