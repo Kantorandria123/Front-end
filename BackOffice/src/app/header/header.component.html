@@ -113,9 +113,15 @@
         <ul class="sidebar-nav" id="sidebar-nav">
     
           <li class="nav-item">
-            <a class="nav-link " href="index.html">
+            <a class="nav-link " [routerLink]="['']">
               <i class="bi bi-grid"></i>
               <span>Listes des rendez-vous</span>
+            </a>
+          </li><!-- End Dashboard Nav -->
+          <li class="nav-item">
+            <a class="nav-link " [routerLink]="['/suivistache']">
+              <i class="bi bi-grid"></i>
+              <span>Suivis tâches</span>
             </a>
           </li><!-- End Dashboard Nav -->
         </ul>

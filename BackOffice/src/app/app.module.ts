@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ProfilEmployeeComponent } from './profil-employee/profil-employee.component';
+import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
 
 
 
@@ -20,7 +21,8 @@ import { ProfilEmployeeComponent } from './profil-employee/profil-employee.compo
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    ProfilEmployeeComponent
+    ProfilEmployeeComponent,
+    SuivisTacheComponent
    
   ],
   imports: [

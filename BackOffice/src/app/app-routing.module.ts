@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ProfilEmployeeComponent } from './profil-employee/profil-employee.component';
+import { SuivisTacheComponent } from './suivis-tache/suivis-tache.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'employee',
     component: ProfilEmployeeComponent
+  },
+  {
+    path: 'suivistache',
+    component: SuivisTacheComponent
   }
 ];
 
