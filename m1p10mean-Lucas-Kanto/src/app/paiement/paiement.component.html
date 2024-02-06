@@ -13,13 +13,12 @@
             <div id="modules">
                 
                     <div class="row card-body justify-content-center">
-                        <div class="card border-primary col-lg-4 col-md-6 mb-3 mx-3" *ngFor="let item of todo" cdkDrag cdkDragHandle cdkDropList id="todo" [cdkDropListConnectedTo]="['done']" [cdkDropListData]="todo" (cdkDropListDropped)="drop($event)">
-                            <div class="card-header bg-transparent border-primary text-dark">Header</div>
+                        <div class="card border-primary col-lg-4 col-md-6 mb-3 mx-3" *ngFor="let rdv of rendezvous" cdkDrag cdkDragHandle cdkDropList id="rendezvous" [cdkDropListConnectedTo]="['payer']" [cdkDropListData]="rendezvous" (cdkDropListDropped)="drop($event)">
+                            <div class="card-header bg-transparent border-primary text-dark">Le {{rdv.daty}} à {{rdv.horaire}}</div>
                             <div class="card-body text-success">
-                              <h5 class="card-title">Success card title</h5>
-                              <p class="card-text">{{item}}</p>
+                              <p class="text-dark fw-bold mb-0">{{rdv.description}} par {{rdv.employe_info.nom}}</p>
+                              <p class="card-text">{{rdv.service_info.nom}} pendant {{rdv.service_info.duree}} min </p>
                             </div>
-                            <div class="card-footer bg-transparent border-primary text-dark">Footer</div>
                           </div>
                     </div>
                  
@@ -30,7 +29,7 @@
             <div class="tab-header">
                 <h3 class="text-dark fw-bold mb-3">Payer ici!</h3>
               </div>
-            <div class="dropzone"  cdkDropList id="done" [cdkDropListConnectedTo]="['todo']" [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
+            <div class="dropzone"  cdkDropList id="payer" [cdkDropListConnectedTo]="['rendezvous']" [cdkDropListData]="payer" (cdkDropListDropped)="drop($event)">
                 <button class="btn-primary btn-primary-outline-0 py-3 px-5" style="position: absolute;bottom:15px;right:150px;">Payer</button>
             </div>
             
