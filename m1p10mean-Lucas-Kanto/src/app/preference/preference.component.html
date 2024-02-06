@@ -62,7 +62,9 @@
               <div class="tab-header text-center">
                 <h3 class="text-dark fw-bold mb-3 py-5">Nos Employés</h3>
               </div>
-
+              <div *ngIf="message" class="alert alert-warning">
+                <strong>{{strongMessage}}</strong> {{message}}
+              </div>
               <div class="row gy-5">
 
                 <div *ngFor="let employe of employes"  class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">

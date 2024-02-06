@@ -72,7 +72,7 @@ export class PreferenceComponent implements OnInit{
             console.log("resulData.status = " + resultData.status);
             if (resultData.status) {
               this.strongMessage="C'est fait!";
-              this.message = "Nouveau favoris ajout(e)  : " + nom + ".";
+              this.message = "Nouveau favoris service ajout(e)  : " + nom + ".";
             }
           },
           (error: any) => {
@@ -85,7 +85,26 @@ export class PreferenceComponent implements OnInit{
 
       if (parseInt(type) === 11) {
         console.log("==> employe io");
-        // Mettez ici le code pour le type 11 si nécessaire
+        this.employe_id = choix_id;
+        let bodyData = {
+          "employe_id": this.employe_id,
+          "client_id": client_idCookie
+        };
+        console.log("bodyData emp : " + JSON.stringify(bodyData));
+        this.http.post("http://localhost:3000/preference/employe/creer", bodyData).subscribe(
+          (resultData: any) => {
+            console.log("resulData.status = " + resultData.status);
+            if (resultData.status) {
+              this.strongMessage="C'est fait!";
+              this.message = "Nouveau favoris employe ajout(e)  : " + nom + ".";
+            }
+          },
+          (error: any) => {
+            console.error('Erreur lors de la requête HTTP :', error);
+            this.strongMessage="Attention! ";
+            this.message = "Cette employe est déjà dans vos favoris";
+          }
+        );
       }
 
     } else {
