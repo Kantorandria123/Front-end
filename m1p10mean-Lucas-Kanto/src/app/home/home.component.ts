@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { error } from 'console';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -9,10 +10,12 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HomeComponent implements OnInit{
   services: any[] = [];
+  offrespecials: any[] = [];
 
   constructor(private http: HttpClient,private cookieService: CookieService) {}
   ngOnInit() {
     this.getListService();
+    this.getListOffrespecial();
   }
 
   getListService() {
@@ -33,4 +36,23 @@ export class HomeComponent implements OnInit{
       }
     );
   }
+
+    getListOffrespecial() {
+      const url = 'http://localhost:3000/offrespecial/lesoffrespecial';
+
+      this.http.get<any>(url).subscribe(
+        (response) => {
+
+          if (response.status && response.offrespecialList) {
+            this.offrespecials = response.offrespecialList;
+            console.log('Liste des offres spécial :', this.offrespecials);
+          } else {
+            console.error('Réponse innatendue du serveur :', response);
+          }
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération de la liste des offres spécial :', error);
+        }
+      );
+    }
 }

@@ -104,53 +104,8 @@
 
         </div>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img class="img-fluid w-100" src="./assets/img/image9.jpg" alt="">
-                        <div class="hover-style"></div>
-                        <div class="search-icon">
-                            <a href="./assets/img/image9.jpg" data-lightbox="Gallery-1" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
-                        </div>
-                    </div>
-                    <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                        <h5 class="fw-bold">Promotion spéciale sur les soin du visage</h5>
-                        <p class="text-dark mb-0">June 28, 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img class="img-fluid w-100" src="./assets/img/image10.jpg" alt="">
-                        <div class="hover-style"></div>
-                        <div class="search-icon">
-                            <a href="./assets/img/image10.jpg" data-lightbox="Gallery-2" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
-                        </div>
-                    </div>
-                    <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                        <h5 class="fw-bold">Promotion spéciale pour le relooking</h5>
-                        <p class="text-dark mb-0">June 28, 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img class="img-fluid w-100" src="./assets/img/image11.jpg" alt="">
-                        <div class="hover-style"></div>
-                        <div class="search-icon">
-                            <a href="./assets/img/image11.jpg" data-lightbox="Gallery-3" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
-                        </div>
-                    </div>
-                    <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                        <h5 class="fw-bold">Promotion spéciale sur les soin du cheuveux</h5>
-                        <p class="text-dark mb-0">June 28, 2024</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                <div class="gallery-item">
+            <div *ngFor="let offrespecial of offrespecials" class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
+                <div  class="gallery-item">
                     <div class="gallery-img">
                         <img class="img-fluid w-100" src="./assets/img/image12.jpg" alt="">
                         <div class="hover-style"></div>
@@ -159,15 +114,28 @@
                         </div>
                     </div>
                     <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                        <h5 class="fw-bold">Promotion spéciale sur les manicure</h5>
-                        <p class="text-dark mb-0">June 28, 2024</p>
+                        <h5 class="fw-bold">{{offrespecial.titre}}</h5>
+                        <p class="text-dark mb-0">Du {{offrespecial.datedebut}} au {{offrespecial.datefin }}</p>
                     </div>
                 </div>
             </div>
-
-
-
-
+            <!-- <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div *ngFor="let offrespecial of offrespecials" class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="./assets/img/image12.jpg" alt="">
+                    </div>
+                    <div class=" gallery-overlay g-light border-secondary border-top-0 p-4 border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">{{offrespecial.titre}}</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>Du {{offrespecial.datedebut}} au {{offrespecial.datefin }} </h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between  border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div> -->
             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.2s">
                 <a class="btn btn-primary btn-primary-outline-0 py-3 px-5 me-2" href="#">View All <i class="fas fa-arrow-right"></i></a>
             </div>
@@ -175,6 +143,8 @@
     </div>
 </div>
 <!-- Gallery end -->
+
+
 
 
 
