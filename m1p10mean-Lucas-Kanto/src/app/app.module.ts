@@ -17,6 +17,7 @@ import { ProfilClientComponent } from './profil-client/profil-client.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { PaiementComponent } from './paiement/paiement.component';
+import { DateFormatPipe } from './date-format.pipe';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PaiementComponent } from './paiement/paiement.component';
     ProfilClientComponent,
     EmployeeComponent,
     PreferenceComponent,
-    PaiementComponent
+    PaiementComponent,
+    DateFormatPipe
    
   ],
   imports: [

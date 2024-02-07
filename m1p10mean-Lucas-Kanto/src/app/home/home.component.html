@@ -63,36 +63,36 @@
 </div>
 <!-- Carousel End -->
 
- <!-- Hello! Start -->
- <div class="container-fluid position-relative py-5" id="weddingAbout">
-    <div class="container position-relative py-5">
-        <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800;">
-            <h1 class="text-primary display-1">Bienvenue!</h1>
-            <p class="text-dark fw-bold mb-0" style="line-height: 30px;">"Beauty Care,un lieu pour prendre soin de soi de façon durable dans un lieu feutré,calme et rassurant"</p>
+  <!-- Services Start -->
+  <div class="container-fluid services py-5" id="weddingAbout">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 800px;">
+            <p class="fs-4 text-uppercase text-center text-primary">Notre Service</p>
+            <h1 class="display-3"> Beauty Care Services</h1>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row g-4 align-items-center">
-
-                    <div *ngFor="let service of services" class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="d-flex">
-                            <img src="./assets/img/{{service.image}}" class="img-fluid img-border" alt="">
-                            <div class="my-auto ps-4">
-                                <h3 class="text-primary mb-3">{{service.nom}}</h3>
-                                <p class="text-dark fw-bold mb-0" style="line-height: 30px;">{{service.description}}</p>
-                                <p class="text-dark mb-0" style="line-height: 30px;">{{service.prix}} Ar/{{service.duree}} min </p>
+        <div class="row g-4">
+            <div class="col-lg-6" *ngFor="let service of services">
+                <div class="services-item bg-light border-4 border-end border-primary rounded p-4">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <div class="services-content text-end">
+                                <h3 class="fs-4 fw-bold text-primary">{{service.nom}}</h3>
+                                <p class="text-dark mb-0">{{service.description}}</p>
+                                <a [routerLink]="['/rendezvous']" class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4">{{service.prix}} Ar/{{service.duree}} min</a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="services-img d-flex align-items-center justify-content-center rounded">
+                                <img src="./assets/img/{{service.image}}" class="img-fluid rounded" alt="">
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
-            </div>
+            </div>   
         </div>
     </div>
 </div>
-<!-- Hello! End -->
+<!-- Services End -->
 
 
 
@@ -104,38 +104,24 @@
 
         </div>
         <div class="row g-4">
-            <div *ngFor="let offrespecial of offrespecials" class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                <div  class="gallery-item">
-                    <div class="gallery-img">
-                        <img class="img-fluid w-100" src="./assets/img/image12.jpg" alt="">
-                        <div class="hover-style"></div>
-                        <div class="search-icon">
-                            <a href="./assets/img/image12.jpg" data-lightbox="Gallery-3" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
-                        </div>
+            <div *ngFor="let offrespecial of offrespecials" class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="property-item overflow-hidden  bg-light" style="border-radius:20px ;">
+                    <div class="position-relative overflow-hidden">
+                        <a href=""><img class="img-fluid" src="./assets/img/image12.jpg" alt="" style="height: 200px;width:350px;"></a>
+                        
+                        <!-- <div class="bg-primary text-white position-absolute start-0 top-0 m-4 py-1 px-3" style="border-radius:5px ;">Offre Spécial</div> -->
+                        <div class="bg-primary text-white position-absolute start-0 bottom-0 mx-4 pt-1 px-3" style="border-radius:5px 5px 0 0;">Offre Spécial</div>
                     </div>
-                    <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
-                        <h5 class="fw-bold">{{offrespecial.titre}}</h5>
-                        <p class="text-dark mb-0">Du {{offrespecial.datedebut}} au {{offrespecial.datefin }}</p>
+                    <div class="p-4 pb-0">
+                        <h5 class="text-primary fw-bold mb-3">{{offrespecial.titre}}</h5>
+                        <p class="text-dark mb-0" style="line-height: 30px;">{{offrespecial.description}}</p>
+                        <p class="text-dark fw-bold flex-fill text-center py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Du {{offrespecial.datedebut | dateFormat}} au {{offrespecial.datefin | dateFormat}}</p>
                     </div>
+                    <!-- <div class="d-flex" style="border-top: 1px solid #fd5d5d;;">
+                        <p class="text-dark flex-fill text-center py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Du {{offrespecial.datedebut | dateFormat}} au {{offrespecial.datefin | dateFormat}}</p>
+                    </div> -->
                 </div>
             </div>
-            <!-- <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div *ngFor="let offrespecial of offrespecials" class="card product-item border-0 mb-4">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="./assets/img/image12.jpg" alt="">
-                    </div>
-                    <div class=" gallery-overlay g-light border-secondary border-top-0 p-4 border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">{{offrespecial.titre}}</h6>
-                        <div class="d-flex justify-content-center">
-                            <h6>Du {{offrespecial.datedebut}} au {{offrespecial.datefin }} </h6>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between  border">
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                    </div>
-                </div>
-            </div> -->
             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.2s">
                 <a class="btn btn-primary btn-primary-outline-0 py-3 px-5 me-2" href="#">View All <i class="fas fa-arrow-right"></i></a>
             </div>
@@ -143,7 +129,6 @@
     </div>
 </div>
 <!-- Gallery end -->
-
 
 
 
