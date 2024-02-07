@@ -18,6 +18,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { DateFormatPipe } from './date-format.pipe';
+import { ModalComponentComponent } from './modal-component/modal-component.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -34,15 +36,16 @@ import { DateFormatPipe } from './date-format.pipe';
     EmployeeComponent,
     PreferenceComponent,
     PaiementComponent,
-    DateFormatPipe
-   
+    DateFormatPipe,
+    ModalComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

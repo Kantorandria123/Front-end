@@ -1,0 +1,35 @@
+.bell-icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  svg {
+    margin: auto;
+    position: relative;
+    right: 2%;
+    width: 80%;
+    height: 80%;
+    stroke: rgba(0, 0, 0, 0.75);
+  }
+}
+
+.move-icon {
+  /* Ajoutez vos propriétés CSS pour déplacer l'icône ici */
+  transform: translateX(20px); /* Par exemple, déplace l'icône de 20px vers la droite */
+}
+
+.notification-amount {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Copse", serif;
+  font-size: 14px;
+}
