@@ -20,6 +20,7 @@ import { PaiementComponent } from './paiement/paiement.component';
 import { DateFormatPipe } from './date-format.pipe';
 import { ModalComponentComponent } from './modal-component/modal-component.component';
 import { CommonModule } from '@angular/common';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { CommonModule } from '@angular/common';
     PreferenceComponent,
     PaiementComponent,
     DateFormatPipe,
-    ModalComponentComponent
+    ModalComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +47,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     DragDropModule,
     CommonModule,
+    LoadingSpinnerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
