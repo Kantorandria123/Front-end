@@ -23,25 +23,24 @@
                   <form class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="yourUsername" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control" id="yourUsername" required>
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <label for="yourPassword" class="form-label">Mot de passe</label>
+                      <input type="password" [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}" class="form-control" id="yourPassword" required>
                     </div>
                     <div class="col-12">
                         <label for="yourPassword" class="form-label">Rôle</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Manager</option>
-                            <option value="1">Employée</option>
+                        <select [(ngModel)]="role_id" [ngModelOptions]="{standalone: true}" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let role of roles" [value]="role._id">{{role.nom}}</option>
                           </select>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                      <button class="btn btn-primary w-100" type="submit" (click)="loginEmployee()">Login</button>
                     </div>
                   </form>
 

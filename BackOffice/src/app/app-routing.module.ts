@@ -14,7 +14,7 @@ import { StatistiqueComponent } from './statistique/statistique.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
     component: FooterComponent
   },
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
   },
   {
