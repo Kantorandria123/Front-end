@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { error } from 'console';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit{
   }
 
   getListService() {
-    const url = 'http://localhost:3000/service/lesservices';
+    const url = environment.baseUrl+'/service/lesservices';
+    console.log("url : "+url);
 
     this.http.get<any>(url).subscribe(
       (response) => {
@@ -38,7 +40,7 @@ export class HomeComponent implements OnInit{
   }
 
     getListOffrespecial() {
-      const url = 'http://localhost:3000/offrespecial/lesoffrespecial';
+      const url = environment.baseUrl+'/offrespecial/lesoffrespecial';
 
       this.http.get<any>(url).subscribe(
         (response) => {

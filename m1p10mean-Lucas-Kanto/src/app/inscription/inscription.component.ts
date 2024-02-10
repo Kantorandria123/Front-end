@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-inscription',
@@ -36,7 +37,7 @@ export class InscriptionComponent {
       "token": this.token
     };
     console.log("bodyData : "+bodyData);
-    this.http.post("http://localhost:3000/client/create",bodyData).subscribe((resultData: any)=>
+    this.http.post(environment.baseUrl+"/client/create",bodyData).subscribe((resultData: any)=>
     {
 
         if (resultData.status)

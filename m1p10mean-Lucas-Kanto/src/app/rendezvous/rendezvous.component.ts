@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-rendezvous',
@@ -31,7 +32,7 @@ export class RendezvousComponent implements OnInit {
   }
 
   getListService() {
-    const url = 'http://localhost:3000/service/lesservices';
+    const url = environment.baseUrl+'/service/lesservices';
 
     this.http.get<any>(url).subscribe(
       (response) => {
@@ -52,7 +53,7 @@ export class RendezvousComponent implements OnInit {
     );
   }
   getListEmploye() {
-    const url = 'http://localhost:3000/employe/lesEmployes';
+    const url = environment.baseUrl+'/employe/lesEmployes';
 
     this.http.get<any>(url).subscribe(
       (response) => {
@@ -104,7 +105,7 @@ export class RendezvousComponent implements OnInit {
                 "employee_id" : this.employee_id,
                 "client_id": this.client_id
               };
-              this.http.post("http://localhost:3000/rendezvous/creer",bodyData).subscribe((resultData: any)=>
+              this.http.post(environment.baseUrl+"/rendezvous/creer",bodyData).subscribe((resultData: any)=>
               {
                   console.log(resultData);
                   this.strong_msg="C'est fait! ";

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-preference',
@@ -22,7 +23,7 @@ export class PreferenceComponent implements OnInit{
   }
 
   getListService() {
-    const url = 'http://localhost:3000/service/lesservices';
+    const url = environment.baseUrl+'/service/lesservices';
 
     this.http.get<any>(url).subscribe(
       (response) => {
@@ -39,7 +40,7 @@ export class PreferenceComponent implements OnInit{
     );
   }
   getListEmploye() {
-    const url = 'http://localhost:3000/employe/lesEmployes';
+    const url = environment.baseUrl+'/employe/lesEmployes';
 
     this.http.get<any>(url).subscribe(
       (response) => {
@@ -67,7 +68,7 @@ export class PreferenceComponent implements OnInit{
           "client_id": client_idCookie
         };
         console.log("bodyData emp : " + JSON.stringify(bodyData));
-        this.http.post("http://localhost:3000/preference/service/creer", bodyData).subscribe(
+        this.http.post(environment.baseUrl+"/preference/service/creer", bodyData).subscribe(
           (resultData: any) => {
             console.log("resulData.status = " + resultData.status);
             if (resultData.status) {
@@ -91,7 +92,7 @@ export class PreferenceComponent implements OnInit{
           "client_id": client_idCookie
         };
         console.log("bodyData emp : " + JSON.stringify(bodyData));
-        this.http.post("http://localhost:3000/preference/employe/creer", bodyData).subscribe(
+        this.http.post(environment.baseUrl+"/preference/employe/creer", bodyData).subscribe(
           (resultData: any) => {
             console.log("resulData.status = " + resultData.status);
             if (resultData.status) {

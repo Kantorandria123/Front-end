@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class LoginComponent {
       mdp: this.mdp,
     };
 
-        this.http.post("http://localhost:3000/client/login", bodyData).subscribe(  (resultData: any) => {
+        this.http.post(environment.baseUrl+"/client/login", bodyData).subscribe(  (resultData: any) => {
         console.log(resultData);
 
         if (resultData.status)

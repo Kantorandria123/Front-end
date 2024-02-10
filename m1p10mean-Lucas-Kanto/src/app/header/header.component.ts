@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
+import { environment } from '../environments/environment';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
         token: tokenCookie,
       };
 
-      this.http.post("http://localhost:3000/client/getbytoken", bodyData).subscribe((resultData: any) => {
+      this.http.post(environment.baseUrl+"/client/getbytoken", bodyData).subscribe((resultData: any) => {
         this.resultData=resultData;
       });
     } else {
@@ -48,7 +49,7 @@ export class HeaderComponent implements OnInit {
     const client_id = this.cookieService.get('id');
 
     if (client_id) {
-      const url = `http://localhost:3000/rendezvous/notification/${client_id}`;
+      const url = environment.baseUrl+`/rendezvous/notification/${client_id}`;
 
       this.http.get<any>(url).subscribe(
         (response) => {

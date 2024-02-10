@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
 @Component({
   selector: 'app-historique-rdv',
   templateUrl: './historique-rdv.component.html',
@@ -19,7 +20,7 @@ export class HistoriqueRDVComponent implements OnInit{
     const client_id = this.cookieService.get('id');
 
     if (client_id) {
-      const url = `http://localhost:3000/rendezvous/lesrendezvous/${client_id}`;
+      const url = environment.baseUrl+`/rendezvous/lesrendezvous/${client_id}`;
 
       this.http.get<any>(url).subscribe(
         (response) => {
