@@ -34,13 +34,7 @@
                       <input type="password" [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}" class="form-control" id="yourPassword" required>
                     </div>
                     <div class="col-12">
-                        <label for="yourPassword" class="form-label">Rôle</label>
-                        <select [(ngModel)]="role_id" [ngModelOptions]="{standalone: true}" class="form-select" aria-label="Default select example">
-                            <option *ngFor="let role of roles" [value]="role._id">{{role.nom}}</option>
-                          </select>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit" (click)="loginEmployee()">Login</button>
+                      <button (click)="loginEmployee()" class="btn btn-primary w-100" type="submit" >Login</button>
                     </div>
                   </form>
 
