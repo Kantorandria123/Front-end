@@ -34,7 +34,7 @@ export class LoginComponent {
 
        if (resultData.status) {
          this.cookieService.set('email',resultData.employes.email);
-         this.cookieService.set('mdp', resultData.employes.mdp);
+         this.cookieService.set('token', resultData.employes.token);
          this.cookieService.set('id', resultData.employes._id);
          this.router.navigateByUrl('/home')
        } else {
