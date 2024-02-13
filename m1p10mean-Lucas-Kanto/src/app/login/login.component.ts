@@ -25,9 +25,6 @@ export class LoginComponent {
   }
 
   login() {
-    console.log(this.email);
-    console.log(this.mdp);
-
     let bodyData = {
       email: this.email,
       mdp: this.mdp,
@@ -45,9 +42,7 @@ export class LoginComponent {
         }
         else
          {
-          //alert("Incorrect Email or Password");
           this.erroMessage="Incorrecte Email ou mot de passe";
-          console.log("Errror login");
         }
       });
     }
