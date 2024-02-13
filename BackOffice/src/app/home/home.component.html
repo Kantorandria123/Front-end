@@ -20,17 +20,15 @@
                     </th>
                     <th>Description</th>
                     <th>Service</th>
-                    <th >Employée</th>
                     <th>Client</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Unity Pugh</td>
-                    <td>9958</td>
-                    <td>Curicó</td>
-                    <td>2005/02/11</td>
-                    <td>37%</td>
+                <tbody >
+                  <tr *ngFor="let rdv of rendezvous">
+                    <td>{{rdv.daty | dateFormat }} à {{rdv.horaire}}</td>
+                    <td>{{rdv.description}}</td>
+                    <td>{{rdv.service_info.nom}}</td>
+                    <td>{{rdv.client_info.nom}}</td>
                   </tr>
                 </tbody>
               </table>

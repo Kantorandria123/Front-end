@@ -15,6 +15,7 @@ import { PersonnelComponent } from './personnel/personnel.component';
 import { ServiceComponent } from './service/service.component';
 import { DepenseComponent } from './depense/depense.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
+import { DateFormatPipe } from './date-format.pipe';
 
 
 
@@ -30,7 +31,8 @@ import { StatistiqueComponent } from './statistique/statistique.component';
     PersonnelComponent,
     ServiceComponent,
     DepenseComponent,
-    StatistiqueComponent
+    StatistiqueComponent,
+    DateFormatPipe,
    
   ],
   imports: [
