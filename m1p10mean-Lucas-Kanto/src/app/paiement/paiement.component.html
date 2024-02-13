@@ -1,42 +1,52 @@
 <app-header></app-header>
-<div class="container-fluid position-relative  py-5">
-    <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800;">
-        <h1 class="text-primary display-1">Paiement!</h1>
-    </div>
+<div class="container-fluid position-relative py-5">
+  <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+    <h1 class="text-primary display-1">Paiement!</h1>
+  </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="tab-header">
-                <h3 class="text-dark fw-bold mb-3">Les rendez-vous pris</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="tab-header">
+          <h3 class="text-dark fw-bold mb-3">Les rendez-vous pris</h3>
+        </div>
+        <div id="modules" class="row">
+          <div class="class1 col-lg-4 col-md-6 mb-3" *ngFor="let rdv of rendezvous" (dragstart)="start($event)" (dragover)="over($event)">
+            <div class="card border-primary mx-auto" id="{{rdv._id}}" draggable="true">
+              <input type="hidden" value="{{rdv._id}}">
+              <div class="card-header bg-transparent border-primary text-dark">Le {{rdv.daty}} à {{rdv.horaire}}</div>
+              <div class="card-body text-success">
+                <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}} pendant {{rdv.service_info.duree}} min</p>
+                <p class="card-text">{{rdv.service_info.prix}} $</p>
               </div>
-            <div id="modules">
-                
-                    <div class="row card-body justify-content-center">
-                        <div class="card border-primary col-lg-4 col-md-6 mb-3 mx-3" *ngFor="let rdv of rendezvous" cdkDrag cdkDragHandle cdkDropList id="rendezvous" [cdkDropListConnectedTo]="['payer']" [cdkDropListData]="rendezvous" (cdkDropListDropped)="drop($event)">
-                            <div class="card-header bg-transparent border-primary text-dark">Le {{rdv.daty}} à {{rdv.horaire}}</div>
-                            <div class="card-body text-success">
-                              <p class="text-dark fw-bold mb-0">{{rdv.description}} par {{rdv.employe_info.nom}}</p>
-                              <p class="card-text">{{rdv.service_info.nom}} pendant {{rdv.service_info.duree}} min </p>
-                            </div>
-                          </div>
-                    </div>
-                 
             </div>
-          </div>
-      
-          <div class="col-sm-6" style="margin-bottom: 10px;">
-            <div class="tab-header">
-                <h3 class="text-dark fw-bold mb-3">Payer ici!</h3>
-              </div>
-            <div class="dropzone"  cdkDropList id="payer" [cdkDropListConnectedTo]="['rendezvous']" [cdkDropListData]="payer" (cdkDropListDropped)="drop($event)">
-                <button class="btn-primary btn-primary-outline-0 py-3 px-5" style="position: absolute;bottom:15px;right:150px;">Payer</button>
-            </div>
-            
           </div>
         </div>
+
       </div>
 
+      <div class="col-sm-4" style="margin-bottom: 10px;">
+        <div class="tab-header">
+          <h3 class="text-dark fw-bold mb-3">A payer</h3>
+        </div>
+        <div id="modules"  lass="class1" (dragover)="over($event)" (drop)="drop($event)" (dragleave)="leave($event)">
+
+
+        </div>
+        <button class="btn-primary btn-primary-outline-0 py-3 px-5">Valider  <i class="fa fa-money-bill"></i></button>
+      </div>
+      <div class="col-sm-4" style="margin-bottom: 10px;">
+        <div class="tab-header">
+          <h3 class="text-dark fw-bold mb-3">Payer ici!</h3>
+        </div>
+        <div id="modules"  >
+          <p class="text-dark fw-bold mb-0">x</p>
+
+        </div>
+        <button class="btn-primary btn-primary-outline-0 py-3 px-5">Payer  <i class="fa fa-money-bill"></i></button>
+      </div>
+    </div>
+  </div>
 </div>
-  
+
 <app-footer></app-footer>

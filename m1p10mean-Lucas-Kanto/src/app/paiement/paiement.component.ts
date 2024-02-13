@@ -1,61 +1,85 @@
 import { Component } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-paiement',
   templateUrl: './paiement.component.html',
-  styleUrl: './paiement.component.css'
+  styleUrls: ['./paiement.component.css']
 })
 export class PaiementComponent {
-  title = 'angular-drag-drop-tutorial';
   rendezvous: any[] = [];
-  payer: any[] = [];
+  rendezvous2: any[] = [];
 
-  constructor(private http: HttpClient,private cookieService: CookieService) {}
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   ngOnInit() {
-    this.getListPaiement();
+    this.getListRendezVous();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      // Reorder items within the same list
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  start(event: any) {
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text", event.target.getAttribute("id"));
+  }
+
+  over(event: any) {
+    event.currentTarget.className = "class2";
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+  }
+
+  drop(event: any) {
+    let id = event.dataTransfer.getData("text");
+    let obj = document.getElementById(id);
+    event.currentTarget.appendChild(obj);
+
+    let inputElement = obj?.querySelector("input[type='hidden']") as HTMLInputElement | null;
+    if (inputElement) {
+        let inputText = inputElement.value;
+        console.log("La valeur de l'input déplacé est : " + inputText);
     } else {
-      // Move items between lists
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+        console.log("Aucun input de type 'hidden' trouvé dans l'élément déplacé.");
     }
+
+    event.currentTarget.className = "class1";
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+}
+
+
+
+  leave(event: any) {
+    event.currentTarget.className = "class1";
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
   }
 
-  getListPaiement() {
+
+
+  getListRendezVous() {
     const client_id = this.cookieService.get('id');
     if (client_id) {
-      const url = `http://localhost:3000/rendezvous/lesrendezvous/${client_id}`;
+      const url = environment.baseUrl+`/rendezvous/lesrendezvous/${client_id}`;
 
       this.http.get<any>(url).subscribe(
         (response) => {
           // La réponse contient la liste des rendezvous
           if (response.status && response.rendezvousList) {
             this.rendezvous = response.rendezvousList;
+            this.rendezvous2 = response.rendezvousList;
             console.log('Liste des rendezvous :', this.rendezvous);
           } else {
-            console.error('Réponse inattendue du serveur :', response);
+          console.error('Réponse inattendue du serveur :', response);
           }
         },
         (error) => {
           console.error('Erreur lors de la récupération de la liste des rendezvous :', error);
         }
       );
-    } else {
-      console.error('client_id non trouvé dans le cookie.');
     }
   }
-
 }

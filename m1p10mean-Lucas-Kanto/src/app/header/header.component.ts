@@ -34,8 +34,6 @@ export class HeaderComponent implements OnInit {
       this.http.post(environment.baseUrl+"/client/getbytoken", bodyData).subscribe((resultData: any) => {
         this.resultData=resultData;
       });
-    } else {
-      console.log("Les cookies 'email' et 'token' n'existent pas.");
     }
   }
   deconnection()
@@ -65,8 +63,6 @@ export class HeaderComponent implements OnInit {
           console.error('Erreur lors de la récupération de la liste des rendezvous notifier:', error);
         }
       );
-    } else {
-      console.error('client_id non trouvé dans le cookie.');
     }
   }
 
