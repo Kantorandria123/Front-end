@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container-fluid position-relative py-5">
-  <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+  <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
     <h1 class="text-primary display-1">Paiement!</h1>
   </div>
 
@@ -10,36 +10,38 @@
         <div class="tab-header">
           <h3 class="text-dark fw-bold mb-3">Les rendez-vous pris</h3>
         </div>
-        <div id="modules" class="row">
-          <div class="class1 col-lg-4 col-md-6 mb-3" *ngFor="let rdv of rendezvous" (dragstart)="start($event)" (dragover)="over($event)">
-            <div class="card border-primary mx-auto" id="{{rdv._id}}" draggable="true">
-              <input type="hidden" value="{{rdv._id}}">
-              <div class="card-header bg-transparent border-primary text-dark">Le {{rdv.daty}} à {{rdv.horaire}}</div>
-              <div class="card-body text-success">
-                <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}} pendant {{rdv.service_info.duree}} min</p>
-                <p class="card-text">{{rdv.service_info.prix}} $</p>
-              </div>
-            </div>
+        <div  class="class1" (dragstart)="start($event)" (dragover)="over($event)">
+          <div class="color-div"  *ngFor="let rdv of rendezvous"  (dragstart)="start($event)" id="{{rdv._id}}" draggable="true" >
+            <input type="hidden" value="{{rdv._id}}">
+            <p class="text-dark fw-bold mb-0">{{rdv.daty}}</p>
+            <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}}</p>
           </div>
         </div>
 
       </div>
 
-      <div class="col-sm-4" style="margin-bottom: 10px;">
+      <div class="col-sm-4">
         <div class="tab-header">
           <h3 class="text-dark fw-bold mb-3">A payer</h3>
         </div>
-        <div id="modules"  lass="class1" (dragover)="over($event)" (drop)="drop($event)" (dragleave)="leave($event)">
-
-
+        <div class="class1" (dragover)="over($event)" (drop)="drop($event)" (dragleave)="leave($event)" style="display: flex; flex-wrap: wrap;">
+          <div class="color-div" *ngFor="let rdv of rendezvousApayer">
+            <input #rdvIdInput type="hidden" value="{{rdv._id}}">
+            <input #rdvPrixInput type="hidden" value="{{rdv.service_info.prix}}">
+            <p class="text-dark fw-bold mb-0">{{rdv.daty}}</p>
+            <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}} / {{rdv.service_info.prix}}</p>
+          </div>
+          <button class="btn-primary btn-primary-outline-0 py-3 px-5" (click)="validerApayer()">valider  <i class="fa fa-money-bill"></i></button>
         </div>
-        <button class="btn-primary btn-primary-outline-0 py-3 px-5">Valider  <i class="fa fa-money-bill"></i></button>
+
+
+
       </div>
       <div class="col-sm-4" style="margin-bottom: 10px;">
         <div class="tab-header">
           <h3 class="text-dark fw-bold mb-3">Payer ici!</h3>
         </div>
-        <div id="modules"  >
+        <div class="row">
           <p class="text-dark fw-bold mb-0">x</p>
 
         </div>
