@@ -9,11 +9,15 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrl: './profil-employee.component.css'
 })
 export class ProfilEmployeeComponent implements OnInit{
+  nom: string = '';
+  email: string = '';
+  horaireTravail: string = '';
   employees: any[] = [];
 
   constructor(private http: HttpClient,private cookieService: CookieService) {}
   ngOnInit(): void {
     this.listeEmployeeById();
+    this.updateEmployee();
   }
 
   listeEmployeeById() {
@@ -43,6 +47,36 @@ export class ProfilEmployeeComponent implements OnInit{
      } else {
       console.error('employeeId non trouvé dans le cookie.');
      }
+  }
+
+  updateEmployee() {
+    const employeeId = this.cookieService.get('id');
+    if(employeeId) {
+      const url = `http://localhost:3000/employe/employeupdate/${employeeId}`;
+      const newData = {
+        nom: this.nom,
+        email: this.email,
+        horaireTravail: this.horaireTravail
+      };
+
+      this.http.patch<any>(url, newData).subscribe(
+        (response) => {
+          if (response.status && response.updatedEmployee) {
+            console.log("Employé mis à jour avec succès :", response.updatedEmployee);
+            // Mettre à jour les données affichées dans votre composant si nécessaire
+          } else {
+            console.error('Réponse inattendue du serveur :', response);
+          }
+        },
+        (error) => {
+          console.error("Erreur lors de la mise à jour de l'employé :", error);
+        }
+      );
+
+    } else {
+      console.error('employeeId non trouvé dans le cookie.');
+
+    }
   }
 
 }
