@@ -28,6 +28,7 @@
           <div class="color-div" *ngFor="let rdv of rendezvousApayer">
             <input #rdvIdInput type="hidden" value="{{rdv._id}}">
             <input #rdvPrixInput type="hidden" value="{{rdv.service_info.prix}}">
+            <input #serviceInput type="hidden" value="{{rdv.service_info.nom}}">
             <p class="text-dark fw-bold mb-0">{{rdv.daty}}</p>
             <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}} / {{rdv.service_info.prix}}</p>
           </div>
