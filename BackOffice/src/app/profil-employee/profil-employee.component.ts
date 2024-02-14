@@ -11,13 +11,13 @@ import { CookieService } from 'ngx-cookie-service';
 export class ProfilEmployeeComponent implements OnInit{
   nom: string = '';
   email: string = '';
+  image: string ='';
   horaireTravail: string = '';
   employees: any[] = [];
 
   constructor(private http: HttpClient,private cookieService: CookieService) {}
   ngOnInit(): void {
     this.listeEmployeeById();
-    this.updateEmployee();
   }
 
   listeEmployeeById() {
@@ -56,6 +56,7 @@ export class ProfilEmployeeComponent implements OnInit{
       const newData = {
         nom: this.nom,
         email: this.email,
+        image: this.image,
         horaireTravail: this.horaireTravail
       };
 
