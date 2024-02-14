@@ -39,6 +39,6 @@ deconnection()
   this.cookieService.delete('id');
   this.cookieService.delete('email');
   this.cookieService.delete('token');
-  location.reload();
+  this.router.navigateByUrl('/')
 }
 }
