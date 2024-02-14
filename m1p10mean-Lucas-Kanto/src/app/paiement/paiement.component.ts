@@ -19,6 +19,9 @@ export class PaiementComponent {
   @ViewChildren('serviceInput')
   serviceInput!: QueryList<ElementRef<HTMLInputElement>>;
   paiements: any[] = [];
+  @ViewChildren('paiementIdInput')
+  paiementIdInput!: QueryList<ElementRef<HTMLInputElement>>;
+  totalPrix : Number = 0;
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   ngOnInit() {
@@ -166,6 +169,7 @@ export class PaiementComponent {
       return this.http.get<any[]>(url).pipe(
         map((response: any) => {
           if (response.status && response.paiements) {
+            this.totalPrix=response.totalPrix;
             return response.paiements;
           } else {
             console.error('Réponse inattendue du serveur :', response);
@@ -180,5 +184,25 @@ export class PaiementComponent {
     } else {
       return of([]);
     }
+  }
+  updateEtatPaiement(paiementID: string, etat: number) {
+    this.http.get<any>(environment.baseUrl+`/paiement/payer/${paiementID}/${etat}`).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
+  }
+  payer()
+  {
+      const paiementIds: string[] = [];
+      this.paiementIdInput.forEach(input => {
+        paiementIds.push(input.nativeElement.value);
+      });
+      for(let i=0;i<paiementIds.length;i++)
+      {
+          this.updateEtatPaiement(paiementIds[i],2);
+          window.location.reload();
+      }
+
   }
 }
