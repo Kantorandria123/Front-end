@@ -16,7 +16,9 @@ export class PaiementComponent {
   rdvInputs!: QueryList<ElementRef<HTMLInputElement>>;
   @ViewChildren('rdvPrixInput')
   rdvPrixInput!: QueryList<ElementRef<HTMLInputElement>>;
-
+  @ViewChildren('serviceInput')
+  serviceInput!: QueryList<ElementRef<HTMLInputElement>>;
+  paiements: any[] = [];
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   ngOnInit() {
@@ -34,6 +36,14 @@ export class PaiementComponent {
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des rendezvous 2:', error);
+      }
+    );
+    this.getListPaiment(1).subscribe(
+      (data) => {
+        this.paiements = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des paiement 1:', error);
       }
     );
   }
@@ -119,18 +129,25 @@ export class PaiementComponent {
     this.rdvPrixInput.forEach(input => {
       rdvPrix.push(input.nativeElement.value);
     });
+    const rdvservices: string[] = [];
+    this.serviceInput.forEach(input => {
+      rdvservices.push(input.nativeElement.value);
+    });
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const day = String(currentDate.getDate()).padStart(2, '0');
     const daty = `${year}-${month}-${day}`;
     console.log("daty "+daty);
+    const client_idCookie = this.cookieService.get('id');
     for(let i=0;i<rdvIds.length;i++)
     {
       let bodyData = {
         "rendezvous_id" : rdvIds[i],
+        "service" : rdvservices[i],
         "daty" : daty,
         "prix" : Number(rdvPrix[i]),
+        "client_id":client_idCookie,
         "etat": 1
       };
        console.log(i+" = "+rdvIds[i]+"==> prix : "+Number(rdvPrix[i]));
@@ -139,6 +156,29 @@ export class PaiementComponent {
             this.updateEtatRendezVous(rdvIds[i],3);
             window.location.reload();
         });
+    }
+  }
+  getListPaiment(etat: number): Observable<any[]> {
+    const client_id = this.cookieService.get('id');
+    if (client_id) {
+      const url = environment.baseUrl + `/paiement/lespaiements/${client_id}/${etat}`;
+
+      return this.http.get<any[]>(url).pipe(
+        map((response: any) => {
+          if (response.status && response.paiements) {
+            return response.paiements;
+          } else {
+            console.error('Réponse inattendue du serveur :', response);
+            return [];
+          }
+        }),
+        catchError((error) => {
+          console.error('Erreur lors de la récupération de la liste des paiements :', error);
+          return throwError('Erreur lors de la récupération de la liste des paiements');
+        })
+      );
+    } else {
+      return of([]);
     }
   }
 }
