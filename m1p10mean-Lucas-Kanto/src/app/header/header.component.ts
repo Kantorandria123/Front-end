@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
       this.http.post(environment.baseUrl+"/client/getbytoken", bodyData).subscribe((resultData: any) => {
         this.resultData=resultData;
       });
+      console.log("resuldata : "+this.resultData);
     }
   }
   deconnection()

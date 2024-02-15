@@ -20,7 +20,7 @@ export class HistoriqueRDVComponent implements OnInit{
     const client_id = this.cookieService.get('id');
 
     if (client_id) {
-      const url = environment.baseUrl+`/rendezvous/lesrendezvous/${client_id}`;
+      const url = environment.baseUrl+`/rendezvous/historique/${client_id}`;
 
       this.http.get<any>(url).subscribe(
         (response) => {
