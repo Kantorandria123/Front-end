@@ -9,6 +9,7 @@ import { ProfilClientComponent } from './profil-client/profil-client.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { PaiementComponent } from './paiement/paiement.component';
+import { MespreferencesComponent } from './mespreferences/mespreferences.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path:'paiement',
     component: PaiementComponent
+  },
+  {
+    path:'mespreferences',
+    component: MespreferencesComponent
   }
 ];
 

@@ -21,6 +21,7 @@ import { DateFormatPipe } from './date-format.pipe';
 import { ModalComponentComponent } from './modal-component/modal-component.component';
 import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MespreferencesComponent } from './mespreferences/mespreferences.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     PreferenceComponent,
     PaiementComponent,
     DateFormatPipe,
+    MespreferencesComponent,
     ModalComponentComponent,
   ],
   imports: [
