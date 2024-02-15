@@ -1,8 +1,25 @@
+.col-sm-4 {
+  margin-bottom: 10px; /* Adjust as needed */
+}
+.parent-container {
+  margin-bottom: 0; /* Or reduce as needed */
+}
 .class1 {
-  border: 1px solid black;
-  padding: 10px;
   width: auto;
   height: auto;
+  margin: auto;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  
+}
+ul li{
+  padding-left: 1ch;
+  border-bottom: 1px solid #fd5d5d;
+}
+ul li::marker{
+  content: "★";
+  color: #fd5d5d ;
 }
 .class2 {
   border: 1px solid black;
@@ -11,11 +28,14 @@
   height: auto;
 }
 .color-div {
-  width:auto;
+  
   height: auto;
   margin: 5px;
-  border: 1px solid black;
+  
   flex: 0 0 auto; width: 100%;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3);
 }
 .alert {
   padding: 20px;
@@ -37,3 +57,9 @@
 .closebtn:hover {
   color: black;
 }
+
+.bouton{
+  margin-top: 15px;
+  border-radius: 5px;
+}
+

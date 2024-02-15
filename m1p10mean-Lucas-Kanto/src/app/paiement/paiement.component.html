@@ -11,7 +11,7 @@
           <h3 class="text-dark fw-bold mb-3">Les rendez-vous pris</h3>
         </div>
         <div  class="class1" (dragstart)="start($event)" (dragover)="over($event)">
-          <div class="color-div"  *ngFor="let rdv of rendezvous"  (dragstart)="start($event)" id="{{rdv._id}}" draggable="true" >
+          <div class="color-div radius-10 border-start border-0 border-3 border-danger"  *ngFor="let rdv of rendezvous"  (dragstart)="start($event)" id="{{rdv._id}}" draggable="true" >
             <input type="hidden" value="{{rdv._id}}">
             <p class="text-dark fw-bold mb-0">{{rdv.daty}}</p>
             <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}}</p>
@@ -25,16 +25,21 @@
           <h3 class="text-dark fw-bold mb-3">A payer</h3>
         </div>
         <div class="class1" (dragover)="over($event)" (drop)="drop($event)" (dragleave)="leave($event)" style="display: flex; flex-wrap: wrap;">
-          <div class="color-div" *ngFor="let rdv of rendezvousApayer">
+          <div class="color-div radius-10 border-start border-0 border-3 border-danger" *ngFor="let rdv of rendezvousApayer">
             <input #rdvIdInput type="hidden" value="{{rdv._id}}">
             <input #rdvPrixInput type="hidden" value="{{rdv.service_info.prix}}">
             <input #serviceInput type="hidden" value="{{rdv.service_info.nom}}">
-            <p class="text-dark fw-bold mb-0">{{rdv.daty}}</p>
-            <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}} / {{rdv.service_info.prix}}</p>
+            <p class="text-dark fw-bold mb-0">Le {{rdv.daty | dateFormat}}</p>
+            <div class="d-flex justify-content-between mb-1">
+              <p class="text-dark fw-bold">{{rdv.service_info.nom}}</p>
+              <p class="btn btn-primary btn-primary-outline-0 rounded-pill" style=" margin-top: 0; margin-bottom: 0;">{{rdv.service_info.prix | currency:'USD':'symbol':'1.2-2'}}</p>
+            </div>
           </div>
+        
         </div>
-        <button class="btn-primary btn-primary-outline-0 py-3 px-5" (click)="validerApayer()">valider  <i class="fa fa-money-bill"></i></button>
-
+        <div class="d-flex justify-content-center">
+          <button class="btn-primary bouton btn-primary-outline-0 py-3 px-5" (click)="validerApayer()">Valider  <i class="fa fa-money-bill"></i></button>
+        </div>
 
 
       </div>
@@ -42,12 +47,29 @@
         <div class="tab-header">
           <h3 class="text-dark fw-bold mb-3">Payer ici!</h3>
         </div>
-        <div class="row">
-         <ul *ngFor="let paiement of paiements">
-            <li class="text-dark fw-bold mb-0">{{paiement.service}} + {{paiement.prix}}</li>
-            <input #paiementIdInput type="hidden" value="{{paiement._id}}">
-         </ul>
-         <b style="color:red">Total : {{totalPrix}}</b>
+        <div class="class1 row">
+          <table class="table text-dark">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Prix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let paiement of paiements">
+                <td>{{ paiement.service }}</td>
+                <td>{{ paiement.prix | currency:'USD':'symbol':'1.2-2' }}</td>
+                <input #paiementIdInput type="hidden" value="{{ paiement._id }}">
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2" style="color: red; text-align: right; text-transform: uppercase;">
+                  <b >Total : {{ totalPrix }}</b>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
          <div  *ngIf="messageError"class="alert">
           <strong>Erreur!</strong>  {{ messageError }}
         </div>
@@ -55,7 +77,9 @@
           <strong>C'est fait!</strong> {{messageSuccess}}
         </div>
         </div>
-        <button (click)="payer()" class="btn-primary btn-primary-outline-0 py-3 px-5">Payer  <i class="fa fa-money-bill"></i></button>
+        <div class="d-flex justify-content-center"> 
+          <button (click)="payer()" class="bouton btn-primary btn-primary-outline-0 py-3 px-5">Payer  <i class="fa fa-money-bill"></i></button>
+        </div>
       </div>
 
     </div>
