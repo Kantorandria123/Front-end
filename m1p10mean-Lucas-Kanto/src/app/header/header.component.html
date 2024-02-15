@@ -36,6 +36,7 @@
                             <ul class="dropdown-menu ms-auto mx-3 py-2 ms-4" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" [routerLink]="['/profil']"> <i class="fas fa-user-circle text-primary"></i> Profil</a></li>
                                 <li><a class="dropdown-item" [routerLink]="['/historique']"><i class="fa fa-history text-primary"></i> Historique rendez-vous</a></li>
+                                <li><a class="dropdown-item" [routerLink]="['/mespreferences']"><i class="fa fa-heart text-primary"></i> Mes preferences</a></li>
                                 <li><a class="dropdown-item" (click)="deconnection()"> <i class="fas fa-sign-out-alt text-primary"></i> Déconnexion</a></li>
                             </ul>
                         </div>
@@ -50,7 +51,7 @@
                             <span>{{notif}}</span>
                           </div>
                         </div>
-                        <div style="color: black;">
+                        <div  style="color: black;">
                           Mon solde : {{ resultData?.client?.argent | currency:'USD':'symbol':'1.2-2'}}
                         </div>
 
