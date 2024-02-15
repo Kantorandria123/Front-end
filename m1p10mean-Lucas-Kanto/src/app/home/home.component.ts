@@ -21,14 +21,10 @@ export class HomeComponent implements OnInit{
 
   getListService() {
     const url = environment.baseUrl+'/service/lesservices';
-    console.log("url : "+url);
-
     this.http.get<any>(url).subscribe(
       (response) => {
-        // La réponse contient la liste des services
         if (response.status && response.services) {
           this.services = response.services;
-          console.log('Liste des services :', this.services);
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
@@ -47,7 +43,6 @@ export class HomeComponent implements OnInit{
 
           if (response.status && response.offrespecialList) {
             this.offrespecials = response.offrespecialList;
-            console.log('Liste des offres spécial :', this.offrespecials);
           } else {
             console.error('Réponse innatendue du serveur :', response);
           }

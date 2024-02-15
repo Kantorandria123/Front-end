@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
   rendezvous: any[] = [];
   modalOpened: boolean = false;
   ngOnInit() {
-    console.log("*************hello******************");
     this.getListNotificationRendezvous();
 
     const idcookie = this.cookieService.get('id');
@@ -54,7 +53,6 @@ export class HeaderComponent implements OnInit {
           if (response.status && response.rendezvousList) {
             this.rendezvous = response.rendezvousList;
             this.notif = this.rendezvous.length;
-            console.log('Liste des rendezvous notifier:', this.rendezvous);
           } else {
             console.error('Réponse inattendue du serveur :', response);
           }
@@ -68,18 +66,15 @@ export class HeaderComponent implements OnInit {
 
   openModal(): void {
     if (!this.modalOpened) {
-      console.log("taille rendez vous***********"+this.rendezvous.length);
-      console.log("descr = = = = = "+this.rendezvous[0].description);
       const dialogRef = this.dialog.open(ModalComponentComponent, {
         data: { title: 'Vos rendez vous',rendezvous:this.rendezvous }
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('Le modal est fermé');
-        this.modalOpened = false; // Réinitialise la variable de contrôle lorsque le modal est fermé
+        this.modalOpened = false;
       });
 
-      this.modalOpened = true; // Marque le modal comme ouvert
+      this.modalOpened = true;
     }
   }
 }
