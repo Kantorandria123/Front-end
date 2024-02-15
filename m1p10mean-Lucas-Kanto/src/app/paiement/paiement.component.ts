@@ -22,6 +22,8 @@ export class PaiementComponent {
   @ViewChildren('paiementIdInput')
   paiementIdInput!: QueryList<ElementRef<HTMLInputElement>>;
   totalPrix : Number = 0;
+  messageError: String="";
+  messageSuccess: String="";
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   ngOnInit() {
@@ -194,15 +196,38 @@ export class PaiementComponent {
   }
   payer()
   {
-      const paiementIds: string[] = [];
-      this.paiementIdInput.forEach(input => {
-        paiementIds.push(input.nativeElement.value);
-      });
-      for(let i=0;i<paiementIds.length;i++)
-      {
-          this.updateEtatPaiement(paiementIds[i],2);
-          window.location.reload();
-      }
+      const client_id = this.cookieService.get('id');
+      this.updateArgent(client_id, this.totalPrix).subscribe((success: boolean) => {
+        if (success) {
+                const paiementIds: string[] = [];
+                this.paiementIdInput.forEach(input => {
+                  paiementIds.push(input.nativeElement.value);
+                });
+                for(let i=0;i<paiementIds.length;i++)
+                {
+                    this.updateEtatPaiement(paiementIds[i],2);
+                    window.location.reload();
+                }
+        } else {
 
+        }
+      });
+
+  }
+  updateArgent(clientId: string, totalPrix: Number): Observable<boolean> {
+    let bodyData = {
+      "_id": clientId,
+      "argent": totalPrix,
+    };
+    return this.http.post(environment.baseUrl + "/client/updateargent", bodyData).pipe(
+      map((resultData: any) => {
+        if (!resultData.status) {
+          this.messageError = resultData.message;
+          return false;
+        }
+        this.messageSuccess=resultData.message;
+        return true;
+      })
+    );
   }
 }

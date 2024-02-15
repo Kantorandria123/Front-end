@@ -32,8 +32,8 @@
             <p class="text-dark fw-bold mb-0">{{rdv.daty}}</p>
             <p class="text-dark fw-bold mb-0">{{rdv.service_info.nom}} / {{rdv.service_info.prix}}</p>
           </div>
-          <button class="btn-primary btn-primary-outline-0 py-3 px-5" (click)="validerApayer()">valider  <i class="fa fa-money-bill"></i></button>
         </div>
+        <button class="btn-primary btn-primary-outline-0 py-3 px-5" (click)="validerApayer()">valider  <i class="fa fa-money-bill"></i></button>
 
 
 
@@ -48,9 +48,16 @@
             <input #paiementIdInput type="hidden" value="{{paiement._id}}">
          </ul>
          <b style="color:red">Total : {{totalPrix}}</b>
+         <div  *ngIf="messageError"class="alert">
+          <strong>Erreur!</strong>  {{ messageError }}
+        </div>
+        <div *ngIf="messageSuccess" class="alert alert-success">
+          <strong>C'est fait!</strong> {{messageSuccess}}
+        </div>
         </div>
         <button (click)="payer()" class="btn-primary btn-primary-outline-0 py-3 px-5">Payer  <i class="fa fa-money-bill"></i></button>
       </div>
+
     </div>
   </div>
 </div>
