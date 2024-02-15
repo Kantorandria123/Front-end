@@ -65,13 +65,13 @@
                     <div class="team-item">
                         <div class="team-img">
                             <div class="team-img-main">
-                              <img src="./assets/img/{{employe.image}}" class="img-fluid w-100" alt="">
+                              <img src="./assets/img/{{employe.employes_info.image}}" class="img-fluid w-100" alt="">
                             </div>
                         </div>
                         <div class="team-content">
                             <div class="d-flex flex-column p-4">
-                                <a [routerLink]="['/rendezvous']">  <h5 class="text-white display-6 mb-1">{{employe.nom}}</h5> </a>
-                                <h5 class="text-white fs-5 mb-0">{{employe.horaireTravail}}</h5>
+                                <a [routerLink]="['/rendezvous']">  <h5 class="text-white display-6 mb-1">{{employe.employes_info.nom}}</h5> </a>
+                                <h5 class="text-white fs-5 mb-0">{{employe.employes_info.horaireTravail}}</h5>
                             </div>
                         </div>
 

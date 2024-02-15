@@ -37,13 +37,14 @@ export class MespreferencesComponent implements OnInit{
     );
   }
   getListEmploye() {
-    const url = environment.baseUrl+'/employe/lesEmployes';
-
+    const client_id = this.cookieService.get('id');
+    const url = environment.baseUrl+`/preference/employe/liste/${client_id}`;
     this.http.get<any>(url).subscribe(
       (response) => {
-        if (response.status && response.employes) {
-          this.employes = response.employes;
-
+        if (response.status && response.preferenceslist) {
+          console.log(response.services);
+          this.employes = response.preferenceslist;
+          console.log("taille = "+response.preferenceslist.length);
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
