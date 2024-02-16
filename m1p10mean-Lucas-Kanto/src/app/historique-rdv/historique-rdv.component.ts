@@ -24,7 +24,6 @@ export class HistoriqueRDVComponent implements OnInit{
 
       this.http.get<any>(url).subscribe(
         (response) => {
-          // La réponse contient la liste des rendezvous
           if (response.status && response.rendezvousList) {
             this.rendezvous = response.rendezvousList;
             console.log('Liste des rendezvous :', this.rendezvous);

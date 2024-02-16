@@ -23,7 +23,6 @@
                         <a *ngIf="resultData === null || resultData === undefined" [routerLink]="['/login']" class="btn btn-primary btn-primary-outline-0 btn-md-square py-2 px-4 ms-4">
                           <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
-
                         <ng-container *ngIf="resultData !== null && resultData !== undefined">
 
                           <!-- <a (click)="deconnection()" class="btn btn-primary btn-primary-outline-0 btn-md-square py-1 px-2 ms-2">
@@ -51,17 +50,3 @@
                             <span>{{notif}}</span>
                           </div>
                         </div>
-                        <div  style="color: black;">
-                          Mon solde : {{ resultData?.client?.argent | currency:'USD':'symbol':'1.2-2'}}
-                        </div>
-
-                        </ng-container>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- Navbar End -->
-
-
