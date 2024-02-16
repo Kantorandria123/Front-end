@@ -78,7 +78,7 @@
                             <div class="services-content text-end">
                                 <h3 class="fs-4 fw-bold text-primary">{{service.nom}}</h3>
                                 <p class="text-dark mb-0">{{service.description}}</p>
-                                <a [routerLink]="['/rendezvous']" class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4">{{service.prix}} Ar/{{service.duree}} min</a>
+                                <a [routerLink]="['/rendezvous']" class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4">{{ service.prix | currency:'USD':'symbol':'1.2-2'}}/{{service.duree}} min</a>
                             </div>
                         </div>
                         <div class="col-4">
@@ -121,9 +121,6 @@
                         <p class="text-dark flex-fill text-center py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Du {{offrespecial.datedebut | dateFormat}} au {{offrespecial.datefin | dateFormat}}</p>
                     </div> -->
                 </div>
-            </div>
-            <div class="col-12 text-center wow fadeIn" data-wow-delay="0.2s">
-                <a class="btn btn-primary btn-primary-outline-0 py-3 px-5 me-2" href="#">View All <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

@@ -45,7 +45,7 @@
                         </div>
                         <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                             <h5 class="fw-bold">{{service.nom}}</h5>
-                            <p class="text-dark mb-0">{{service.prix}} Ar/{{service.duree}} min</p>
+                            <p class="text-dark mb-0">{{ service.prix | currency:'USD':'symbol':'1.2-2'}}/{{service.duree}} min</p>
                         </div>
                     </div>
                 </div>
