@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 })
 export class LoginComponent {
 
-  email: string = 'john.doe@example.com';
+  email: string = 'kuchylucky@gmail.com';
   mdp: string = '123';
 
   isLogin: boolean = true;
@@ -31,7 +31,6 @@ export class LoginComponent {
     };
 
         this.http.post(environment.baseUrl+"/client/login", bodyData).subscribe(  (resultData: any) => {
-        console.log(resultData);
 
         if (resultData.status)
         {
