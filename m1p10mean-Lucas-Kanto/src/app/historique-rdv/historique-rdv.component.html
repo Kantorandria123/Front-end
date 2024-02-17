@@ -1,30 +1,28 @@
 <app-header></app-header>
 
-<div class="container-fluid position-relative  RSVP-form py-5">
-    <div class="container py-5">
-        <div class="mb-5 text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 800px;">
-            <h1 class="display-2 text-dark">Historique de votre rendez-vous</h1>
-        </div>
-        <div class="notification-ui_dd-content">
-            <div class="notification-list notification-list--unread" *ngFor="let rdv of rendezvous">
-                <div class="notification-list_content">
-                    <div class="notification-list_img">
-                        <img src="./assets/img/{{rdv.service_info.image}}" alt="user">
-                    </div>
-                    <div class="notification-list_detail">
-                        <p class="text-dark mb-0 fw-bold" >Rendez-vous le {{rdv.daty | dateFormat}} à {{rdv.horaire}}</p>
-                        <p class="text-dark">{{rdv.description}}</p>
-                        <p class="text-muted">Votre rendez-vous pour <span style="color: #fd5d5d;">{{rdv.service_info.nom}}</span>  qui a été prise par <span style="color: #fd5d5d;">{{rdv.employe_info.nom}}</span> durant <span style="color: #fd5d5d;">{{rdv.service_info.duree}} min</span></p>
-                        <!-- <p class="text-muted"><small>10 mins ago</small></p> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    <br>
+<div class="container-fluid position-relative RSVP-form py-5">
+  <div class="container py-5">
+    <div class="mb-5 text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 800px;">
+      <h1 class="display-2 text-dark">Historique de votre rendez-vous</h1>
     </div>
-    
+    <div class="notification-ui_dd-content">
+      <div class="notification-list notification-list--unread" *ngFor="let rdv of rendezvous | slice: (page * pageSize): ((page + 1) * pageSize)">
+        <div class="notification-list_content">
+          <div class="notification-list_img">
+            <img src="./assets/img/{{rdv.service_info.image}}" alt="user">
+          </div>
+          <div class="notification-list_detail">
+            <p class="text-dark mb-0 fw-bold">Rendez-vous le {{rdv.daty | dateFormat}} à {{rdv.horaire}}</p>
+            <p class="text-dark">{{rdv.description}}</p>
+            <p class="text-muted">Votre rendez-vous pour <span style="color: #fd5d5d;">{{rdv.service_info.nom}}</span>  qui a été prise par <span style="color: #fd5d5d;">{{rdv.employe_info.nom}}</span> durant <span style="color: #fd5d5d;">{{rdv.service_info.duree}} min</span></p>
+            <!-- <p class="text-muted"><small>10 mins ago</small></p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-
+<mat-paginator [length]="rendezvous.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
 
 <app-footer></app-footer>

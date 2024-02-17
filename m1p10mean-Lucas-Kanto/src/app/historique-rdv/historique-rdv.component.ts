@@ -1,26 +1,29 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../environments/environment';
+
 @Component({
   selector: 'app-historique-rdv',
   templateUrl: './historique-rdv.component.html',
-  styleUrl: './historique-rdv.component.css'
+  styleUrls: ['./historique-rdv.component.css']
 })
-export class HistoriqueRDVComponent implements OnInit{
-
+export class HistoriqueRDVComponent implements OnInit {
   rendezvous: any[] = [];
+  pageSize = 5;
+  page = 0;
 
-  constructor(private http: HttpClient,private cookieService: CookieService) {}
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   ngOnInit() {
     this.getListHistoriqueRendezvous();
   }
+
   getListHistoriqueRendezvous() {
     const client_id = this.cookieService.get('id');
 
     if (client_id) {
-      const url = environment.baseUrl+`/rendezvous/historique/${client_id}`;
+      const url = environment.baseUrl + `/rendezvous/historique/${client_id}`;
 
       this.http.get<any>(url).subscribe(
         (response) => {
@@ -40,5 +43,7 @@ export class HistoriqueRDVComponent implements OnInit{
     }
   }
 
-
+  onPageChange(event: any) {
+    this.page = event.pageIndex;
+  }
 }

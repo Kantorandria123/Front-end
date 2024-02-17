@@ -50,9 +50,9 @@
                             <span>{{notif}}</span>
                           </div>
                         </div>
-                        
-                        <div class=""  style="color: black;margin-left:25px;">
-                          <i class="fa fa-money-bill text-primary"></i> : {{ resultData?.client?.argent | currency:'USD':'symbol':'1.2-2'}}
+
+                        <div  style="color: black;margin-left:25px;">
+                          <i class="fa fa-money-bill text-primary"></i> {{ resultData?.client?.argent | currency:'USD':'symbol':'1.2-2'}}
                         </div>
                         </ng-container>
                     </div>

@@ -151,7 +151,6 @@ export class HeaderComponent implements OnInit {
           console.log('E-mail envoyé avec succès:', response);
         },
         error => {
-          //console.error('Erreur lors de l\'envoi de l\'e-mail:', error);
         }
       );
     }
