@@ -1,24 +1,26 @@
 <div class="cookiesContent" id="cookiesPopup">
   <button (click)="closeDialog()" class="close">✖</button>
-  <img src="./assets/img/icon.png" alt="cookies-img" />
-  <h2>{{ data.title }}</h2>
+  <div style="display: flex; align-items: center;">
+    <img src="./assets/img/icon.png" alt="cookies-img" />
+    <p class="fw-bold" style="margin-left: 10px; margin-bottom: 15px;font-family: 'Great Vibes', cursive;font-size:28px;">Notifications</p>
+  </div>
   <ng-container *ngIf="data.rendezvous && data.rendezvous.length > 0; else noNotifications">
-    <div *ngFor="let rdv of data.rendezvous" class="card border-info">
-      <div class="card-header text-dark ">{{rdv.daty}} a {{rdv.horaire}}</div>
-      <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{rdv.description}}
-          </h5>
-          <p class="card-text text-dark">
-            {{rdv.employe_info.nom}} /
-            {{rdv.service_info.nom}} /
-            {{rdv.service_info.duree}} min
-          </p>
+    
+    <div class="notification-ui_dd-content">
+      <div class="notification-list notification-list--unread" *ngFor="let rdv of data.rendezvous">
+        <div class="notification-list_content">
+          <div class="notification-list_img">
+            <img src="./assets/img/{{rdv.service_info.image}}" alt="user">
+          </div>
+          <div class="notification-list_detail">
+            <p class="text-dark mb-0 fw-bold" style="font-size: 13px;"> Le {{rdv.daty | dateFormat}} à {{rdv.horaire}}</p>
+            <p class="text-muted" style="font-size: 13px;"><span style="color: #fd5d5d;">{{rdv.service_info.nom}}</span> par <span style="color: #fd5d5d;">{{rdv.employe_info.nom}}</span> durant <span style="color: #fd5d5d;">{{rdv.service_info.duree}} min</span></p>
+          </div>
+        </div>
       </div>
     </div>
   </ng-container>
   <ng-template #noNotifications>
     <p>Aucune notification</p>
   </ng-template>
-  <button (click)="closeDialog()" class="accept">fermer</button>
 </div>
