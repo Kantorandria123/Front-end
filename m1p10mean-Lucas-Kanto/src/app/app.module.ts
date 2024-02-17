@@ -22,6 +22,8 @@ import { ModalComponentComponent } from './modal-component/modal-component.compo
 import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { MespreferencesComponent } from './mespreferences/mespreferences.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -49,9 +51,12 @@ import { MespreferencesComponent } from './mespreferences/mespreferences.compone
     FormsModule,
     DragDropModule,
     CommonModule,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
