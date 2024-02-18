@@ -74,10 +74,18 @@ export class SuivisTacheComponent implements OnInit{
   finaliser(id: string)
   {
       this.updateEtat(id,3);
+      this.updateEtaRendezvous(id,5);
       window.location.reload();
   }
   updateEtat(id: string, etat: number) {
     this.http.get<any>(environment.baseUrl+`/tache/modifieretat/${id}/${etat}`).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
+  }
+  updateEtaRendezvous(id: string, etat: number) {
+    this.http.get<any>(environment.baseUrl+`/rendezvous/modifieretat/${id}/${etat}`).subscribe(response => {
       console.log(response);
     }, error => {
       console.error(error);

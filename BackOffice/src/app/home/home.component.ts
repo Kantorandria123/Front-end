@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { response } from 'express';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -22,13 +23,12 @@ export class HomeComponent implements OnInit {
     const employee_id = this.cookieService.get('id');
 
     if(employee_id) {
-      const url = `http://localhost:3000/rendezvous/employeerendezvous/${employee_id}`;
+      const url = environment.baseUrl+`/rendezvous/employeerendezvous/${employee_id}`;
 
       this.http.get<any>(url).subscribe(
         (response) => {
           if (response.status && response.rendezvousList) {
             this.rendezvous = response.rendezvousList;
-            console.log('Liste des rendezvous :', this.rendezvous);
           } else {
             console.error('Réponse inattendue du serveur :', response);
           }

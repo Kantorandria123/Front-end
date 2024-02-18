@@ -21,6 +21,7 @@
                     <th>Description</th>
                     <th>Service</th>
                     <th>Client</th>
+                    <th>Etat</th>
                   </tr>
                 </thead>
                 <tbody >
@@ -29,6 +30,11 @@
                     <td>{{rdv.description}}</td>
                     <td>{{rdv.service_info.nom}}</td>
                     <td>{{rdv.client_info.nom}}</td>
+                    <td>
+                      <span [ngClass]="{'badge badge-warning': rdv.etat === 1, 'badge badge-success': rdv.etat === 5}">
+                        {{ rdv.etat === 1 ? 'Non terminé' : 'Terminé' }}
+                      </span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
