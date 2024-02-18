@@ -15,11 +15,11 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">En cours</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">A faire</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">A faire</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">En cours</button>
                 </li>
 
                 <li class="nav-item">
@@ -29,23 +29,33 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">Tâches en cours</h5>
+                  <h5 class="card-title">Tâches à faire</h5>
                    <!-- Default Table -->
               <table class="table">
                 <thead>
                   <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Horaire</th>
                     <th scope="col">Service</th>
-                    <th scope="col">Client</th>
+                    <th scope="col">prix</th>
                     <th scope="col">Durée</th>
                     <th scope="col">Commission</th>
+                    <th scope="col">Client</th>
+
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                  <tr *ngFor="let tachesAfaire of tachesAfaires">
+                    <td>{{tachesAfaire.description}}</td>
+                    <td>{{tachesAfaire.daty}}</td>
+                    <td>{{tachesAfaire.horairedebut}}</td>
+                    <td>{{tachesAfaire.service_info.nom}}</td>
+                    <td>{{tachesAfaire.service_info.prix}}</td>
+                    <td>{{tachesAfaire.service_info.duree}}</td>
+                    <td>{{tachesAfaire.service_info.commission}}</td>
+                    <td>{{tachesAfaire.client_info.nom}}</td>
+                   <!-- <td><button (click)="debuter(tachesAfaire._id)" type="button" class="btn btn-primary">debuter</button></td> -->
                   </tr>
                 </tbody>
               </table>
@@ -54,25 +64,34 @@
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-                    <h5 class="card-title">Tâches à faire</h5>
+                    <h5 class="card-title">Tâches en cours</h5>
                    <!-- Default Table -->
                     <table class="table">
-                        <thead>
+                      <thead>
                         <tr>
-                            <th scope="col">Service</th>
-                            <th scope="col">Client</th>
-                            <th scope="col">Durée</th>
-                            <th scope="col">Commission</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Horaire</th>
+                          <th scope="col">Service</th>
+                          <th scope="col">prix</th>
+                          <th scope="col">Durée</th>
+                          <th scope="col">Commission</th>
+                          <th scope="col">Client</th>
+
                         </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Brandon Jacob</td>
-                            <td>Designer</td>
-                            <td>28</td>
-                            <td>2016-05-25</td>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let tachesAfaire of tachesAfaires">
+                          <td>{{tachesAfaire.description}}</td>
+                          <td>{{tachesAfaire.daty}}</td>
+                          <td>{{tachesAfaire.horairedebut}}</td>
+                          <td>{{tachesAfaire.service_info.nom}}</td>
+                          <td>{{tachesAfaire.service_info.prix}}</td>
+                          <td>{{tachesAfaire.service_info.duree}}</td>
+                          <td>{{tachesAfaire.service_info.commission}}</td>
+                          <td>{{tachesAfaire.client_info.nom}}</td>
                         </tr>
-                        </tbody>
+                      </tbody>
                     </table>
 
                 </div>
@@ -82,24 +101,33 @@
                     <h5 class="card-title">Tâches términés</h5>
                     <!-- Default Table -->
                      <table class="table">
-                         <thead>
-                         <tr>
-                             <th scope="col">Service</th>
-                             <th scope="col">Client</th>
-                             <th scope="col">Durée</th>
-                             <th scope="col">Commission</th>
-                         </tr>
-                         </thead>
-                         <tbody>
-                         <tr>
-                             <td>Brandon Jacob</td>
-                             <td>Designer</td>
-                             <td>28</td>
-                             <td>2016-05-25</td>
-                         </tr>
-                         </tbody>
+                      <thead>
+                        <tr>
+                          <th scope="col">Description</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Horaire</th>
+                          <th scope="col">Service</th>
+                          <th scope="col">prix</th>
+                          <th scope="col">Durée</th>
+                          <th scope="col">Commission</th>
+                          <th scope="col">Client</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let tachesAfaire of tachesAfaires">
+                          <td>{{tachesAfaire.description}}</td>
+                          <td>{{tachesAfaire.daty}}</td>
+                          <td>{{tachesAfaire.horairedebut}}</td>
+                          <td>{{tachesAfaire.service_info.nom}}</td>
+                          <td>{{tachesAfaire.service_info.prix}}</td>
+                          <td>{{tachesAfaire.service_info.duree}}</td>
+                          <td>{{tachesAfaire.service_info.commission}}</td>
+                          <td>{{tachesAfaire.client_info.nom}}</td>
+                        </tr>
+                      </tbody>
                      </table>
-  
+
                   </div>
 
               </div><!-- End Bordered Tabs -->
