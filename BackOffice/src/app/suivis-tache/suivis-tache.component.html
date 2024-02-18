@@ -84,7 +84,7 @@
                           <td>{{ tache.service_info.duree }} min</td>
                           <td>{{ tache.service_info.commission | currency:'USD':'symbol':'1.2-2' }}</td>
                           <td>{{tache.commission_pourcentage}}%</td>
-                          <td><button (click)="finaliser(tache._id)" type="button" class="btn btn-primary">Finaliser</button></td>
+                          <td><button (click)="finaliser(tache._id,tache.rendezvous_id)" type="button" class="btn btn-primary">Finaliser</button></td>
                         </tr>
                       </tbody>
                     </table>

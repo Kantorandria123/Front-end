@@ -71,10 +71,10 @@ export class SuivisTacheComponent implements OnInit{
       this.updateEtat(id,2);
       window.location.reload();
   }
-  finaliser(id: string)
+  finaliser(id: string,rendezvous:string)
   {
       this.updateEtat(id,3);
-      this.updateEtaRendezvous(id,5);
+      this.updateEtaRendezvous(rendezvous,5);
       window.location.reload();
   }
   updateEtat(id: string, etat: number) {
