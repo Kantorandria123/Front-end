@@ -31,8 +31,8 @@
                     <td>{{rdv.service_info.nom}}</td>
                     <td>{{rdv.client_info.nom}}</td>
                     <td>
-                      <span [ngClass]="{'badge badge-warning': rdv.etat === 1, 'badge badge-success': rdv.etat === 5}">
-                        {{ rdv.etat === 1 ? 'Non terminé' : 'Terminé' }}
+                      <span [ngClass]="{'termine': rdv.etat === 5, 'non-termine': rdv.etat === 1}">
+                        {{ rdv.etat === 5 ? 'Terminé' : 'Non Terminé' }}
                       </span>
                     </td>
                   </tr>

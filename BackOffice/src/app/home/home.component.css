@@ -1,0 +1,27 @@
+/* Style pour l'état "Terminé" */
+.termine {
+  background-color: #4CAF50; /* Vert */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  animation: fade-in 1s ease-in-out;
+}
+
+/* Style pour l'état "Non Terminé" */
+.non-termine {
+  background-color: #FF5733; /* Rouge */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  animation: fade-in 1s ease-in-out;
+}
+
+/* Animation fade-in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
