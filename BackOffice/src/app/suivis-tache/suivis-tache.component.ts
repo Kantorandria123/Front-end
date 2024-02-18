@@ -12,12 +12,32 @@ import { environment } from '../environments/environment';
 export class SuivisTacheComponent implements OnInit{
 
   tachesAfaires: any[] = [];
+  tachesEnCours: any[] = [];
+  tachesTermines: any[] = [];
+
 
   constructor(private http: HttpClient,private cookieService: CookieService) {}
   ngOnInit(): void {
     this.getListTaches(1).subscribe(
       (data) => {
         this.tachesAfaires = data;
+        console.log(this.tachesAfaires);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des rendezvous :', error);
+      }
+    );
+    this.getListTaches(2).subscribe(
+      (data) => {
+        this.tachesEnCours = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des rendezvous :', error);
+      }
+    );
+    this.getListTaches(3).subscribe(
+      (data) => {
+        this.tachesTermines = data;
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des rendezvous :', error);
@@ -46,8 +66,21 @@ export class SuivisTacheComponent implements OnInit{
       return of([]);
     }
   }
-  debuter()
+  debuter(id: string)
   {
-
+      this.updateEtat(id,2);
+      window.location.reload();
+  }
+  finaliser(id: string)
+  {
+      this.updateEtat(id,3);
+      window.location.reload();
+  }
+  updateEtat(id: string, etat: number) {
+    this.http.get<any>(environment.baseUrl+`/tache/modifieretat/${id}/${etat}`).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
   }
 }

@@ -34,28 +34,25 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Description</th>
                     <th scope="col">Date</th>
                     <th scope="col">Horaire</th>
                     <th scope="col">Service</th>
                     <th scope="col">prix</th>
                     <th scope="col">Durée</th>
-                    <th scope="col">Commission</th>
-                    <th scope="col">Client</th>
-
+                    <th scope="col">Mt Commission</th>
+                    <th scope="col">Commission en %</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let tachesAfaire of tachesAfaires">
-                    <td>{{tachesAfaire.description}}</td>
-                    <td>{{tachesAfaire.daty}}</td>
-                    <td>{{tachesAfaire.horairedebut}}</td>
-                    <td>{{tachesAfaire.service_info.nom}}</td>
-                    <td>{{tachesAfaire.service_info.prix}}</td>
-                    <td>{{tachesAfaire.service_info.duree}}</td>
-                    <td>{{tachesAfaire.service_info.commission}}</td>
-                    <td>{{tachesAfaire.client_info.nom}}</td>
-                   <!-- <td><button (click)="debuter(tachesAfaire._id)" type="button" class="btn btn-primary">debuter</button></td> -->
+                  <tr *ngFor="let tache of tachesAfaires">
+                    <td>{{ tache.daty | dateFormat }}</td>
+                    <td>{{ tache.horairedebut }}</td>
+                    <td>{{ tache.service_info.nom }}</td>
+                    <td>{{ tache.service_info.prix | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ tache.service_info.duree }} min</td>
+                    <td>{{ tache.service_info.commission | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{tache.commission_pourcentage}}%</td>
+                    <td><button (click)="debuter(tache._id)" type="button" class="btn btn-primary">Débuter</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -69,27 +66,25 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col">Description</th>
                           <th scope="col">Date</th>
                           <th scope="col">Horaire</th>
                           <th scope="col">Service</th>
                           <th scope="col">prix</th>
                           <th scope="col">Durée</th>
-                          <th scope="col">Commission</th>
-                          <th scope="col">Client</th>
-
+                          <th scope="col">Mt Commission</th>
+                          <th scope="col">Commission en %</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let tachesAfaire of tachesAfaires">
-                          <td>{{tachesAfaire.description}}</td>
-                          <td>{{tachesAfaire.daty}}</td>
-                          <td>{{tachesAfaire.horairedebut}}</td>
-                          <td>{{tachesAfaire.service_info.nom}}</td>
-                          <td>{{tachesAfaire.service_info.prix}}</td>
-                          <td>{{tachesAfaire.service_info.duree}}</td>
-                          <td>{{tachesAfaire.service_info.commission}}</td>
-                          <td>{{tachesAfaire.client_info.nom}}</td>
+                        <tr *ngFor="let tache of tachesEnCours">
+                          <td>{{ tache.daty | dateFormat }}</td>
+                          <td>{{ tache.horairedebut }}</td>
+                          <td>{{ tache.service_info.nom }}</td>
+                          <td>{{ tache.service_info.prix | currency:'USD':'symbol':'1.2-2' }}</td>
+                          <td>{{ tache.service_info.duree }} min</td>
+                          <td>{{ tache.service_info.commission | currency:'USD':'symbol':'1.2-2' }}</td>
+                          <td>{{tache.commission_pourcentage}}%</td>
+                          <td><button (click)="finaliser(tache._id)" type="button" class="btn btn-primary">Finaliser</button></td>
                         </tr>
                       </tbody>
                     </table>
@@ -103,28 +98,26 @@
                      <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col">Description</th>
                           <th scope="col">Date</th>
                           <th scope="col">Horaire</th>
                           <th scope="col">Service</th>
                           <th scope="col">prix</th>
                           <th scope="col">Durée</th>
-                          <th scope="col">Commission</th>
-                          <th scope="col">Client</th>
-
+                          <th scope="col">Mt Commission</th>
+                          <th scope="col">Commission en %</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let tachesAfaire of tachesAfaires">
-                          <td>{{tachesAfaire.description}}</td>
-                          <td>{{tachesAfaire.daty}}</td>
-                          <td>{{tachesAfaire.horairedebut}}</td>
-                          <td>{{tachesAfaire.service_info.nom}}</td>
-                          <td>{{tachesAfaire.service_info.prix}}</td>
-                          <td>{{tachesAfaire.service_info.duree}}</td>
-                          <td>{{tachesAfaire.service_info.commission}}</td>
-                          <td>{{tachesAfaire.client_info.nom}}</td>
+                        <tr *ngFor="let tache of tachesTermines">
+                          <td>{{ tache.daty | dateFormat }}</td>
+                          <td>{{ tache.horairedebut }}</td>
+                          <td>{{ tache.service_info.nom }}</td>
+                          <td>{{ tache.service_info.prix | currency:'USD':'symbol':'1.2-2' }}</td>
+                          <td>{{ tache.service_info.duree }} min</td>
+                          <td>{{ tache.service_info.commission | currency:'USD':'symbol':'1.2-2' }}</td>
+                          <td>{{tache.commission_pourcentage}}%</td>
                         </tr>
+
                       </tbody>
                      </table>
 
