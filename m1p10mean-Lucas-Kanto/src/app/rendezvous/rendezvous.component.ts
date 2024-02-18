@@ -102,7 +102,6 @@ export class RendezvousComponent implements OnInit {
               };
               this.http.post(environment.baseUrl+"/rendezvous/creer",bodyData).subscribe((resultData: any)=>
               {
-                  console.log(resultData);
                   this.strong_msg="C'est fait! ";
                   this.msg_rendevous="vous avez faire un nouveau rendez-vous";
                   let bodyDataTache =
@@ -111,7 +110,8 @@ export class RendezvousComponent implements OnInit {
                     "horairedebut" : this.horaire,
                     "description" : this.description,
                     "service_id" : this.service_id,
-                    "employee_id" : this.employee_id
+                    "employee_id" : this.employee_id,
+                    "rendezvous_id" : resultData.id
                   };
                   this.creerTache(bodyDataTache);
               });
