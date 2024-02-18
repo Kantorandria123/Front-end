@@ -25,10 +25,8 @@ export class RendezvousComponent implements OnInit {
   constructor(private http: HttpClient,private cookieService: CookieService) {}
 
   ngOnInit() {
-    console.log("*************Rendez-vous******************");
     this.getListEmploye();
     this.getListService();
-
   }
 
   getListService() {
@@ -36,13 +34,11 @@ export class RendezvousComponent implements OnInit {
 
     this.http.get<any>(url).subscribe(
       (response) => {
-        // La réponse contient la liste des services
         if (response.status && response.services) {
           this.services = response.services;
           if (this.services.length > 0) {
             this.service_id = this.services[0]._id;
           }
-          console.log('Liste des services :', this.services);
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
@@ -62,7 +58,6 @@ export class RendezvousComponent implements OnInit {
           if (this.employes.length > 0) {
             this.employee_id = this.employes[0]._id;
           }
-          console.log('Liste des services :', this.employes);
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
@@ -110,7 +105,15 @@ export class RendezvousComponent implements OnInit {
                   console.log(resultData);
                   this.strong_msg="C'est fait! ";
                   this.msg_rendevous="vous avez faire un nouveau rendez-vous";
-                  //alert("rendez-vous Registered Successfully")
+                  let bodyDataTache =
+                  {
+                    "daty" : this.daty,
+                    "horairedebut" : this.horaire,
+                    "description" : this.description,
+                    "service_id" : this.service_id,
+                    "employee_id" : this.employee_id
+                  };
+                  this.creerTache(bodyDataTache);
               });
         }
         else
@@ -120,9 +123,29 @@ export class RendezvousComponent implements OnInit {
 
      }
      else {
-       //alert("il faut que vous connecter!!");
        this.nonConnecter="Veuillez connecter pour faire de rendez-vous";
      }
   }
+  creerTache(bodyData: any) {
+    const client_idCookie = this.cookieService.get('id');
+    const emailCookie = this.cookieService.get('email');
+    const tokenCookie = this.cookieService.get('token');
+
+    if (client_idCookie && emailCookie && tokenCookie) {
+      bodyData.client_id = client_idCookie;
+
+      this.http.post(environment.baseUrl + "/tache/creer", bodyData).subscribe(
+        (resultData: any) => {
+        },
+        (error) => {
+          console.error('Erreur lors de la création de la tâche :', error);
+        }
+      );
+    } else {
+      this.nonConnecter = "Veuillez vous connecter pour créer une tâche.";
+    }
+  }
+
+
 
 }
