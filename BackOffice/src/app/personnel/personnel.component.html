@@ -30,16 +30,20 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th></th>
                     <th scope="col">Nom</th>
+                    <th scope="col">Adresse-email</th>
                     <th scope="col">Horaire de travail</th>
                     <th scope="col">Modifier</th>
                     <th scope="col">Supprimer</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
+                  <tr  *ngFor="let employe of employes">
+                    <td><img src="assets/img/{{employe.image}}" width="50" height="50" /></td>
+                    <td>{{employe.nom}}</td>
+                    <td>{{employe.email}}</td>
+                    <td>{{employe.horaireTravail}}</td>
                     <td>
                         <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <i class="bi bi-pencil-square"></i>
