@@ -14,6 +14,9 @@ export class LoginComponent {
    email: string = 'sarah@gmail.com';
    mdp: string = '123';
    errorMessage: string = "";
+
+   emailManager: string ='mihary@gmail.com';
+   mdpManager: string ='123';
   
 
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) {}
@@ -43,4 +46,32 @@ export class LoginComponent {
        }
      });
    }
+
+   loginManager() {
+    console.log(this.emailManager);
+    console.log(this.mdpManager);
+
+    let bodyData = {
+      email: this.emailManager,
+      mdp: this.mdpManager,
+    };
+
+    this.http.post("http://localhost:3000/manager/login", bodyData).subscribe( (resultData: any) => {
+      console.log(resultData);
+
+      if (resultData.status) {
+        this.cookieService.set('email',resultData.managers.email);
+         this.cookieService.set('token', resultData.managers.token);
+         this.cookieService.set('id', resultData.managers._id);
+         this.router.navigateByUrl('/pesonnel')
+      } else {
+        this.errorMessage="Email ou Mot de passe incorrecte";
+         console.log("Error login");
+      }
+    });
+ }
+ 
 }
+
+
+
