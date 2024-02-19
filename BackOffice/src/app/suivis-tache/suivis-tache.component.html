@@ -35,7 +35,8 @@
                 <thead>
                   <tr>
                     <th scope="col">Date</th>
-                    <th scope="col">Horaire</th>
+                    <th scope="col">Horaire debut</th>
+                    <th scope="col">Horaire fin</th>
                     <th scope="col">Service</th>
                     <th scope="col">prix</th>
                     <th scope="col">Durée</th>
@@ -47,6 +48,7 @@
                   <tr *ngFor="let tache of tachesAfaires">
                     <td>{{ tache.daty | dateFormat }}</td>
                     <td>{{ tache.horairedebut }}</td>
+                    <td>{{ tache.horairefin }}</td>
                     <td>{{ tache.service_info.nom }}</td>
                     <td>{{ tache.service_info.prix | currency:'USD':'symbol':'1.2-2' }}</td>
                     <td>{{ tache.service_info.duree }} min</td>
@@ -67,7 +69,8 @@
                       <thead>
                         <tr>
                           <th scope="col">Date</th>
-                          <th scope="col">Horaire</th>
+                          <th scope="col">Horaire debut</th>
+                          <th scope="col">Horaire fin</th>
                           <th scope="col">Service</th>
                           <th scope="col">prix</th>
                           <th scope="col">Durée</th>
@@ -79,6 +82,7 @@
                         <tr *ngFor="let tache of tachesEnCours">
                           <td>{{ tache.daty | dateFormat }}</td>
                           <td>{{ tache.horairedebut }}</td>
+                          <td>{{ tache.horairefin }}</td>
                           <td>{{ tache.service_info.nom }}</td>
                           <td>{{ tache.service_info.prix | currency:'USD':'symbol':'1.2-2' }}</td>
                           <td>{{ tache.service_info.duree }} min</td>
@@ -99,7 +103,8 @@
                       <thead>
                         <tr>
                           <th scope="col">Date</th>
-                          <th scope="col">Horaire</th>
+                          <th scope="col">Horaire debut</th>
+                          <th scope="col">Horaire fin</th>
                           <th scope="col">Service</th>
                           <th scope="col">prix</th>
                           <th scope="col">Durée</th>
@@ -111,6 +116,7 @@
                         <tr *ngFor="let tache of tachesTermines">
                           <td>{{ tache.daty | dateFormat }}</td>
                           <td>{{ tache.horairedebut }}</td>
+                          <td>{{ tache.horairefin }}</td>
                           <td>{{ tache.service_info.nom }}</td>
                           <td>{{ tache.service_info.prix | currency:'USD':'symbol':'1.2-2' }}</td>
                           <td>{{ tache.service_info.duree }} min</td>
