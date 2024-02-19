@@ -59,5 +59,16 @@ export class PersonnelComponent implements OnInit{
       }
     });
   }
+  deleteEmployee(employeeId:string) {
+    this.http.delete(environment.baseUrl+`/employe/supprimer/${employeeId}`).subscribe(
+      (response) => {
+        console.log('Employé supprimé avec succès :', response);
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression de l\'employé :', error);
+      }
+    );
+  }
 
 }
