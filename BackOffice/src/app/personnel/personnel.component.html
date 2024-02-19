@@ -64,13 +64,13 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nom</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="nom" type="text" class="form-control" id="fullName">
+                        <input  [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="fullName">
                       </div>
                     </div>
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="text" class="form-control" id="fullName">
+                        <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="fullName">
                       </div>
                     </div>
 
@@ -78,14 +78,14 @@
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Heure début</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="horaireDebut" type="time" class="form-control" id="company" >
+                        <input [(ngModel)]="horaireDebut" [ngModelOptions]="{standalone: true}" type="time" class="form-control" id="company" >
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Heure fin</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="horaireFin" type="time" class="form-control" id="Job">
+                        <input [(ngModel)]="horaireFin" [ngModelOptions]="{standalone: true}" type="time" class="form-control" id="Job">
                       </div>
                     </div>
                     <div class="text-center">

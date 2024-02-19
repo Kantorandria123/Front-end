@@ -13,7 +13,8 @@ export class PersonnelComponent implements OnInit{
   employes: any[] = [];
   nom: string = '';
   email: string = '';
-  horaireTravail: string = '';
+  horaireDebut: string = '';
+  horaireFin: string = '';
 
   constructor(private router: Router, private http: HttpClient) {}
   ngOnInit(): void {
@@ -47,16 +48,16 @@ export class PersonnelComponent implements OnInit{
     let bodyData = {
       nom: this.nom,
       email: this.email,
-      horaireTravail: this.horaireTravail,
+      horaireTravail: this.horaireDebut+" - "+this.horaireFin,
     };
 
-   /* this.http.post(environment.baseUrl+"/employe/create", bodyData).subscribe ( (resultData: any) => {
+   this.http.post(environment.baseUrl+"/employe/create", bodyData).subscribe ( (resultData: any) => {
       if (resultData.status) {
-        this.router.navigateByUrl('/personnel')
+        window.location.reload();
       } else {
 
       }
-    });*/
+    });
   }
 
 }
