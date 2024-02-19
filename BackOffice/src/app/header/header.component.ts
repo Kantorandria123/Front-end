@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
+import { env } from 'process';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +15,6 @@ export class HeaderComponent {
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
    ngOnInit() {
-     console.log("*************hello******************");
-
      const idcookie = this.cookieService.get('id');
      const emailCookie = this.cookieService.get('email');
      const tokenCookie = this.cookieService.get('token');
@@ -24,11 +24,8 @@ export class HeaderComponent {
          email: emailCookie,
          token: tokenCookie,
        };
-       console.log(bodyData);
-
-       this.http.post("http://localhost:3000/employe/employebytoken", bodyData).subscribe ( (resultData: any) => {
+       this.http.post(environment.baseUrl+"/employe/employebytoken", bodyData).subscribe ( (resultData: any) => {
         this.resultData=resultData;
-        console.log(resultData);
        });
      } else {
        console.log("Les cookies 'email' et 'token' n'existent pas.");
