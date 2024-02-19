@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular
 import { HttpClient } from '@angular/common/http';
 import { Observable,map, catchError, of, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-personnel',
   templateUrl: './personnel.component.html',
@@ -11,7 +11,11 @@ import { environment } from '../environments/environment';
 export class PersonnelComponent implements OnInit{
 
   employes: any[] = [];
-  constructor(private http: HttpClient) {}
+  nom: string = '';
+  email: string = '';
+  horaireTravail: string = '';
+
+  constructor(private router: Router, private http: HttpClient) {}
   ngOnInit(): void {
     this.getListEmployes().subscribe(
       (data) => {
@@ -38,6 +42,21 @@ export class PersonnelComponent implements OnInit{
           return throwError('Erreur lors de la récupération de la liste des employes');
         })
       );
+  }
+  creerEmploye() {
+    let bodyData = {
+      nom: this.nom,
+      email: this.email,
+      horaireTravail: this.horaireTravail,
+    };
+
+   /* this.http.post(environment.baseUrl+"/employe/create", bodyData).subscribe ( (resultData: any) => {
+      if (resultData.status) {
+        this.router.navigateByUrl('/personnel')
+      } else {
+
+      }
+    });*/
   }
 
 }
