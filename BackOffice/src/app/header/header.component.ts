@@ -12,13 +12,17 @@ import { environment } from '../environments/environment';
 })
 export class HeaderComponent {
   resultData: any;
+  useradmin:number=0;
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
    ngOnInit() {
      const idcookie = this.cookieService.get('id');
      const emailCookie = this.cookieService.get('email');
      const tokenCookie = this.cookieService.get('token');
-
+      const admin = localStorage.getItem('useradmin');
+      if (admin) {
+        this.useradmin = +admin;
+      }
      if (idcookie && emailCookie && tokenCookie) {
        let bodyData = {
          email: emailCookie,
@@ -36,6 +40,7 @@ deconnection()
   this.cookieService.delete('id');
   this.cookieService.delete('email');
   this.cookieService.delete('token');
+  localStorage.removeItem("useradmin");
   this.router.navigateByUrl('/')
 }
 }

@@ -36,6 +36,7 @@ export class LoginComponent {
          this.cookieService.set('email',resultData.employes.email);
          this.cookieService.set('token', resultData.employes.token);
          this.cookieService.set('id', resultData.employes._id);
+         localStorage.setItem('useradmin', '1');
          this.router.navigateByUrl('/home')
        } else {
          this.errorMessage="Email ou Mot de passe incorrecte";
@@ -54,6 +55,7 @@ export class LoginComponent {
         this.cookieService.set('email',resultData.managers.email);
          this.cookieService.set('token', resultData.managers.token);
          this.cookieService.set('id', resultData.managers._id);
+         localStorage.setItem('useradmin', '2');
          this.router.navigateByUrl('/personnel')
       } else {
         this.errorMessage="Email ou Mot de passe incorrecte";
