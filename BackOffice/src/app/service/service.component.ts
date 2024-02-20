@@ -20,6 +20,7 @@ export class ServiceComponent implements OnInit{
   pageSize = 10;
   page = 0;
   pagedServices: any[] = [];
+  searchTerm: string = '';
   constructor(private router: Router,private http: HttpClient){}
   ngOnInit(): void {
     this.getListService();
@@ -64,8 +65,11 @@ export class ServiceComponent implements OnInit{
     this.updatePageServices();
   }
   updatePageServices() {
+    const filteredServices = this.services.filter(service =>
+      service.nom.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
     const startIndex = this.page * this.pageSize;
-    this.pagedServices = this.services.slice(startIndex, startIndex + this.pageSize);
+    this.pagedServices = filteredServices.slice(startIndex, startIndex + this.pageSize);
   }
 
 }

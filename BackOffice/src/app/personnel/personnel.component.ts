@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -11,13 +11,14 @@ import { environment } from '../environments/environment';
 })
 export class PersonnelComponent implements OnInit {
   employes: any[] = [];
+  pagedEmployes: any[] = [];
   nom: string = '';
   email: string = '';
   horaireDebut: string = '';
   horaireFin: string = '';
   pageSize = 10;
   page = 0;
-  pagedEmployes: any[] = [];
+  searchTerm: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -50,13 +51,8 @@ export class PersonnelComponent implements OnInit {
     );
   }
 
-  updatePagedEmployes() {
-    const startIndex = this.page * this.pageSize;
-    this.pagedEmployes = this.employes.slice(startIndex, startIndex + this.pageSize);
-  }
-
   creerEmploye() {
-    let bodyData = {
+    const bodyData = {
       nom: this.nom,
       email: this.email,
       horaireTravail: this.horaireDebut + ' - ' + this.horaireFin,
@@ -86,5 +82,13 @@ export class PersonnelComponent implements OnInit {
   onPageChange(event: any) {
     this.page = event.pageIndex;
     this.updatePagedEmployes();
+  }
+
+  updatePagedEmployes() {
+    const filteredEmployes = this.employes.filter(employe =>
+      employe.nom.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    const startIndex = this.page * this.pageSize;
+    this.pagedEmployes = filteredEmployes.slice(startIndex, startIndex + this.pageSize);
   }
 }
