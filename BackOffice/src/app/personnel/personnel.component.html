@@ -34,7 +34,6 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Adresse-email</th>
                     <th scope="col">Horaire de travail</th>
-                    <th scope="col">Modifier</th>
                     <th scope="col">Supprimer</th>
                   </tr>
                 </thead>
@@ -44,11 +43,7 @@
                     <td>{{employe.nom}}</td>
                     <td>{{employe.email}}</td>
                     <td>{{employe.horaireTravail}}</td>
-                    <td>
-                        <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                    </td>
+
                     <td><a (click)="deleteEmployee(employe._id)" class="btn btn-danger btn-sm" title="Remove my profile image"><i  class="bi bi-trash"></i></a></td>
                   </tr>
                 </tbody>
@@ -103,31 +98,7 @@
         </div>
       </div>
 
-      <div class="card" class="collapse" id="collapseExample">
-        <div class="card-body">
-          <h5 class="card-title">Modifier l'employée</h5>
 
-          <!-- Multi Columns Form -->
-          <form class="row g-3">
-            <div class="col-md-12">
-              <label for="inputName5" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="inputName5">
-            </div>
-            <div class="col-md-6">
-              <label for="inputEmail5" class="form-label">Heure début</label>
-              <input type="time" class="form-control" id="inputEmail5">
-            </div>
-            <div class="col-md-6">
-              <label for="inputPassword5" class="form-label">Heure fin</label>
-              <input type="time" class="form-control" id="inputPassword5">
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Modifier</button>
-            </div>
-          </form><!-- End Multi Columns Form -->
-
-        </div>
-      </div>
     </section>
 
 

@@ -112,6 +112,44 @@
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
 
+
+        <li class="nav-item dropdown pe-3" *ngIf="useradmin == 2">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            {{ resultData?.managers?.email }}
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ resultData?.mangagers?.nom }}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <!-- Profile Dropdown Items -->
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{ resultData?.managers?.nom }}</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <!-- My Profile -->
+            <li>
+              <a class="dropdown-item d-flex align-items-center" [routerLink]="['/employee']">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <!-- Logout -->
+            <li>
+              <a (click)="deconnection()" class="dropdown-item d-flex align-items-center" >
+                <i class="bi bi-box-arrow-right"></i>
+                <span >Se déconnecter</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li>
       </ul>
     </nav><!-- End Icons Navigation -->
 

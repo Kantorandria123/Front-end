@@ -28,9 +28,19 @@ export class HeaderComponent {
          email: emailCookie,
          token: tokenCookie,
        };
-       this.http.post(environment.baseUrl+"/employe/employebytoken", bodyData).subscribe ( (resultData: any) => {
-        this.resultData=resultData;
-       });
+       if(this.useradmin==1)
+       {
+          this.http.post(environment.baseUrl+"/employe/employebytoken", bodyData).subscribe ( (resultData: any) => {
+          this.resultData=resultData;
+         });
+       }
+       if(this.useradmin==2)
+       {
+          this.http.post(environment.baseUrl+"/manager/managertoken", bodyData).subscribe ( (resultData: any) => {
+          this.resultData=resultData;
+         });
+       }
+
      } else {
        console.log("Les cookies 'email' et 'token' n'existent pas.");
      }
