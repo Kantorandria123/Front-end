@@ -17,14 +17,15 @@ export class ServiceComponent implements OnInit{
   duree: string="";
   commission: string="";
   strongMessage: string="";
-
+  pageSize = 10;
+  page = 0;
+  pagedServices: any[] = [];
   constructor(private router: Router,private http: HttpClient){}
   ngOnInit(): void {
     this.getListService();
   }
 
   serviceCreate() {
-    console.log('service');
     let bodyData = {
       "nom": this.nom,
       "description": this.description,
@@ -33,7 +34,6 @@ export class ServiceComponent implements OnInit{
       "duree": this.duree,
       "commission": this.commission,
     };
-    console.log("bodyData : "+bodyData);
     this.http.post(environment.baseUrl+"/service/creer",bodyData).subscribe((resultData: any)=> {
       if (resultData.status){
         this.strongMessage="Service créer"
@@ -49,6 +49,7 @@ export class ServiceComponent implements OnInit{
       (response) => {
         if (response.status && response.services) {
           this.services = response.services;
+          this.updatePageServices();
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
@@ -57,6 +58,14 @@ export class ServiceComponent implements OnInit{
         console.error('Erreur lors de la récupération de la liste des services :', error);
       }
     );
+  }
+  onPageChange(event: any) {
+    this.page = event.pageIndex;
+    this.updatePageServices();
+  }
+  updatePageServices() {
+    const startIndex = this.page * this.pageSize;
+    this.pagedServices = this.services.slice(startIndex, startIndex + this.pageSize);
   }
 
 }

@@ -15,7 +15,7 @@ export class PersonnelComponent implements OnInit {
   email: string = '';
   horaireDebut: string = '';
   horaireFin: string = '';
-  pageSize = 5;
+  pageSize = 10;
   page = 0;
   pagedEmployes: any[] = [];
 
