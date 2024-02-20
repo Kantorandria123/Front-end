@@ -99,4 +99,16 @@ export class ServiceComponent implements OnInit{
     );
   }
 
+  deleteService(serviceId:string) {
+    this.http.delete(environment.baseUrl + `/service/supprimer/${serviceId}`).subscribe(
+      (response) => {
+        console.log('Service supprimé avec succès :', response);
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression du service :', error);
+      }
+    )
+  }
+
 }
