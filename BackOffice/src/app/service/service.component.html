@@ -64,32 +64,44 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nom</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName">
+                        <input name="nom" type="text" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" class="form-control" id="fullName">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Descritpion</label>
+                      <div class="col-md-8 col-lg-9">
+                        <textarea name="description" type="text" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control" id="fullName"></textarea>
                       </div>
                     </div>
 
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Image</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="image" type="file" [(ngModel)]="image" [ngModelOptions]="{standalone: true}" class="form-control" id="fullName">
+                      </div>
+                    </div>
 
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Prix</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" >
+                        <input name="prix" type="text" [(ngModel)]="prix" [ngModelOptions]="{standalone: true}" class="form-control" id="company" >
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Durée</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fin" type="text" class="form-control" id="Job">
+                        <input name="duree" type="text" [(ngModel)]="duree" [ngModelOptions]="{standalone: true}" class="form-control" id="Job">
                       </div>
                     </div>
                     <div class="row mb-3">
                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">Commission</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="fin" type="text" class="form-control" id="Job">
+                          <input name="commission" type="text" [(ngModel)]="commission" [ngModelOptions]="{standalone: true}" class="form-control" id="Job">
                         </div>
                       </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                      <button type="submit" (click)="serviceCreate()" class="btn btn-primary">Ajouter</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
