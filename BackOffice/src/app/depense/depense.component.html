@@ -55,34 +55,40 @@
                     <!-- Profile Edit Form -->
                   <form>
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nom</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Description</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName">
+                        <textarea name="description" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="description"></textarea>
                       </div>
                     </div>
 
 
                     <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Prix</label>
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Type</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" >
+                        <select class="form-select" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" aria-label="Default select example">
+                          <option >Salaire</option>
+                          <option >Accessoires(brushing,fer...)</option>
+                          <option >Services publics(eau,chauffeau...)</option>
+                          <option >Loyer</option>
+                          <option >Marketing et publicité</option>
+                        </select>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Durée</label>
+                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Montant</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fin" type="text" class="form-control" id="Job">
+                        <input name="montant" type="text" [(ngModel)]="montant" [ngModelOptions]="{standalone: true}" class="form-control" id="montant">
                       </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Commission</label>
+                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Date</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="fin" type="text" class="form-control" id="Job">
+                          <input name="date" type="date" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" class="form-control" id="date">
                         </div>
                       </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                      <button type="submit" (click)="depenseCreate()" class="btn btn-primary">Ajouter</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
