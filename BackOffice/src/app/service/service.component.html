@@ -30,7 +30,9 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th scope="col">Image</th>
                     <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Durée</th>
                     <th scope="col">Commission</th>
@@ -39,11 +41,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td></td>
-                    <td></td>
+                  <tr *ngFor="let service of services">
+                    <td><img src="assets/img/{{service.image}}" width="50" height="50" /></td>
+                    <td> {{service.nom}} </td>
+                    <td>{{service.description}}</td>
+                    <td> {{service.prix}} </td>
+                    <td> {{service.duree}} </td>
+                    <td> {{service.commission}} </td>
                     <td>
                         <a href="#" class="btn btn-warning btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <i class="bi bi-pencil-square"></i>

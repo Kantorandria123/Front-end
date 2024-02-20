@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 
@@ -8,7 +8,8 @@ import { environment } from '../environments/environment';
   templateUrl: './service.component.html',
   styleUrl: './service.component.css'
 })
-export class ServiceComponent {
+export class ServiceComponent implements OnInit{
+  services: any[] = [];
   nom: string="";
   description: string="";
   image: string="";
@@ -18,6 +19,9 @@ export class ServiceComponent {
   strongMessage: string="";
 
   constructor(private router: Router,private http: HttpClient){}
+  ngOnInit(): void {
+    this.getListService();
+  }
 
   serviceCreate() {
     console.log('service');
@@ -37,6 +41,22 @@ export class ServiceComponent {
         this.strongMessage="Service non créer"
       }
     });
+  }
+
+  getListService() {
+    const url = environment.baseUrl+'/service/lesservices';
+    this.http.get<any>(url).subscribe(
+      (response) => {
+        if (response.status && response.services) {
+          this.services = response.services;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des services :', error);
+      }
+    );
   }
 
 }
