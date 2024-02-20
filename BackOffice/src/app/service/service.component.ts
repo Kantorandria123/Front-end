@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -21,9 +21,11 @@ export class ServiceComponent implements OnInit{
   page = 0;
   pagedServices: any[] = [];
   searchTerm: string = '';
-  constructor(private router: Router,private http: HttpClient){}
+  serviceId: string="";
+  constructor(private router: Router,private http: HttpClient,private route: ActivatedRoute){}
   ngOnInit(): void {
     this.getListService();
+    this.serviceId = this.route.snapshot.paramMap.get('serviceId')!;
   }
 
   serviceCreate() {
@@ -70,6 +72,31 @@ export class ServiceComponent implements OnInit{
     );
     const startIndex = this.page * this.pageSize;
     this.pagedServices = filteredServices.slice(startIndex, startIndex + this.pageSize);
+  }
+
+  updateService() {
+    const url = environment.baseUrl+`/service/serviceupdate/${this.serviceId}`;
+    const newData = {
+      nom: this.nom,
+      description: this.description,
+      image: this.image,
+      prix: this.prix,
+      duree: this.duree,
+      commission: this.commission,
+    };
+    this.http.patch<any>(url, newData).subscribe(
+      (response) => {
+        if (response.status && response.updateService) {
+          console.log("Service mis à jour avec succès :", response.updateService);
+          window.location.reload();
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+        }
+      },
+      (error) => {
+        console.error("Erreur lors de la mise à jour du service :", error);
+      }
+    );
   }
 
 }
