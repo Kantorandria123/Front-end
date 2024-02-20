@@ -16,8 +16,7 @@ import { ServiceComponent } from './service/service.component';
 import { DepenseComponent } from './depense/depense.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
 import { DateFormatPipe } from './date-format.pipe';
-
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -33,13 +32,14 @@ import { DateFormatPipe } from './date-format.pipe';
     DepenseComponent,
     StatistiqueComponent,
     DateFormatPipe,
-   
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

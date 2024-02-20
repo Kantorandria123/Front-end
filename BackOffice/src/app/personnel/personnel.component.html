@@ -38,7 +38,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr  *ngFor="let employe of employes">
+                  <tr  *ngFor="let employe of pagedEmployes">
                     <td><img src="assets/img/{{employe.image}}" width="50" height="50" /></td>
                     <td>{{employe.nom}}</td>
                     <td>{{employe.email}}</td>
@@ -49,6 +49,7 @@
                 </tbody>
               </table>
 
+              <mat-paginator [length]="employes.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -97,6 +98,8 @@
 
         </div>
       </div>
+
+
 
 
     </section>
