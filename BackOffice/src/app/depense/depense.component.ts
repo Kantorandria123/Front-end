@@ -13,8 +13,14 @@ export class DepenseComponent {
   montant: string="";
   date: string="";
   type: string="";
+  depenses: any[] =[];
 
   constructor(private router: Router,private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.listeDepense();
+    
+  }
 
   depenseCreate() {
     const bodyData = {
@@ -36,6 +42,22 @@ export class DepenseComponent {
       console.error('Error creating dépense:', error);
     }
     
+    );
+  }
+
+  listeDepense() {
+    const url = environment.baseUrl+'/depense/listedepense';
+    this.http.get<any>(url).subscribe(
+      (response) => {
+        if(response.status && response.depenses) {
+          this.depenses = response.depenses;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des depense :', error);
+      }
     );
   }
 

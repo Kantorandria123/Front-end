@@ -29,20 +29,21 @@
                    <!-- Default Table -->
               <table class="table">
                 <thead>
-                  <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Durée</th>
-                    <th scope="col">Commission</th>
+                  <tr >
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Montant</th>
+                    
                     
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td></td>
-                    <td></td>
+                  <tr *ngFor="let depense of depenses">
+                    <td>{{depense.date | dateFormat}}</td>
+                    <td>{{depense.description}}</td>
+                    <td> {{depense.type}} </td>
+                    <td> {{depense.montant}} </td>
                   </tr>
                 </tbody>
               </table>
