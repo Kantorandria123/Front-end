@@ -21,29 +21,48 @@ export class ServiceComponent implements OnInit{
   page = 0;
   pagedServices: any[] = [];
   searchTerm: string = '';
+  imageFile: File | null = null;
   serviceId: string="";
   constructor(private router: Router,private http: HttpClient,private route: ActivatedRoute){}
+
+
   ngOnInit(): void {
     this.getListService();
     this.serviceId = this.route.snapshot.paramMap.get('serviceId')!;
   }
 
   serviceCreate() {
-    let bodyData = {
-      "nom": this.nom,
-      "description": this.description,
-      "image": this.image,
-      "prix": this.prix,
-      "duree": this.duree,
-      "commission": this.commission,
-    };
-    this.http.post(environment.baseUrl+"/service/creer",bodyData).subscribe((resultData: any)=> {
-      if (resultData.status){
-        this.strongMessage="Service créer"
-      } else {
-        this.strongMessage="Service non créer"
+    // Create form data
+    const formData = new FormData();
+    formData.append('nom', this.nom);
+    formData.append('description', this.description);
+    formData.append('prix', this.prix.toString());
+    formData.append('duree', this.duree.toString());
+    formData.append('commission', this.commission.toString());
+    if (this.imageFile !== null) {
+      formData.append('image', this.imageFile);
+    }
+
+    this.http.post<any>(environment.baseUrl + '/service/creer', formData).subscribe(
+      (resultData) => {
+        if (resultData.success) {
+          this.strongMessage = "Service créé";
+          window.location.reload();
+        } else {
+          this.strongMessage = "Service non créé";
+        }
+      },
+      (error) => {
+        console.error('Error creating service:', error);
       }
-    });
+    );
+  }
+
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length) {
+      this.imageFile = target.files[0];
+    }
   }
 
   getListService() {
