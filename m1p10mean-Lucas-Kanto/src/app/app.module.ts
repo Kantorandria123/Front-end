@@ -24,6 +24,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { MespreferencesComponent } from './mespreferences/mespreferences.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DepotComponent } from './depot/depot.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DateFormatPipe,
     MespreferencesComponent,
     ModalComponentComponent,
+    DepotComponent
   ],
   imports: [
     BrowserModule,
