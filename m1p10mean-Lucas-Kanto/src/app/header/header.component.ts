@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { DepotComponent } from '../depot/depot.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -76,6 +77,20 @@ export class HeaderComponent implements OnInit {
     if (!this.modalOpened) {
       const dialogRef = this.dialog.open(ModalComponentComponent, {
         data: { title: 'Vos rendez vous',rendezvous:this.rendezvous }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.modalOpened = false;
+      });
+
+      this.modalOpened = true;
+    }
+  }
+
+  openDepotModal(): void {
+    if (!this.modalOpened) {
+      const dialogRef = this.dialog.open(DepotComponent, {
+        data: {title: 'Dépôt d\'argent'}
       });
 
       dialogRef.afterClosed().subscribe(result => {

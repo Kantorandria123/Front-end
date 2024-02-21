@@ -1,0 +1,18 @@
+.cookiesContent {
+    width: 500px !important;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    color: #000;
+    border-radius: 20px;
+    padding: 30px 30px ;
+    button.close {
+      width: 30px;
+      font-size: 20px;
+      color: #c0c5cb;
+      align-self: flex-end;
+      background-color: transparent;
+      border: none;
+      margin-bottom: 10px;
+    }
+}
