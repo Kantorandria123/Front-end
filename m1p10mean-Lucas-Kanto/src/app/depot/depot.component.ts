@@ -3,7 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../environments/environment';
-import { error } from 'console';
+
 
 @Component({
   selector: 'app-depot',
@@ -28,7 +28,7 @@ export class DepotComponent {
 
     if(client_idCookie) {
       this.client_id = client_idCookie;
-      let bodyData = 
+      let bodyData =
       {
         "montant": this.montant,
         "client_id": this.client_id,

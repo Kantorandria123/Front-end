@@ -143,7 +143,6 @@ export class PaiementComponent {
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const day = String(currentDate.getDate()).padStart(2, '0');
     const daty = `${year}-${month}-${day}`;
-    console.log("daty "+daty);
     const client_idCookie = this.cookieService.get('id');
     for(let i=0;i<rdvIds.length;i++)
     {
@@ -208,6 +207,12 @@ export class PaiementComponent {
                     this.updateEtatPaiement(paiementIds[i],2);
                     window.location.reload();
                 }
+                const currentDate = new Date();
+                const year = currentDate.getFullYear();
+                const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+                const day = String(currentDate.getDate()).padStart(2, '0');
+                const daty = `${year}-${month}-${day}`;
+              this.insertFacture(daty,client_id,this.totalPrix);
         } else {
 
         }
@@ -229,5 +234,17 @@ export class PaiementComponent {
         return true;
       })
     );
+  }
+  insertFacture(daty:string,clientId: string, totalPrix: Number)
+  {
+    let bodyData = {
+      "daty": daty,
+      "montanttotal": totalPrix,
+      "client_id":clientId
+    };
+    this.http.post(environment.baseUrl+"/facture/creer",bodyData).subscribe((resultData: any)=>
+    {
+
+    });
   }
 }
