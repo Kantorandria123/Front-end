@@ -1,65 +1,118 @@
 <app-header></app-header>
 
 <main id="main" class="main">
+  <div class="row">
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 1</h5>
+            <!-- Premier Graphique -->
+            <canvas id="graph1" style="max-height: 400px;"></canvas>
+            <!-- Fin du Premier Graphique -->
+          </div>
+        </div>
+      </section>
+    </div>
 
-    <div class="pagetitle">
-      <h1>Statistiques</h1>
-    </div><!-- End Page Title -->
-
-
-<section class="section">
-<div class="col-lg-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Bar CHart</h5>
-
-        <!-- Bar Chart -->
-        <canvas id="barChart" style="max-height: 400px;"></canvas>
-        <script>
-          document.addEventListener("DOMContentLoaded", () => {
-            new Chart(document.querySelector('#barChart'), {
-              type: 'bar',
-              data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                  label: 'Bar Chart',
-                  data: [65, 59, 80, 81, 56, 55, 40],
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
-                  ],
-                  borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)'
-                  ],
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
-          });
-        </script>
-        <!-- End Bar CHart -->
-
-      </div>
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 2</h5>
+            <!-- Deuxième Graphique -->
+            <canvas id="graph2" style="max-height: 400px;"></canvas>
+            <!-- Fin du Deuxième Graphique -->
+          </div>
+        </div>
+      </section>
     </div>
   </div>
-</section>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 3</h5>
+            <!-- Troisième Graphique -->
+            <canvas id="graph3" style="max-height: 400px;"></canvas>
+            <!-- Fin du Troisième Graphique -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 4</h5>
+            <!-- Quatrième Graphique -->
+            <canvas id="graph4" style="max-height: 400px;"></canvas>
+            <!-- Fin du Quatrième Graphique -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 5</h5>
+            <!-- Cinquième Graphique -->
+            <canvas id="graph5" style="max-height: 400px;"></canvas>
+            <!-- Fin du Cinquième Graphique -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 6</h5>
+            <!-- Sixième Graphique -->
+            <canvas id="graph6" style="max-height: 400px;"></canvas>
+            <!-- Fin du Sixième Graphique -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 7</h5>
+            <!-- Septième Graphique -->
+            <canvas id="graph7" style="max-height: 400px;"></canvas>
+            <!-- Fin du Septième Graphique -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="section">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique 8</h5>
+            <!-- Huitième Graphique -->
+            <canvas id="graph8" style="max-height: 400px;"></canvas>
+            <!-- Fin du Huitième Graphique -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
 </main>
+
 <app-footer></app-footer>
