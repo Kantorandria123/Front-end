@@ -17,6 +17,7 @@ import { DepenseComponent } from './depense/depense.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
 import { DateFormatPipe } from './date-format.pipe';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DepotComponent } from './depot/depot.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DepenseComponent,
     StatistiqueComponent,
     DateFormatPipe,
+    DepotComponent
 
   ],
   imports: [
