@@ -35,6 +35,7 @@
                                             <th scope="col">Nom</th>
                                             <th scope="col">Adresse-email</th>
                                             <th scope="col">Horaire de travail</th>
+                                            <th scope="col">Modifier</th>
                                             <th scope="col">Supprimer</th>
                                         </tr>
                                     </thead>
@@ -44,6 +45,11 @@
                                             <td>{{employe.nom}}</td>
                                             <td>{{employe.email}}</td>
                                             <td>{{employe.horaireTravail}}</td>
+                                            <td>
+                                              <a class="btn btn-warning btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                  <i class="bi bi-pencil-square"></i>
+                                              </a>
+                                          </td>
                                             <td><a (click)="deleteEmployee(employe._id)" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a></td>
                                         </tr>
                                     </tbody>
@@ -68,16 +74,28 @@
                                     </div>
                                     <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">Heure début</label>
-                                        <div class="col-md-8 col-lg-9">
+                                        <div class="col-md-4 col-lg-9">
                                             <input [(ngModel)]="horaireDebut" [ngModelOptions]="{standalone: true}" type="time" class="form-control" id="company">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">Heure fin</label>
-                                        <div class="col-md-8 col-lg-9">
+                                        <div class="col-md-4 col-lg-9">
                                             <input [(ngModel)]="horaireFin" [ngModelOptions]="{standalone: true}" type="time" class="form-control" id="Job">
                                         </div>
                                     </div>
+                                    <div class="row mb-3">
+                                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Nombre de jour travail par semaine</label>
+                                      <div class="col-md-4 col-lg-9">
+                                          <input [(ngModel)]="nbJourTravailSemaine" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="Job">
+                                      </div>
+                                  </div>
+                                  <div class="row mb-3">
+                                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Nombre de jour travail par mois</label>
+                                    <div class="col-md-4 col-lg-9">
+                                        <input [(ngModel)]="nbJourTravailMois" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="Job">
+                                    </div>
+                                </div>
                                     <div class="text-center">
                                         <button (click)="creerEmploye()" type="submit" class="btn btn-primary">Ajouter</button>
                                     </div>

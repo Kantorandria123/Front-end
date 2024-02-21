@@ -19,6 +19,8 @@ export class PersonnelComponent implements OnInit {
   pageSize = 10;
   page = 0;
   searchTerm: string = '';
+  nbJourTravailSemaine: number = 0;
+  nbJourTravailMois: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -52,11 +54,21 @@ export class PersonnelComponent implements OnInit {
   }
 
   creerEmploye() {
+    const heureDebutNum = parseFloat(this.horaireDebut);
+    const heureFinNum = parseFloat(this.horaireFin);
+    if (isNaN(heureDebutNum) || isNaN(heureFinNum)) {
+      return;
+    }
     const bodyData = {
       nom: this.nom,
       email: this.email,
       horaireTravail: this.horaireDebut + ' - ' + this.horaireFin,
+      heuredebut: heureDebutNum,
+      heurefin: heureFinNum,
+      nbJourTravailSemaine: this.nbJourTravailSemaine,
+      nbJourTravailMois: this.nbJourTravailMois
     };
+    console.log(bodyData);
 
     this.http.post(environment.baseUrl + '/employe/create', bodyData).subscribe((resultData: any) => {
       if (resultData.status) {
