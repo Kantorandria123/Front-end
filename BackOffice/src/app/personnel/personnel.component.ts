@@ -158,7 +158,7 @@ export class PersonnelComponent implements OnInit {
       email: this.email,
       horaireTravail: this.horaireDebut + ' - ' + this.horaireFin,
       heuredebut: heureDebutNum,
-      heurefin: heureFinNum,
+      heureFin: heureFinNum,
       nbJourTravailSemaine: this.nbJourTravailSemaine,
       nbJourTravailMois: this.nbJourTravailMois
     };
