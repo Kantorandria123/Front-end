@@ -42,7 +42,7 @@ export class ServiceComponent implements OnInit{
     if (this.imageFile !== null) {
       formData.append('image', this.imageFile);
     }
-
+    window.location.reload();
     this.http.post<any>(environment.baseUrl + '/service/creer', formData).subscribe(
       (resultData) => {
         if (resultData.success) {
