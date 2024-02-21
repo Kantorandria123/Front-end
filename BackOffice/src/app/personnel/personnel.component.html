@@ -35,6 +35,8 @@
                                             <th scope="col">Nom</th>
                                             <th scope="col">Adresse-email</th>
                                             <th scope="col">Horaire de travail</th>
+                                            <th scope="col">Nombre de jour de travail/semaine</th>
+                                            <th scope="col">Nombre de jour de travail/mois</th>
                                             <th scope="col">Modifier</th>
                                             <th scope="col">Supprimer</th>
                                         </tr>
@@ -45,10 +47,13 @@
                                             <td>{{employe.nom}}</td>
                                             <td>{{employe.email}}</td>
                                             <td>{{employe.horaireTravail}}</td>
+                                            <td>{{employe.nbJourTravailSemaine}} j</td>
+                                            <td>{{employe.nbJourTravailMois}} j</td>
                                             <td>
-                                              <a class="btn btn-warning btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                  <i class="bi bi-pencil-square"></i>
+                                              <a (click)="openModal(employe._id, content)" class="btn btn-warning btn-sm" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                <i class="bi bi-pencil-square"></i>
                                               </a>
+
                                           </td>
                                             <td><a (click)="deleteEmployee(employe._id)" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a></td>
                                         </tr>
@@ -69,7 +74,7 @@
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="fullName">
+                                            <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="fullName">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -106,6 +111,64 @@
                 </div>
             </div>
         </div>
+
+
     </section>
 </main><!-- End #main -->
+       <!-- Modal -->
+       <ng-template #content let-modal>
+        <div class="modal-header" sty>
+          <h4 class="modal-title" id="modal-basic-title">Modifier employées</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                                <form>
+                                    <div class="row mb-3">
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nom</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input [(ngModel)]="nom" value="{{selectedEmployee?.nom}}" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="fullName">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="fullName">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="company" class="col-md-4 col-lg-3 col-form-label">Heure début</label>
+                                        <div class="col-md-4 col-lg-9">
+                                            <input [(ngModel)]="horaireDebut" [ngModelOptions]="{standalone: true}" type="time" class="form-control" id="company">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Heure fin</label>
+                                        <div class="col-md-4 col-lg-9">
+                                            <input [(ngModel)]="horaireFin" [ngModelOptions]="{standalone: true}" type="time" class="form-control" id="Job">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Nombre de jour travail par semaine</label>
+                                      <div class="col-md-4 col-lg-9">
+                                          <input [(ngModel)]="nbJourTravailSemaine" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="Job">
+                                      </div>
+                                  </div>
+                                  <div class="row mb-3">
+                                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Nombre de jour travail par mois</label>
+                                    <div class="col-md-4 col-lg-9">
+                                        <input [(ngModel)]="nbJourTravailMois" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="Job">
+                                    </div>
+                                </div>
+
+                                </form><!-- End Profile Edit Form -->
+                            </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="updateEmploye(selectedEmployee._id)" >Modifier</button>
+          <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Fermer</button>
+        </div>
+      </ng-template>
+
 <app-footer></app-footer>
