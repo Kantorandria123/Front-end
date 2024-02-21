@@ -33,7 +33,7 @@ export class DepotComponent {
         "montant": this.montant,
         "client_id": this.client_id,
       }
-
+      console.log(bodyData);
       this.http.post(environment.baseUrl +"/depot/creer", bodyData).subscribe(
         (resultData: any) => {
           if (resultData.status) {
