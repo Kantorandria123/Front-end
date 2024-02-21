@@ -132,27 +132,27 @@
           <form class="row g-3">
             <div class="col-md-12">
               <label for="inputName5" class="form-label">Nom</label>
-              <input type="text" [(ngModel)]="nom" class="form-control" id="nom">
+              <input type="text" name="nom" [(ngModel)]="nom" class="form-control" id="nom">
             </div>
             <div class="col-md-6">
               <label for="inputEmail5" class="form-label">Description</label>
-              <textarea type="text" [(ngModel)]="description" class="form-control" id="description"></textarea>
+              <textarea type="text" name="description" [(ngModel)]="description" class="form-control" id="description"></textarea>
             </div>
             <div class="col-md-12">
               <label for="inputName5" class="form-label">Image</label>
-              <input type="file" [(ngModel)]="image" class="form-control" id="image">
+              <input type="file" name="image" [(ngModel)]="image" class="form-control" id="image">
             </div>
             <div class="col-md-12">
               <label for="inputName5" class="form-label">Prix</label>
-              <input type="text" [(ngModel)]="prix" class="form-control" id="prix">
+              <input type="text" name="prix" [(ngModel)]="prix" class="form-control" id="prix">
             </div>
             <div class="col-md-6">
               <label for="inputPassword5" class="form-label">Durée</label>
-              <input type="text" [(ngModel)]="duree" class="form-control" id="duree">
+              <input type="text" name="duree" [(ngModel)]="duree" class="form-control" id="duree">
             </div>
             <div class="col-md-12">
                 <label for="inputPassword5" class="form-label">Commission</label>
-                <input type="text" [(ngModel)]="commission" class="form-control" id="commission">
+                <input type="text" name="commission" [(ngModel)]="commission" class="form-control" id="commission">
               </div>
             <div class="text-center">
               <button type="submit" (click)="updateService()" class="btn btn-primary">Modifier</button>
