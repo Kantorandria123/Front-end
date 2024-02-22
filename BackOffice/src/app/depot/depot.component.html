@@ -17,22 +17,23 @@
                         <div class="tab-content pt-2">
                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                 <h5 class="card-title">Liste des dépôt d'argent à valider</h5>
-                               
+
 
                                 <!-- Default Table -->
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Nom Client</th>
+                                            <th scope="col">ID Client</th>
+                                            <th scope="col">Nom</th>
                                             <th scope="col">Montant</th>
                                             <th scope="col">Validation</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let depot of depots">
-                                            
-                                            <td>{{ depot.client.nom }}</td>
+                                          <td>{{ depot.client_id }}</td>
+                                            <td></td>
                                             <td>{{depot.montant}}</td>
                                             <td>
                                               <a class="btn btn-warning btn-sm" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -40,11 +41,11 @@
                                               </a>
 
                                           </td>
-                                            
+
                                         </tr>
                                     </tbody>
                                 </table>
-                                
+
                             </div>
                         </div><!-- End Bordered Tabs -->
                     </div>

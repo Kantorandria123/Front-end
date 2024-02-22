@@ -17,11 +17,11 @@ export class DepotComponent implements OnInit {
     this.getListerDepot();
   }
   getListerDepot() {
-    const url = environment.baseUrl+'/depot/liste?populate=client';
+    const url = environment.baseUrl+'/depot/liste';
     this.http.get<any>(url).subscribe(
       (response) => {
-        if (response.status && response.depots) {
-          this.depots = response.depots;
+        if (response.status && response.depotList) {
+          this.depots = response.depotList;
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
