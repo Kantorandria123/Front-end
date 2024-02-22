@@ -16,6 +16,8 @@ export class StatistiqueComponent implements OnInit {
   employeList: any[] = [];
   chiffresAffairesJour: any[] = [];
   chiffresAffairesMois: any[] = [];
+  nombreReservationJour: any[] = [];
+  nombreReservationMois: any[] = [];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -66,8 +68,29 @@ export class StatistiqueComponent implements OnInit {
 
 
     /*Nombre de reservation*/
-    this.createChart('graph6', 'Polar Area Chart', 'doughnut', ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]);
-    this.createChart('graph7', 'Bubble Chart', 'bar', ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'], [65, 59, 90, 81, 56, 55, 40]);
+    this.getNombreReservationJour().subscribe(
+      (rendezvousList) => {
+        this.nombreReservationJour = rendezvousList;
+        const libdataForGraph1 = this.nombreReservationJour.map(item => item.jour);
+        const dataForGraph1 = this.nombreReservationJour.map(item => item.count);
+        this.createChart('graph6', 'Polar Area Chart', 'doughnut', libdataForGraph1, dataForGraph1);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des chiffres :', error);
+      }
+    );
+    this.getNombreReservationMois().subscribe(
+      (rendezvousList) => {
+        this.nombreReservationMois = rendezvousList;
+        const libdataForGraph1 = this.nombreReservationMois.map(item => item.mois);
+        const dataForGraph1 = this.nombreReservationMois.map(item => item.count);
+        this.createChart('graph7', 'Bubble Chart', 'bar',libdataForGraph1,dataForGraph1 );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des chiffres :', error);
+      }
+    );
+
     /*Benefice*/
     this.createChart('graph8', 'Scatter Chart', 'polarArea', ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'], [65, 59, 90, 81, 56, 55, 40]);
     this.createChart('graph9', 'Pie Chart', 'bar', ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]);
@@ -152,6 +175,38 @@ export class StatistiqueComponent implements OnInit {
       }),
       catchError((error) => {
         return throwError('Erreur lors de la récupération de la liste des chiffres');
+      })
+    );
+  }
+   getNombreReservationJour(): Observable<any[]> {
+    const url = environment.baseUrl + `/statistique/nombrereservation/jour`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if (response.status && response.rendezvousList) {
+          return response.rendezvousList;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des rendezvousList');
+      })
+    );
+  }
+  getNombreReservationMois(): Observable<any[]> {
+    const url = environment.baseUrl + `/statistique/nombrereservation/mois`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if (response.status && response.rendezvousList) {
+          return response.rendezvousList;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des rendezvousList');
       })
     );
   }
