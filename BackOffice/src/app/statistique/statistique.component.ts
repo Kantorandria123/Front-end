@@ -14,6 +14,8 @@ import { environment } from '../environments/environment';
 export class StatistiqueComponent implements OnInit {
 
   employeList: any[] = [];
+  chiffresAffairesJour: any[] = [];
+  chiffresAffairesMois: any[] = [];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -21,6 +23,7 @@ export class StatistiqueComponent implements OnInit {
   }
 
   initializeCharts(): void {
+    /*Temps moyen de travail*/
     this.getListEmployes().subscribe(
       (employeList) => {
         this.employeList = employeList;
@@ -37,11 +40,35 @@ export class StatistiqueComponent implements OnInit {
       }
     );
 
+    /*Chiffres Affaire*/
+     this.getChiffresAffairesJour().subscribe(
+      (chiffreList) => {
+        this.chiffresAffairesJour = chiffreList;
+        const libdataForGraph1 = this.chiffresAffairesJour.map(item => item.jourSemaine);
+        const dataForGraph1 = this.chiffresAffairesJour.map(item => item.totalMontant);
+        this.createChart('graph4', '', 'line',libdataForGraph1,dataForGraph1);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des chiffres :', error);
+      }
+    );
+    this.getChiffresAffairesmois().subscribe(
+      (chiffreList) => {
+        this.chiffresAffairesMois = chiffreList;
+        const libdataForGraph1 = this.chiffresAffairesMois.map(item => item.mois);
+        const dataForGraph1 = this.chiffresAffairesMois.map(item => item.totalMontant);
+        this.createChart('graph5', 'Radar Chart', 'bar', libdataForGraph1, dataForGraph1);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des chiffres :', error);
+      }
+    );
 
-    this.createChart('graph4', 'Doughnut Chart', 'polarArea', ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]);
-    this.createChart('graph5', 'Radar Chart', 'bar', ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'], [65, 59, 90, 81, 56, 55, 40]);
+
+    /*Nombre de reservation*/
     this.createChart('graph6', 'Polar Area Chart', 'doughnut', ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]);
     this.createChart('graph7', 'Bubble Chart', 'bar', ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'], [65, 59, 90, 81, 56, 55, 40]);
+    /*Benefice*/
     this.createChart('graph8', 'Scatter Chart', 'polarArea', ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'], [65, 59, 90, 81, 56, 55, 40]);
     this.createChart('graph9', 'Pie Chart', 'bar', ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]);
   }
@@ -93,6 +120,38 @@ export class StatistiqueComponent implements OnInit {
       }),
       catchError((error) => {
         return throwError('Erreur lors de la récupération de la liste des employes');
+      })
+    );
+  }
+  getChiffresAffairesJour(): Observable<any[]> {
+    const url = environment.baseUrl + `/statistique/chiffreAfaires/jour`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if (response.status && response.chiffreList) {
+          return response.chiffreList;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des chiffres');
+      })
+    );
+  }
+  getChiffresAffairesmois(): Observable<any[]> {
+    const url = environment.baseUrl + `/statistique/chiffreAfaires/mois`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if (response.status && response.chiffreList) {
+          return response.chiffreList;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des chiffres');
       })
     );
   }
