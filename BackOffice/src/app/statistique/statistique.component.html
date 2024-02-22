@@ -1,118 +1,153 @@
 <app-header></app-header>
 
 <main id="main" class="main">
-  <div class="row">
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Temps moyen de travail/jour en(h)</h5>
-            <!-- Premier Graphique -->
-            <canvas id="graph1" style="max-height: 400px;"></canvas>
-            <!-- Fin du Premier Graphique -->
-          </div>
+  <ul class="nav nav-tabs" data-aos="fade-up" data-aos-delay="200">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#onglet1">Temps moyen de travail</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#onglet2">Nombre de reservations</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#onglet3">Chiffres d'affaires</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#onglet4">Benefice</a>
+    </li>
+  </ul>
+  <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+    <div class="tab-pane fade show active" id="onglet1">
+      <div class="row">
+        <div class="col-lg-12">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Temps moyen de travail/jour en(h)</h5>
+                <!-- Graphique 2 -->
+                <canvas id="graph1" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+
+        <div class="col-lg-12">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Temps moyen de travail/mois en(h)</h5>
+                <!-- Graphique 2 -->
+                <canvas id="graph2" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-lg-12">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">2 Temps moyen de travail/semaine en(h)</h5>
+
+                <canvas id="graph3" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
 
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Temps moyen de travail/mois en(h)</h5>
-            <!-- Deuxième Graphique -->
-            <canvas id="graph2" style="max-height: 400px;"></canvas>
-            <!-- Fin du Deuxième Graphique -->
-          </div>
+
+    <div class="tab-pane fade" id="onglet2">
+      <div class="row">
+        <div class="col-lg-6">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">2 Temps moyen de travail/jour en(h)</h5>
+
+                <canvas id="graph3" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+
+        <div class="col-lg-6">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">2 Temps moyen de travail/mois en(h)</h5>
+                <!-- Graphique 2 -->
+                <canvas id="graph4" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="onglet3" >
+      <div class="row">
+        <div class="col-lg-6">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">3 Temps moyen de travail/jour en(h)</h5>
+                <!-- Graphique 2 -->
+                <canvas id="graph5" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-lg-6">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">3 Temps moyen de travail/mois en(h)</h5>
+                <!-- Graphique 2 -->
+                <canvas id="graph6" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="onglet4">
+      <div class="row">
+        <div class="col-lg-6">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">4 Temps moyen de travail/jour en(h)</h5>
+                <!-- Graphique 2 -->
+                <canvas id="graph7" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-lg-6">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">4 Temps moyen de travail/mois en(h)</h5>
+                <!-- Graphique 2 -->
+                <canvas id="graph8" style="max-height: 400px;"></canvas>
+                <!-- Fin du Graphique 2 -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Statistique 3</h5>
-            <!-- Troisième Graphique -->
-            <canvas id="graph3" style="max-height: 400px;"></canvas>
-            <!-- Fin du Troisième Graphique -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Statistique 4</h5>
-            <!-- Quatrième Graphique -->
-            <canvas id="graph4" style="max-height: 400px;"></canvas>
-            <!-- Fin du Quatrième Graphique -->
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Statistique 5</h5>
-            <!-- Cinquième Graphique -->
-            <canvas id="graph5" style="max-height: 400px;"></canvas>
-            <!-- Fin du Cinquième Graphique -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Statistique 6</h5>
-            <!-- Sixième Graphique -->
-            <canvas id="graph6" style="max-height: 400px;"></canvas>
-            <!-- Fin du Sixième Graphique -->
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Statistique 7</h5>
-            <!-- Septième Graphique -->
-            <canvas id="graph7" style="max-height: 400px;"></canvas>
-            <!-- Fin du Septième Graphique -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div class="col-lg-6">
-      <section class="section">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Statistique 8</h5>
-            <!-- Huitième Graphique -->
-            <canvas id="graph8" style="max-height: 400px;"></canvas>
-            <!-- Fin du Huitième Graphique -->
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
 </main>
 
 <app-footer></app-footer>

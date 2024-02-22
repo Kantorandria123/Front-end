@@ -18,7 +18,7 @@ import { StatistiqueComponent } from './statistique/statistique.component';
 import { DateFormatPipe } from './date-format.pipe';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DepotComponent } from './depot/depot.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +41,8 @@ import { DepotComponent } from './depot/depot.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
