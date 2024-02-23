@@ -18,6 +18,7 @@ export class StatistiqueComponent implements OnInit {
   chiffresAffairesMois: any[] = [];
   nombreReservationJour: any[] = [];
   nombreReservationMois: any[] = [];
+  beneficeList: any[] = [];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -92,8 +93,19 @@ export class StatistiqueComponent implements OnInit {
     );
 
     /*Benefice*/
-    this.createChart('graph8', 'Scatter Chart', 'polarArea', ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'], [65, 59, 90, 81, 56, 55, 40]);
-    this.createChart('graph9', 'Pie Chart', 'bar', ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]);
+    this.getBenefices().subscribe(
+      (beneficeList) => {
+        this.beneficeList = beneficeList;
+        const libdataForGraph1 = this.beneficeList.map(item => item.mois);
+        const dataForGraph1 = this.beneficeList.map(item => item.benefice);
+        this.createChart('graph8', 'Scatter Chart', 'polarArea',libdataForGraph1, dataForGraph1);
+        this.createChart('graph9', 'Pie Chart', 'bar', libdataForGraph1, dataForGraph1);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des chiffres :', error);
+      }
+    );
+
   }
 
   createChart(canvasId: string, label: string, type: ChartType, labels: string[], data: number[]): void {
@@ -207,6 +219,22 @@ export class StatistiqueComponent implements OnInit {
       }),
       catchError((error) => {
         return throwError('Erreur lors de la récupération de la liste des rendezvousList');
+      })
+    );
+  }
+  getBenefices(): Observable<any[]> {
+    const url = environment.baseUrl + `/statistique/benefice/mois`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if (response.status && response.beneficeList) {
+          return response.beneficeList;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des beneficeList');
       })
     );
   }
