@@ -34,8 +34,8 @@
                     <th scope="col">Description</th>
                     <th scope="col">Type</th>
                     <th scope="col">Montant</th>
-                    
-                    
+
+
                   </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,6 @@
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-                    <h5 class="card-title">Saississez les dépenses</h5>
                     <!-- Profile Edit Form -->
                   <form>
                     <div class="row mb-3">
@@ -66,12 +65,11 @@
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Type</label>
                       <div class="col-md-8 col-lg-9">
-                        <select class="form-select" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" aria-label="Default select example">
-                          <option >Salaire</option>
-                          <option >Accessoires(brushing,fer...)</option>
-                          <option >Services publics(eau,chauffeau...)</option>
-                          <option >Loyer</option>
-                          <option >Marketing et publicité</option>
+                        <select class="form-select" [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
+                          <option value="salaire">Salaire</option>
+                          <option value="achat" >Achat pieces</option>
+                          <option value="loyer" >Loyer</option>
+                          <option value="autre">Autres</option>
                         </select>
                       </div>
                     </div>

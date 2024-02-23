@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 })
 export class DepenseComponent {
   description: string="";
-  montant: string="";
+  montant: number=0;
   date: string="";
   type: string="";
   depenses: any[] =[];
@@ -19,7 +19,7 @@ export class DepenseComponent {
 
   ngOnInit(): void {
     this.listeDepense();
-    
+
   }
 
   depenseCreate() {
@@ -41,7 +41,7 @@ export class DepenseComponent {
     (error) => {
       console.error('Error creating dépense:', error);
     }
-    
+
     );
   }
 
