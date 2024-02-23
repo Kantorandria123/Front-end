@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../environments/environment';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-service',
@@ -23,7 +25,9 @@ export class ServiceComponent implements OnInit{
   searchTerm: string = '';
   imageFile: File | null = null;
   serviceId: string="";
-  constructor(private router: Router,private http: HttpClient,private route: ActivatedRoute){}
+  selectedService: any;
+  isModalVisible = false;
+  constructor(private router: Router,private http: HttpClient,private route: ActivatedRoute,private modalService: NgbModal){}
 
 
   ngOnInit(): void {
@@ -103,6 +107,7 @@ export class ServiceComponent implements OnInit{
       duree: this.duree,
       commission: this.commission,
     };
+    window.location.reload();
     this.http.patch<any>(url, newData).subscribe(
       (response) => {
         if (response.status && response.updateService) {
@@ -128,6 +133,45 @@ export class ServiceComponent implements OnInit{
         console.error('Erreur lors de la suppression du service :', error);
       }
     )
+  }
+
+  getServiceById(serviceId: string): Observable<any[]> {
+    const url = environment.baseUrl + `/service/servicesId/${serviceId}`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if(response.status && response.services) {
+          return response.services;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des services');
+      })
+    )
+  }
+
+  openModal(serviceId: string, content: any): void {
+    this.getServiceById(serviceId).subscribe(
+      (service: any) => {
+        this.selectedService = service;
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+        this.nom = this.selectedService.nom;
+        this.description = this.selectedService.description;
+        this.image = this.selectedService.image;
+        this.prix = this.selectedService.prix;
+        this.duree = this.selectedService.duree;
+        this.commission = this.selectedService.commission;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des informations du service :', error);
+      }
+    )
+  }
+
+  closeModal(): void {
+    this.isModalVisible = false;
   }
 
 }
