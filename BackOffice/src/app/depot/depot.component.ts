@@ -31,5 +31,27 @@ export class DepotComponent implements OnInit {
       }
     );
   }
+  updateEtat(id: string, etat: number) {
+    this.http.get<any>(environment.baseUrl+`/depot/modifieretat/${id}/${etat}`).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
+  }
+  updateArgent(id: string, montant: number) {
+    let bodyData = {
+      _id: id,
+      argent: montant,
+    };
+    this.http.post(environment.baseUrl+"/depot/updateargent", bodyData).subscribe ( (resultData: any) => {
+
+    });
+  }
+  valider(id:string,client_id:string,montant:number)
+  {
+      this.updateEtat(id,2);
+      this.updateArgent(client_id,montant);
+     window.location.reload();
+  }
 
 }
