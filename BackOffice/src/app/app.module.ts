@@ -19,6 +19,7 @@ import { DateFormatPipe } from './date-format.pipe';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DepotComponent } from './depot/depot.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { OffrespecialeComponent } from './offrespeciale/offrespeciale.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     DepenseComponent,
     StatistiqueComponent,
     DateFormatPipe,
-    DepotComponent
+    DepotComponent,
+    OffrespecialeComponent
 
   ],
   imports: [
