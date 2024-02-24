@@ -97,8 +97,8 @@ export class ServiceComponent implements OnInit{
     this.pagedServices = filteredServices.slice(startIndex, startIndex + this.pageSize);
   }
 
-  updateService() {
-    const url = environment.baseUrl+`/service/serviceupdate/${this.serviceId}`;
+  updateService(serviceId: string) {
+    const url = environment.baseUrl+`/service/serviceupdate/${serviceId}`;
     const newData = {
       nom: this.nom,
       description: this.description,
