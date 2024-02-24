@@ -77,7 +77,6 @@ export class PreferenceComponent implements OnInit{
             }
           },
           (error: any) => {
-            console.error('Erreur lors de la requête HTTP :', error);
             this.strongMessage="Attention! ";
             this.message = "Cette service est déjà dans vos favoris";
           }
