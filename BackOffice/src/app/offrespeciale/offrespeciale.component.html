@@ -26,31 +26,20 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th scope="col">Titre</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Date début</th>
                                             <th scope="col">Date fin</th>
-                                            <th scope="col">Service</th>
-                                            <th scope="col">Modifier</th>
                                             <th scope="col">Supprimer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let offre of offres">
-                                            <td><img src="" width="50" height="50" /></td>
                                             <td>{{offre.titre}}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                              <a  class="btn btn-warning btn-sm" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <i class="bi bi-pencil-square"></i>
-                                              </a>
-
-                                          </td>
-                                            <td><a class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a></td>
+                                            <td>{{offre.description}}</td>
+                                            <td> {{offre.datedebut | dateFormat}} </td>
+                                            <td> {{offre.datefin | dateFormat}}</td>
+                                            <td><a (click)="deleteOffrespecial(offre._id)" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -215,6 +215,18 @@ export class OffrespecialeComponent implements OnInit{
     
   }
 
+  deleteOffrespecial(offrespecialId: string) {
+    this.http.delete(environment.baseUrl +`/offrespecial/supprimer/${offrespecialId}`).subscribe(
+      (response) => {
+        console.log('Offre spéciale supprimé avec succès :', response);
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression de l\'employé :', error);
+      }
+    );
+  }
+  
   formatDate(date: string): string {
     return format(new Date(date), ' do MMMM  yyyy', { locale: fr });
   }
