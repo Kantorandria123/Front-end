@@ -1,6 +1,6 @@
+import { environment } from './../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component,OnInit  } from '@angular/core';
-import { error } from 'console';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ProfilEmployeeComponent implements OnInit{
   image: string ='';
   horaireTravail: string = '';
   employees: any[] = [];
-
+  imageFile: File | null = null;
   constructor(private http: HttpClient,private cookieService: CookieService) {}
   ngOnInit(): void {
     this.listeEmployeeById();
@@ -28,14 +28,11 @@ export class ProfilEmployeeComponent implements OnInit{
       this.http.get<any>(url).subscribe(
         (response) => {
           if (response.status && response.employes) {
-            // Check if employes is an array, if not, convert it to an array
             if (Array.isArray(response.employes)) {
               this.employees = response.employes;
             } else {
-              // If employes is an object, convert it to an array
               this.employees = [response.employes];
             }
-            console.log("Liste employées :", this.employees);
           } else {
             console.error('Réponse inattendue du serveur :', response);
           }
@@ -53,18 +50,19 @@ export class ProfilEmployeeComponent implements OnInit{
     const employeeId = this.cookieService.get('id');
     if(employeeId) {
       const url = `http://localhost:3000/employe/employeupdate/${employeeId}`;
+      this.nom=this.employees[0].nom;
+      this.email=this.employees[0].email;
+      this.image=this.employees[0].image;
       const newData = {
         nom: this.nom,
         email: this.email,
-        image: this.image,
-        horaireTravail: this.horaireTravail
+        image: environment.baseUrl+"/uploads/images/"+this.image
       };
 
       this.http.patch<any>(url, newData).subscribe(
         (response) => {
           if (response.status && response.updatedEmployee) {
-            console.log("Employé mis à jour avec succès :", response.updatedEmployee);
-            // Mettre à jour les données affichées dans votre composant si nécessaire
+            window.location.reload();
           } else {
             console.error('Réponse inattendue du serveur :', response);
           }
@@ -77,6 +75,12 @@ export class ProfilEmployeeComponent implements OnInit{
     } else {
       console.error('employeeId non trouvé dans le cookie.');
 
+    }
+  }
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length) {
+      this.imageFile = target.files[0];
     }
   }
 

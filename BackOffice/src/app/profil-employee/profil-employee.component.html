@@ -12,7 +12,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="./assets/img/{{employe.image}}" alt="Profile" class="rounded-circle">
+              <img src="{{employe.image}}" alt="Profile" class="rounded-circle">
               <h2>{{employe.nom}}</h2>
             </div>
           </div>
@@ -64,36 +64,32 @@
 
                   <!-- Profile Edit Form -->
                   <form>
-                   
+
 
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nom</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="nom" type="text" [(ngModel)]="nom" class="form-control" id="nom">
-                      </div>
+                        <input name="nom" type="text" [(ngModel)]="employe.nom" class="form-control" id="nom">
+                    </div>
+
                     </div>
 
                     <div class="row mb-3">
                       <label for="about" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email"  type="text" [(ngModel)]="email" class="form-control" id="email">
+                        <input name="text" type="text" [(ngModel)]="employe.email" class="form-control" id="email">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="about" class="col-md-4 col-lg-3 col-form-label">Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="image"  type="file" [(ngModel)]="image" class="form-control" id="image">
+                        <input name="image" type="file" [(ngModel)]="employe.image" class="form-control" id="image">
                       </div>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">Horaire du travail</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="horaireTravail"  type="text" [(ngModel)]="horaireTravail" class="form-control" id="horaireTravail">
-                      </div>
-                    </div>
-                  
+
+
                     <div class="text-center">
                       <button type="submit" (click)="updateEmployee()" class="btn btn-primary">Modifier</button>
                     </div>
