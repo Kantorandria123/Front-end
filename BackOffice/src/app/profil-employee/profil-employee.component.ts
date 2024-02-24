@@ -23,7 +23,7 @@ export class ProfilEmployeeComponent implements OnInit{
   listeEmployeeById() {
     const employeeId = this.cookieService.get('id');
      if(employeeId) {
-      const url = `http://localhost:3000/employe/employebyId/${employeeId}`;
+      const url = environment.baseUrl+`/employe/employebyId/${employeeId}`;
 
       this.http.get<any>(url).subscribe(
         (response) => {
@@ -49,17 +49,23 @@ export class ProfilEmployeeComponent implements OnInit{
   updateEmployee() {
     const employeeId = this.cookieService.get('id');
     if(employeeId) {
-      const url = `http://localhost:3000/employe/employeupdate/${employeeId}`;
+      const url = environment.baseUrl+`/employe/employeupdate/${employeeId}`;
       this.nom=this.employees[0].nom;
       this.email=this.employees[0].email;
-      this.image=this.employees[0].image;
-      const newData = {
+      const formData = new FormData();
+      formData.append('nom', this.nom);
+      formData.append('email', this.email);
+      if (this.imageFile !== null) {
+        formData.append('image', this.imageFile);
+      }
+      console.log("image : "+this.image)
+      /*const newData = {
         nom: this.nom,
         email: this.email,
         image: environment.baseUrl+"/uploads/images/"+this.image
-      };
+      };*/
 
-      this.http.patch<any>(url, newData).subscribe(
+      this.http.post<any>(url, formData).subscribe(
         (response) => {
           if (response.status && response.updatedEmployee) {
             window.location.reload();
@@ -77,11 +83,14 @@ export class ProfilEmployeeComponent implements OnInit{
 
     }
   }
-  onFileChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target.files && target.files.length) {
-      this.imageFile = target.files[0];
+  onFileChange(event: any) {
+    const files = event.target.files;
+    if (files.length > 0) {
+      const fileName = files[0].name;
+      console.log(fileName);
+      this.image=fileName;
     }
   }
+
 
 }

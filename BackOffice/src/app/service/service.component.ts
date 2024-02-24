@@ -36,7 +36,6 @@ export class ServiceComponent implements OnInit{
   }
 
   serviceCreate() {
-    // Create form data
     const formData = new FormData();
     formData.append('nom', this.nom);
     formData.append('description', this.description);
