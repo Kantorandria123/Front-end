@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { response } from 'express';
 import { CookieService } from 'ngx-cookie-service';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 
 @Component({
@@ -15,7 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class OffrespecialeComponent implements OnInit{
   clients: any[] =[];
   services: any[] = [];
-  offrespecials: any[] = [];
+  offres:any[] = [];
   titre: string = '';
   description: string = '';
   datedebut: string = '';
@@ -25,7 +27,8 @@ export class OffrespecialeComponent implements OnInit{
   constructor(private router: Router,private http: HttpClient,private route: ActivatedRoute, private cookieService: CookieService){}
   ngOnInit(): void {
     this.getListService();
-    this.getListOffrespecial();
+    this.getOffrespecial();
+
   }
   getListService() {
     const url = environment.baseUrl+'/service/lesservices';
@@ -57,66 +60,7 @@ export class OffrespecialeComponent implements OnInit{
           this.getListClient().subscribe(
             (clients: any[]) => {
               console.log(clients.length);
-              // window.location.reload();
-            },
-            (clientError) => {
-              console.error('Erreur lors de la récupération de la liste des clients :', clientError);
-            }
-          );
-        } else {
-          console.log("La création de l'offre spéciale a échoué.");
-        }
-      },
-      (error) => {
-        console.error("Erreur lors de la création de l'offre spéciale :", error); // Affichage de l'erreur renvoyée par le serveur
-      }
-    );
-  }
-
-  getListOffrespecial() {
-    const url = environment.baseUrl+'/offrespecial/lesoffrespecial';
-
-    this.http.get<any>(url).subscribe(
-      (response) => {
-
-        if (response.status && response.offrespecialList) {
-          this.offrespecials = response.offrespecialList;
-        } else {
-          console.error('Réponse innatendue du serveur :', response);
-        }
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération de la liste des offres spécial :', error);
-      }
-    );
-  }
-
-  getListClient (): Observable<any[]> {
-    const url = environment.baseUrl +  `/client/lesclients`;
-    return this.http.get<any[]>(url).pipe(
-      map((response: any) => {
-        if (response.status && response.clients) {
-          return response.clients;
-        } else {
-          console.error('Réponse inattendue du serveur :', response);
-          return [];
-        }
-      }),
-      catchError((error) => {
-        return throwError('Erreur lors de la récupération de la liste des clients');
-      })
-    );
-  }
-
-  sendEmailData(emailData: any): Observable<any> {
-    return this.http.post<any>(environment.baseUrl+'/email/send', emailData);
-  }
-
-  sendEmail(): void {
-    const client_id = this.cookieService.get('id');
-    if (client_id) {
-      const emailCookie = this.cookieService.get('email');
-      let htmlContent = `
+              let htmlContent = `
       <!DOCTYPE html>
         <html lang="fr">
           <head>
@@ -125,10 +69,9 @@ export class OffrespecialeComponent implements OnInit{
           <link href='https://fonts.googleapis.com/css?family=Great Vibes' rel='stylesheet'>
           <title>Notification de rendez-vous</title>
           </head>
-          <body style="font-family: Arial, sans-serif; background-color: #f0f0f0;text-align: center;">
-          <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account. </div>
+          <body style="background-color: #f0f0f0;text-align: center;">
           
-          <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account. </div>
+          <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"></div>
           <table border="0" cellpadding="0" cellspacing="0" width="100%">
               <!-- LOGO -->
               <tr>
@@ -145,7 +88,7 @@ export class OffrespecialeComponent implements OnInit{
                       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                           <tr>
                               <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111;font-family: 'Great Vibes'; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                                  <h1 style="font-family: 'Great Vibes',cursive;font-size: 48px; font-weight: 400; margin: 2;">Beauty Care!</h1> <img src=" https://img.icons8.com/clouds/100/000000/handshake.png" width="125" height="120" style="display: block; border: 0px;" />
+                                  <h1 style="font-family: 'Great Vibes',cursive;font-size: 48px; font-weight: 400; margin: 2;color: #fd5d5d">Beauty Care!</h1> 
                               </td>
                           </tr>
                       </table>
@@ -153,15 +96,15 @@ export class OffrespecialeComponent implements OnInit{
               </tr>
               <tr>
                   <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;"> `;
-                      for (let i = 0; i < this.offrespecials.length; i++) {
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;"> `;  
                         htmlContent += `
                           <tr>
                               <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                                  <p style="margin: 0;">Votre rendez-vous pour le ${this.offrespecials[i].service_info.nom} le ${(this.offrespecials[i].daty)} à ${this.offrespecials[i].horaire} avec ${this.offrespecials[i].employe_info.nom}</p>
-                              </td>
+                                  <p style="margin: 0;">Consulter les offres spéciales du Beauty care pour: </p>
+                                  <p style="margin: 0;"><a href="#" target="_blank" style="color: #fd5d5d;text-decoration:none;">${this.titre} : </a>  ${this.description} valable du ${this.formatDate(this.datedebut)} jusqu'à ${this.formatDate(this.datefin)} </p>
+                              </td>  
                           </tr> `;
-                      }
+                    
                       htmlContent += `
                           
                           <tr>
@@ -196,21 +139,84 @@ export class OffrespecialeComponent implements OnInit{
           </body>
         </html>
       `;
-      const emailData = {
-        to: emailCookie,
-        subject: 'Notification Rendez-vous',
-        html: htmlContent
-      };
+              for(let i=0;i<clients.length;i++) {
+                 const emailData = {
+                   to: clients[i].email,
+                   subject: 'Offres spéciales',
+                   html: htmlContent
+                 };
+                 this.sendEmail(emailData);
 
+              }
+              // window.location.reload();
+            },
+            (clientError) => {
+              console.error('Erreur lors de la récupération de la liste des clients :', clientError);
+            }
+          );
+        } else {
+          console.log("La création de l'offre spéciale a échoué.");
+        }
+      },
+      (error) => {
+        console.error("Erreur lors de la création de l'offre spéciale :", error); // Affichage de l'erreur renvoyée par le serveur
+      }
+    );
+  }
+
+  getOffrespecial() {
+    const url = environment.baseUrl+'/offrespecial/listeoffrespecial';
+    this.http.get<any>(url).subscribe(
+      (response) => {
+        if (response.status && response.offrespeciales) {
+          this.offres = response.offrespeciales;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des offres spsciales :', error);
+      }
+    );
+  }
+
+
+
+  getListClient (): Observable<any[]> {
+    const url = environment.baseUrl +  `/client/lesclients`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if (response.status && response.clients) {
+          return response.clients;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des clients');
+      })
+    );
+  }
+
+  sendEmailData(emailData: any): Observable<any> {
+    return this.http.post<any>(environment.baseUrl+'/email/send', emailData);
+  }
+
+  sendEmail(emailData: any): void {
       this.sendEmailData(emailData).subscribe(
         response => {
           console.log('E-mail envoyé avec succès:', response);
         },
         error => {
-          //console.error('Erreur lors de l\'envoi de l\'e-mail:', error);
+          console.error('Erreur lors de l\'envoi de l\'e-mail:', error);
         }
       );
-    }
+    
+  }
+
+  formatDate(date: string): string {
+    return format(new Date(date), ' do MMMM  yyyy', { locale: fr });
   }
 
 }
