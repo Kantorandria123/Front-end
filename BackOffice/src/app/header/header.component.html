@@ -1,4 +1,11 @@
-<!-- ======= Header ======= -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.toggle-sidebar-btn').on('click', function(e) {
+      $('body').toggleClass('toggle-sidebar');
+    });
+  });
+</script><!-- ======= Header ======= -->
 <ng-container *ngIf="resultData !== null && resultData !== undefined">
   <header id="header" class="header fixed-top d-flex align-items-center">
 

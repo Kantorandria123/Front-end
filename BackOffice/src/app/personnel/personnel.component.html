@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
-                        <ul class="nav nav-tabs nav-tabs-bordered">
+                        <ul class="nav nav-tabs nav-tabs-bordered mb-3">
                             <li class="nav-item">
                                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Liste employées</button>
                             </li>
@@ -18,15 +18,17 @@
                             </li>
                         </ul>
                         <div class="tab-content pt-2">
-                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                <h5 class="card-title">Liste des employées</h5>
-                                <div class="row mb-3">
-                                    <label for="search" class="col-md-2 col-lg-3 col-form-label">Rechercher</label>
-                                    <div class="col-md-3 col-lg-9">
+                           
+
+                            <div class="tab-pane fade show active profile-overview mb-3" id="profile-overview">
+                                <div class="header mb-3 search-bar d-flex align-items-center" style="width: 500px;padding-right: 20px;">
+                                    <label for="search" class="col-md-4 col-lg-3 col-form-label">Rechercher</label>
+                                    <div class="search-form d-flex align-items-center">
                                         <input [(ngModel)]="searchTerm" (ngModelChange)="updatePagedEmployes()" type="text" class="form-control" id="search">
+                                        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
                                     </div>
                                 </div>
-
+                              
                                 <!-- Default Table -->
                                 <table class="table">
                                     <thead>
@@ -62,7 +64,7 @@
                                 <mat-paginator [length]="employes.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
                             </div>
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                                <h5 class="card-title">Ajouter un employées</h5>
+                                <h3 class="card-title">Ajouter un employé</h3>
                                 <!-- Profile Edit Form -->
                                 <form>
                                     <div class="row mb-3">
