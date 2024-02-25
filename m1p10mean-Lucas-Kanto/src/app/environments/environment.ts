@@ -2,5 +2,5 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3000' // Remplacez "http://example.com/api" par votre URL de base
+  baseUrl: 'https://m1p10mean-lucas-kanto.onrender.com' // Remplacez "http://example.com/api" par votre URL de base
 };

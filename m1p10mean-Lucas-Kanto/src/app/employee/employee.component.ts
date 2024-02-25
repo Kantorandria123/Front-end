@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-employee',
@@ -13,7 +14,7 @@ export class EmployeeComponent {
     this.getListEmploye();
   }
   getListEmploye() {
-    const url = 'http://localhost:3000/employe/lesEmployes';
+    const url = environment.baseUrl+'/employe/lesEmployes';
 
     this.http.get<any>(url).subscribe(
       (response) => {
