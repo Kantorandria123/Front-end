@@ -14,12 +14,14 @@ export class DepenseComponent {
   date: string="";
   type: string="";
   depenses: any[] =[];
-
+  pageSize = 10;
+  page = 0;
+  pagedDepenses: any[] = [];
+  searchTerm: string = '';
   constructor(private router: Router,private http: HttpClient) {}
 
   ngOnInit(): void {
     this.listeDepense();
-
   }
 
   depenseCreate() {
@@ -51,6 +53,7 @@ export class DepenseComponent {
       (response) => {
         if(response.status && response.depenses) {
           this.depenses = response.depenses;
+          this.updatePageDepenses();
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
@@ -60,5 +63,15 @@ export class DepenseComponent {
       }
     );
   }
-
+  onPageChange(event: any) {
+    this.page = event.pageIndex;
+    this.updatePageDepenses();
+  }
+  updatePageDepenses() {
+    const filteredServices = this.depenses.filter(depense =>
+      depense.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    const startIndex = this.page * this.pageSize;
+    this.pagedDepenses = filteredServices.slice(startIndex, startIndex + this.pageSize);
+  }
 }

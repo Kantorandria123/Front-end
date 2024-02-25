@@ -25,8 +25,12 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">Liste des dépenses</h5>
-                   <!-- Default Table -->
+                  <div class="row mb-3">
+                    <label for="search" class="col-md-2 col-lg-3 col-form-label">Rechercher</label>
+                    <div class="col-md-3 col-lg-9">
+                        <input [(ngModel)]="searchTerm" (ngModelChange)="updatePageDepenses()" type="text" class="form-control" id="search">
+                    </div>
+                </div>
               <table class="table">
                 <thead>
                   <tr >
@@ -39,7 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let depense of depenses">
+                  <tr *ngFor="let depense of pagedDepenses">
                     <td>{{depense.date | dateFormat}}</td>
                     <td>{{depense.description}}</td>
                     <td> {{depense.type}} </td>
@@ -47,7 +51,7 @@
                   </tr>
                 </tbody>
               </table>
-
+              <mat-paginator [length]="depenses.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
