@@ -45,10 +45,10 @@ export class ServiceComponent implements OnInit{
     if (this.imageFile !== null) {
       formData.append('image', this.imageFile);
     }
-    window.location.reload();
+    //window.location.reload();
     this.http.post<any>(environment.baseUrl + '/service/creer', formData).subscribe(
       (resultData) => {
-        if (resultData.success) {
+        if (resultData.status) {
           this.strongMessage = "Service créé";
           window.location.reload();
         } else {
