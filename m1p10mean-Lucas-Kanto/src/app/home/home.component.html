@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-4">
                             <div class="services-img d-flex align-items-center justify-content-center rounded">
-                                <img src="./assets/img/{{service.image}}" class="img-fluid rounded" alt="">
+                                <img src="{{service.image}}" class="img-fluid rounded" alt="">
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
             <div *ngFor="let offrespecial of offrespecials" class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="property-item overflow-hidden  bg-light" style="border-radius:20px ;">
                     <div class="position-relative overflow-hidden">
-                        <a href=""><img class="img-fluid" src="./assets/img/{{offrespecial.service_info.image}}" alt="" style="height: 200px;width:350px;"></a>
+                        <a href=""><img class="img-fluid" src="{{offrespecial.service_info.image}}" alt="" style="height: 200px;width:350px;"></a>
 
                         <!-- <div class="bg-primary text-white position-absolute start-0 top-0 m-4 py-1 px-3" style="border-radius:5px ;">Offre Spécial</div> -->
                         <div class="bg-primary text-white position-absolute start-0 bottom-0 mx-4 pt-1 px-3" style="border-radius:5px 5px 0 0;">Offre Spécial</div>

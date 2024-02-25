@@ -37,7 +37,7 @@
                 <div *ngFor="let service of services" class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="gallery-item">
                         <div class="gallery-img">
-                            <img class="img-fluid w-100" src="./assets/img/{{service.image}}" alt="">
+                            <img class="img-fluid w-100" src="{{service.image}}" alt="">
                             <div class="hover-style"></div>
                             <div class="search-icon">
                               <i (click)="favoris(service._id, 1,service.nom)" class="fas fa-heart btn-primary btn-primary-outline-0 p-3 my-auto" [ngClass]="{'favorite': service.favorite}"></i>
@@ -71,7 +71,7 @@
                     <div class="team-item">
                         <div class="team-img">
                             <div class="team-img-main">
-                              <img src="./assets/img/{{employe.image}}" class="img-fluid w-100" alt="">
+                              <img src="{{employe.image}}" class="img-fluid w-100" alt="">
                             </div>
                         </div>
                         <div class="team-content">
