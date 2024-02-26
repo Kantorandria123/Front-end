@@ -26,7 +26,6 @@ export class MespreferencesComponent implements OnInit{
         if (response.status && response.preferenceslist) {
           console.log(response.services);
           this.services = response.preferenceslist;
-          console.log("taille = "+response.preferenceslist.length);
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }
