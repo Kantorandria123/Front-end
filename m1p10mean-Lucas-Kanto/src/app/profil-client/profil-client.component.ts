@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../environments/environment';
 
 
+
+
 @Component({
   selector: 'app-profil-client',
   templateUrl: './profil-client.component.html',
@@ -11,8 +13,15 @@ import { environment } from '../environments/environment';
 })
 export class ProfilClientComponent implements OnInit {
   client: any[] = [];
+  nom: string = '';
+  email: string = '';
+  phone: string = '';
+
+  
   constructor(private http: HttpClient,private cookieService: CookieService) {}
-  ngOnInit(): void {
+  
+  
+    ngOnInit(): void {
    this.listeClientById();
   }
 
@@ -44,4 +53,37 @@ export class ProfilClientComponent implements OnInit {
       console.error('clientId non trouvé dans le cookie.');
      }
   }
+
+  updateClient() {
+    const clientId = this.cookieService.get('id');
+    if(clientId) {
+      const url = environment.baseUrl+`/client/clientupdate/${clientId}`;
+      this.nom = this.client[0].nom;
+      this.email = this.client[0].email;
+      this.phone = this.client[0].phone;
+      const formData = new FormData();
+      formData.append('nom',this.nom);
+      formData.append('email', this.email);
+      formData.append('phone', this.phone);
+
+      this.http.post<any>(url, formData).subscribe(
+        (response) => {
+          if(response.status && response.updatedClient) {
+            this.cookieService.delete('email');
+            this.cookieService.set('email', this.email);
+            window.location.reload();
+          } else {
+            console.error('Réponse inattendue du serveur :', response);
+          }
+        },
+        (error) => {
+          console.error("Erreur lors de la mise à jour du client:", error);
+        }
+      );
+    } else {
+      console.error('clientId non trouvé dans le cookie.');
+
+    }
+  }
+
 }
