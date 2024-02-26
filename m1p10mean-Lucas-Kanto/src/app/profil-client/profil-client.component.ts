@@ -17,10 +17,10 @@ export class ProfilClientComponent implements OnInit {
   email: string = '';
   phone: string = '';
 
-  
+
   constructor(private http: HttpClient,private cookieService: CookieService) {}
-  
-  
+
+
     ngOnInit(): void {
    this.listeClientById();
   }
@@ -28,7 +28,6 @@ export class ProfilClientComponent implements OnInit {
 
   listeClientById() {
     const clientId = this.cookieService.get('id');
-    console.log("clientId :" +clientId);
      if(clientId) {
       const url = environment.baseUrl+`/client/clientbyId/${clientId}`;
 
@@ -37,7 +36,6 @@ export class ProfilClientComponent implements OnInit {
           if (response.status && response.clients) {
             if (Array.isArray(response.clients)) {
               this.client = response.clients;
-              console.log("list :" +this.client);
             } else {
               this.client = [response.clients];
             }
@@ -61,11 +59,11 @@ export class ProfilClientComponent implements OnInit {
       this.nom = this.client[0].nom;
       this.email = this.client[0].email;
       this.phone = this.client[0].phone;
-      const formData = new FormData();
-      formData.append('nom',this.nom);
-      formData.append('email', this.email);
-      formData.append('phone', this.phone);
-
+      let formData = {
+        nom:this.nom,
+        email: this.email,
+        phone:this.phone
+      };;
       this.http.post<any>(url, formData).subscribe(
         (response) => {
           if(response.status && response.updatedClient) {
