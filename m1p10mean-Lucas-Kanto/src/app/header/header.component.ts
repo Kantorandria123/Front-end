@@ -34,8 +34,16 @@ export class HeaderComponent implements OnInit {
         token: tokenCookie,
       };
 
-      this.http.post(environment.baseUrl+"/client/getbytoken", bodyData).subscribe((resultData: any) => {
-        this.resultData=resultData;
+      this.http.post(environment.baseUrl+"/client/getbytoken", bodyData).subscribe((result: any) => {
+        if(result.status)
+        {
+          this.resultData=result;
+        }
+        else
+        {
+            this.deconnection();
+        }
+
       });
 
     }
@@ -47,6 +55,7 @@ export class HeaderComponent implements OnInit {
     this.cookieService.delete('token');
     localStorage.clear();
     location.reload();
+    this.router.navigateByUrl('/');
   }
   checkNotificationRendezvous() {
     const client_id = this.cookieService.get('id');
