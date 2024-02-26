@@ -24,7 +24,6 @@ export class ProfilEmployeeComponent implements OnInit{
     const employeeId = this.cookieService.get('id');
      if(employeeId) {
       const url = environment.baseUrl+`/employe/employebyId/${employeeId}`;
-
       this.http.get<any>(url).subscribe(
         (response) => {
           if (response.status && response.employes) {
@@ -58,16 +57,12 @@ export class ProfilEmployeeComponent implements OnInit{
       if (this.imageFile !== null) {
         formData.append('image', this.imageFile);
       }
-      console.log("image : "+this.image)
-      /*const newData = {
-        nom: this.nom,
-        email: this.email,
-        image: environment.baseUrl+"/uploads/images/"+this.image
-      };*/
 
       this.http.post<any>(url, formData).subscribe(
         (response) => {
           if (response.status && response.updatedEmployee) {
+            this.cookieService.delete('email');
+            this.cookieService.set('email',this.email);
             window.location.reload();
           } else {
             console.error('Réponse inattendue du serveur :', response);
@@ -88,7 +83,8 @@ export class ProfilEmployeeComponent implements OnInit{
     if (files.length > 0) {
       const fileName = files[0].name;
       console.log(fileName);
-      this.image=fileName;
+      this.image = fileName;
+      this.imageFile = files[0];
     }
   }
 
