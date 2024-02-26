@@ -72,18 +72,18 @@
         </div>
         <div class="row g-4">
             <div class="col-lg-6" *ngFor="let service of services">
-                <div class="services-item bg-light border-4 border-end border-primary rounded p-4">
+                <div class="services-item bg-light border-4 border-end border-primary p-4" style="border-radius: 20px;">
                     <div class="row align-items-center">
                         <div class="col-8">
                             <div class="services-content text-end">
                                 <h3 class="fs-4 fw-bold text-primary">{{service.nom}}</h3>
                                 <p class="text-dark mb-0">{{service.description}}</p>
-                                <a [routerLink]="['/rendezvous']" class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4">{{ service.prix | currency:'USD':'symbol':'1.2-2'}}/{{service.duree}} min</a>
+                                <a [routerLink]="['/rendezvous']" class="btn btn-primary btn-primary-outline-0 -pill py-2 px-4" style="border-radius: 20px;">{{ service.prix | currency:'USD':'symbol':'1.2-2'}}/{{service.duree}} min</a>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="services-img d-flex align-items-center justify-content-center rounded">
-                                <img src="{{service.image}}" class="img-fluid rounded" alt="">
+                        <div class="col-4 " style="border-radius: 20px;"> 
+                            <div class="services-img d-flex align-items-center justify-content-center ">
+                                <img src="{{service.image}}" class="img-fluid " alt="">
                             </div>
                         </div>
                     </div>
