@@ -5,12 +5,12 @@
     <p class="fw-bold" style="margin-left: 10px; margin-bottom: 15px;font-family: 'Great Vibes', cursive;font-size:28px;">Notifications</p>
   </div>
   <ng-container *ngIf="data.rendezvous && data.rendezvous.length > 0; else noNotifications">
-    
+
     <div class="notification-ui_dd-content">
       <div class="notification-list notification-list--unread" *ngFor="let rdv of data.rendezvous">
         <div class="notification-list_content">
           <div class="notification-list_img">
-            <img src="./assets/img/{{rdv.service_info.image}}" alt="user">
+            <img src="{{rdv.service_info.image}}" alt="user">
           </div>
           <div class="notification-list_detail">
             <p class="text-dark mb-0 fw-bold" style="font-size: 13px;"> Le {{rdv.daty | dateFormat}} à {{rdv.horaire}}</p>

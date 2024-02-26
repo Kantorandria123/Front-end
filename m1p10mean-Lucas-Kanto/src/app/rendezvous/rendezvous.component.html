@@ -70,23 +70,28 @@
                             </div>
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                               <div class="form-group">
-                                <label for="exampleselect" class="form-label text-dark">Service</label>
-                                <select  [(ngModel)]="service_id" [ngModelOptions]="{standalone: true}"   class="form-control bg-white text-dark py-3 border-0" >
-
-                                  <option *ngFor="let service of services" [value]="service._id">{{ service.nom }}</option>
-                                </select>
+                                <label class="form-label text-dark">Choix services : </label>
+                                <br>
+                                <div  id="radioFormulaire">
+                                <div class="form-check form-check-inline text-left" *ngFor="let service of services">
+                                  <input type="radio" name="service" [(ngModel)]="service_id" [ngModelOptions]="{standalone: true}" [value]="service._id" class="form-check-input" id="{{ 'service_' + service._id }}">
+                                  <label class="form-check-label text-dark" for="{{ 'service_' + service._id }}">{{ service.nom }}</label>
+                                </div>
+                              </div>
                               </div>
                             </div>
 
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                            <div  class="col-12 wow fadeIn" data-wow-delay="0.1s">
                               <div class="form-group">
-                                <label for="exampleselect" class="form-label text-dark">Employ&eacute;</label>
-                                <select [(ngModel)]="employee_id" [ngModelOptions]="{standalone: true}"  class="form-control bg-white text-dark py-3 border-0">
-                                  <option *ngFor="let employe of employes" [value]="employe._id">{{ employe.nom }}</option>
-                                </select>
+                                <label class="form-label text-dark">Choix employés : </label><br>
+                                <div  id="radioFormulaire">
+                                <div   class="form-check form-check-inline text-left" *ngFor="let employe of employes">
+                                  <input type="radio" name="employe" [(ngModel)]="employee_id" [ngModelOptions]="{standalone: true}" [value]="employe._id" class="form-check-input" id="{{ 'employee_' + employe._id }}">
+                                  <label class="form-check-label text-dark" for="{{ 'employee_' + employe._id }}">{{ employe.nom }}</label>
+                                </div>
+                              </div>
                               </div>
                             </div>
-
 
                             <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
                                 <button (click)="creerRendezVous()" class="btn btn-primary btn-primary-outline-0 py-3 px-5">Envoyer</button>
