@@ -16,9 +16,9 @@ export class HeaderComponent {
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
    ngOnInit() {
-     const idcookie = this.cookieService.get('id');
-     const emailCookie = this.cookieService.get('email');
-     const tokenCookie = this.cookieService.get('token');
+     const idcookie = this.cookieService.get('id_admin');
+     const emailCookie = this.cookieService.get('email_admin');
+     const tokenCookie = this.cookieService.get('token_admin');
       const admin = localStorage.getItem('useradmin');
       if (admin) {
         this.useradmin = +admin;
@@ -47,9 +47,9 @@ export class HeaderComponent {
 }
 deconnection()
 {
-  this.cookieService.delete('id');
-  this.cookieService.delete('email');
-  this.cookieService.delete('token');
+  this.cookieService.delete('id_admin');
+  this.cookieService.delete('email_admin');
+  this.cookieService.delete('token_admin');
   localStorage.removeItem("useradmin");
   this.router.navigateByUrl('/')
 }

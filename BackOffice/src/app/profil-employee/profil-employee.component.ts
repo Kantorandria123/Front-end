@@ -21,7 +21,7 @@ export class ProfilEmployeeComponent implements OnInit{
   }
 
   listeEmployeeById() {
-    const employeeId = this.cookieService.get('id');
+    const employeeId = this.cookieService.get('id_admin');
      if(employeeId) {
       const url = environment.baseUrl+`/employe/employebyId/${employeeId}`;
       this.http.get<any>(url).subscribe(
@@ -46,7 +46,7 @@ export class ProfilEmployeeComponent implements OnInit{
   }
 
   updateEmployee() {
-    const employeeId = this.cookieService.get('id');
+    const employeeId = this.cookieService.get('id_admin');
     if(employeeId) {
       const url = environment.baseUrl+`/employe/employeupdate/${employeeId}`;
       this.nom=this.employees[0].nom;
@@ -61,8 +61,8 @@ export class ProfilEmployeeComponent implements OnInit{
       this.http.post<any>(url, formData).subscribe(
         (response) => {
           if (response.status && response.updatedEmployee) {
-            this.cookieService.delete('email');
-            this.cookieService.set('email',this.email);
+            this.cookieService.delete('email_admin');
+            this.cookieService.set('email_admin',this.email);
             window.location.reload();
           } else {
             console.error('Réponse inattendue du serveur :', response);

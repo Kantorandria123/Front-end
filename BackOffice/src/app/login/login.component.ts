@@ -33,9 +33,9 @@ export class LoginComponent {
 
      this.http.post(environment.baseUrl+"/employe/login", bodyData).subscribe ( (resultData: any) => {
        if (resultData.status) {
-         this.cookieService.set('email',resultData.employes.email);
-         this.cookieService.set('token', resultData.employes.token);
-         this.cookieService.set('id', resultData.employes._id);
+         this.cookieService.set('email_admin',resultData.employes.email);
+         this.cookieService.set('token_admin', resultData.employes.token);
+         this.cookieService.set('id_admin', resultData.employes._id);
          localStorage.setItem('useradmin', '1');
          this.router.navigateByUrl('/home')
        } else {
@@ -52,9 +52,9 @@ export class LoginComponent {
 
     this.http.post(environment.baseUrl+"/manager/login", bodyData).subscribe( (resultData: any) => {
       if (resultData.status) {
-        this.cookieService.set('email',resultData.managers.email);
-         this.cookieService.set('token', resultData.managers.token);
-         this.cookieService.set('id', resultData.managers._id);
+        this.cookieService.set('email_admin',resultData.managers.email);
+         this.cookieService.set('token_admin', resultData.managers.token);
+         this.cookieService.set('id_admin', resultData.managers._id);
          localStorage.setItem('useradmin', '2');
          this.router.navigateByUrl('/personnel')
       } else {

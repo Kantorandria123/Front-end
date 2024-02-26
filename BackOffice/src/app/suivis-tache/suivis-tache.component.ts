@@ -45,7 +45,7 @@ export class SuivisTacheComponent implements OnInit{
     );
   }
   getListTaches(etat: number): Observable<any[]> {
-    const emp_id = this.cookieService.get('id');
+    const emp_id = this.cookieService.get('id_admin');
     if (emp_id) {
       const url = environment.baseUrl + `/tache/liste/${emp_id}/${etat}`;
 
