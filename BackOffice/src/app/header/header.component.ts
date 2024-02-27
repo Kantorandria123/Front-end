@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 })
 export class HeaderComponent {
   resultData: any;
+  sidebarOpen: boolean = true;
   useradmin:number=0;
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
@@ -52,5 +53,8 @@ deconnection()
   this.cookieService.delete('token_admin');
   localStorage.removeItem("useradmin");
   this.router.navigateByUrl('/')
+}
+toggleSidebar() {
+  this.sidebarOpen = !this.sidebarOpen;
 }
 }
