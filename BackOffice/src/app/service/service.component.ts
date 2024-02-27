@@ -98,20 +98,23 @@ export class ServiceComponent implements OnInit{
 
   updateService(serviceId: string) {
     const url = environment.baseUrl+`/service/serviceupdate/${serviceId}`;
-    const newData = {
-      nom: this.nom,
-      description: this.description,
-      image: this.image,
-      prix: this.prix,
-      duree: this.duree,
-      commission: this.commission,
-    };
-    window.location.reload();
-    this.http.patch<any>(url, newData).subscribe(
+
+     const formData = new FormData();
+      formData.append('nom', this.nom);
+      formData.append('description', this.description);
+      formData.append('prix', this.prix);
+      formData.append('duree', this.duree);
+      formData.append('commission', this.commission);
+      if (this.imageFile !== null) {
+        formData.append('image', this.imageFile);
+      }
+      console.log("image : "+this.image);
+      console.log("imageFile : "+this.imageFile?.name);
+    this.http.patch<any>(url, formData).subscribe(
       (response) => {
         if (response.status && response.updateService) {
           console.log("Service mis à jour avec succès :", response.updateService);
-          window.location.reload();
+          //window.location.reload();
         } else {
           console.error('Réponse inattendue du serveur :', response);
         }

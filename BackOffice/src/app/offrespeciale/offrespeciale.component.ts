@@ -70,7 +70,7 @@ export class OffrespecialeComponent implements OnInit{
           <title>Notification de rendez-vous</title>
           </head>
           <body style="background-color: #f0f0f0;text-align: center;">
-          
+
           <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"></div>
           <table border="0" cellpadding="0" cellspacing="0" width="100%">
               <!-- LOGO -->
@@ -88,7 +88,7 @@ export class OffrespecialeComponent implements OnInit{
                       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                           <tr>
                               <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111;font-family: 'Great Vibes'; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                                  <h1 style="font-family: 'Great Vibes',cursive;font-size: 48px; font-weight: 400; margin: 2;color: #fd5d5d">Beauty Care!</h1> 
+                                  <h1 style="font-family: 'Great Vibes',cursive;font-size: 48px; font-weight: 400; margin: 2;color: #fd5d5d">Beauty Care!</h1>
                               </td>
                           </tr>
                       </table>
@@ -96,17 +96,17 @@ export class OffrespecialeComponent implements OnInit{
               </tr>
               <tr>
                   <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;"> `;  
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;"> `;
                         htmlContent += `
                           <tr>
                               <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                                   <p style="margin: 0;">Consulter les offres spéciales du Beauty care pour: </p>
                                   <p style="margin: 0;"><a href="#" target="_blank" style="color: #fd5d5d;text-decoration:none;">${this.titre} : </a>  ${this.description} valable du ${this.formatDate(this.datedebut)} jusqu'à ${this.formatDate(this.datefin)} </p>
-                              </td>  
+                              </td>
                           </tr> `;
-                    
+
                       htmlContent += `
-                          
+
                           <tr>
                               <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                                   <p style="margin: 0;">Merci de faire confiance à Beauty Care pour vos soins</p>
@@ -135,7 +135,7 @@ export class OffrespecialeComponent implements OnInit{
           </table>
 
           </div>
-            
+
           </body>
         </html>
       `;
@@ -146,9 +146,9 @@ export class OffrespecialeComponent implements OnInit{
                    html: htmlContent
                  };
                  this.sendEmail(emailData);
-
+                 window.location.reload();
               }
-              // window.location.reload();
+
             },
             (clientError) => {
               console.error('Erreur lors de la récupération de la liste des clients :', clientError);
@@ -212,7 +212,7 @@ export class OffrespecialeComponent implements OnInit{
           console.error('Erreur lors de l\'envoi de l\'e-mail:', error);
         }
       );
-    
+
   }
 
   deleteOffrespecial(offrespecialId: string) {
@@ -226,7 +226,7 @@ export class OffrespecialeComponent implements OnInit{
       }
     );
   }
-  
+
   formatDate(date: string): string {
     return format(new Date(date), ' do MMMM  yyyy', { locale: fr });
   }
