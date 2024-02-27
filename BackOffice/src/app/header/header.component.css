@@ -1,0 +1,25 @@
+/* Styles du sidebar */
+.sidebar {
+  position: fixed;
+
+  left: -250px; /* Déplacer le sidebar hors de l'écran par défaut */
+  width: 250px;
+  background: #fff;
+  transition: all 0.3s ease;
+
+}
+
+/* Styles lorsqu'il est ouvert */
+.sidebar.active {
+  left: 0; /* Déplacer le sidebar vers la gauche pour le montrer */
+}
+
+/* Styles pour le contenu principal lorsqu'il est ouvert */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+/* Styles pour le contenu principal lorsqu'il est ouvert */
+.main-content.active {
+  margin-left: 250px; /* Déplacer le contenu principal vers la droite pour faire de la place pour le sidebar */
+}
