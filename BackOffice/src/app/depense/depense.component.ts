@@ -143,7 +143,7 @@ export class DepenseComponent {
                   }
 
                 this.insertDepense(this.bodyData);
-                //window.location.reload();
+                window.location.reload();
                 }
             }
         }
@@ -154,6 +154,6 @@ export class DepenseComponent {
     );
   }
   onTypeChange() {
-    // Gérer les changements de type ici si nécessaire
+
   }
 }
