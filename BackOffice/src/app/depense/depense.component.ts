@@ -22,8 +22,7 @@ export class DepenseComponent {
   pagedDepenses: any[] = [];
   searchTerm: string = '';
   annee: number=2024;
-  moisdebut: number=1;
-  moisfin: number=1;
+  mois: number=1;
 
   constructor(private router: Router,private http: HttpClient) {}
 
@@ -116,37 +115,32 @@ export class DepenseComponent {
     this.getEmployes().subscribe(
       (employeList) => {
         this.employes = employeList;
-        if(this.moisfin>=this.moisdebut)
-        {
-            for(let i=0;i<this.employes.length;i++)
-            {
-                for(let j=this.moisdebut;j<=this.moisfin;j++)
-                {
 
                   if(this.type==="salaire")
                   {
-                     this.bodyData = {
-                      description: this.type,
-                      montant: this.employes[i].salaire,
-                      date: this.annee+"-"+j+"-31",
-                      type: this.type,
-                    };
+                    for(let i=0;i<this.employes.length;i++)
+                     {
+                          this.bodyData = {
+                            description: this.type,
+                            montant: this.employes[i].salaire,
+                            date: this.annee+"-"+this.mois+"-31",
+                            type: this.type,
+                          };
+                          this.insertDepense(this.bodyData);
+                     }
                   }
                   if(this.type==="loyer")
                   {
                      this.bodyData = {
                       description: this.type,
                       montant: this.montant,
-                      date: this.annee+"-"+j+"-31",
+                      date: this.annee+"-"+this.mois+"-31",
                       type: this.type,
                     };
+                   this.insertDepense(this.bodyData);
                   }
 
-                this.insertDepense(this.bodyData);
                 window.location.reload();
-                }
-            }
-        }
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des employes :', error);
