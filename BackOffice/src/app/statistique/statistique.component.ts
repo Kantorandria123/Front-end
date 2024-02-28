@@ -49,7 +49,7 @@ export class StatistiqueComponent implements OnInit {
         this.chiffresAffairesJour = chiffreList;
         const libdataForGraph1 = this.chiffresAffairesJour.map(item => item.jourSemaine);
         const dataForGraph1 = this.chiffresAffairesJour.map(item => item.totalMontant);
-        this.createChart('graph4', '', 'line',libdataForGraph1,dataForGraph1);
+        this.createChart('graph4', 'Chiffre d\' affaire par jour', 'line',libdataForGraph1,dataForGraph1);
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des chiffres :', error);
@@ -60,7 +60,7 @@ export class StatistiqueComponent implements OnInit {
         this.chiffresAffairesMois = chiffreList;
         const libdataForGraph1 = this.chiffresAffairesMois.map(item => item.mois);
         const dataForGraph1 = this.chiffresAffairesMois.map(item => item.totalMontant);
-        this.createChart('graph5', 'Radar Chart', 'bar', libdataForGraph1, dataForGraph1);
+        this.createChart('graph5', 'Chiffre d\' affaire par mois', 'bar', libdataForGraph1, dataForGraph1);
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des chiffres :', error);
