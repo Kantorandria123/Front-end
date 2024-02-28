@@ -31,7 +31,7 @@
                 <form class="row g-3">
                   <div class="col-md-6">
                     <label for="inputEmail5" class="form-label">Mois début</label>
-                    <select id="inputState" class="form-select">
+                    <select [(ngModel)]="moisdebut" [ngModelOptions]="{standalone: true}" class="form-select">
                       <option value="1">Janvier</option>
                       <option value="2">Février</option>
                       <option value="3">Mars</option>
@@ -48,7 +48,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="inputPassword5" class="form-label">Mois fin</label>
-                    <select id="inputState" class="form-select">
+                    <select [(ngModel)]="moisfin" [ngModelOptions]="{standalone: true}" class="form-select">
                       <option value="1">Janvier</option>
                       <option value="2">Février</option>
                       <option value="3">Mars</option>
@@ -63,19 +63,24 @@
                       <option value="12">Décembre</option>
                     </select>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-3">
                     <label for="inputAddress5" class="form-label">Année</label>
-                    <input type="text" class="form-control" id="inputAddres5s">
+                    <input type="number"  class="form-control" [(ngModel)]="annee" [ngModelOptions]="{standalone: true}">
                   </div>
-                  <div class="col-md-6">
+
+                  <div class="col-md-3">
                     <label for="inputAddress5" class="form-label">Type</label>
-                    <select id="inputState" class="form-select">
-                      <option value="1">Salaire</option>
-                      <option value="2">Loyer</option>
+                    <select [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-select" (change)="onTypeChange()">
+                      <option value="salaire">Salaire</option>
+                      <option value="loyer">Loyer</option>
                     </select>
                   </div>
+                  <div class="col-md-3">
+                    <label for="inputAddress5" class="form-label">Montant (si logement)</label>
+                    <input type="number" class="form-control" [(ngModel)]="montant" [ngModelOptions]="{standalone: true}" [readonly]="type === 'salaire'" [class.readonly-input]="type === 'salaire'">
+                  </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button (click)="genererDepenseFixe()" type="submit" class="btn btn-primary">Ajouter</button>
                   </div>
                 </form>
               </div>

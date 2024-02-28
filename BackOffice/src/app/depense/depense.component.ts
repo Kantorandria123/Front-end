@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-depense',
@@ -14,14 +15,21 @@ export class DepenseComponent {
   date: string="";
   type: string="";
   depenses: any[] =[];
+  employes: any[] =[];
+  bodyData: any = [];
   pageSize = 10;
   page = 0;
   pagedDepenses: any[] = [];
   searchTerm: string = '';
+  annee: number=2024;
+  moisdebut: number=1;
+  moisfin: number=1;
+
   constructor(private router: Router,private http: HttpClient) {}
 
   ngOnInit(): void {
     this.listeDepense();
+
   }
 
   depenseCreate() {
@@ -46,7 +54,20 @@ export class DepenseComponent {
 
     );
   }
-
+  insertDepense(bodyData:object)
+  {
+      this.http.post(environment.baseUrl + '/depense/creer',bodyData).subscribe(
+        (resultData: any) => {
+        if(resultData.status) {
+        } else {
+          console.error('Réponse inattendue du serveur');
+        }
+      },
+      (error) => {
+        console.error('Error creating dépense:', error);
+      }
+      );
+  }
   listeDepense() {
     const url = environment.baseUrl+'/depense/listedepense';
     this.http.get<any>(url).subscribe(
@@ -73,5 +94,66 @@ export class DepenseComponent {
     );
     const startIndex = this.page * this.pageSize;
     this.pagedDepenses = filteredServices.slice(startIndex, startIndex + this.pageSize);
+  }
+  getEmployes(): Observable<any[]> {
+    const url = environment.baseUrl + `/employe/lesEmployes`;
+    return this.http.get<any[]>(url).pipe(
+      map((response: any) => {
+        if (response.status && response.employes) {
+          return response.employes;
+        } else {
+          console.error('Réponse inattendue du serveur :', response);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        return throwError('Erreur lors de la récupération de la liste des rendezvousList');
+      })
+    );
+  }
+  genererDepenseFixe()
+  {
+    this.getEmployes().subscribe(
+      (employeList) => {
+        this.employes = employeList;
+        if(this.moisfin>=this.moisdebut)
+        {
+            for(let i=0;i<this.employes.length;i++)
+            {
+                for(let j=this.moisdebut;j<=this.moisfin;j++)
+                {
+
+                  if(this.type==="salaire")
+                  {
+                     this.bodyData = {
+                      description: this.type,
+                      montant: this.employes[i].salaire,
+                      date: this.annee+"-"+j+"-31",
+                      type: this.type,
+                    };
+                  }
+                  if(this.type==="loyer")
+                  {
+                     this.bodyData = {
+                      description: this.type,
+                      montant: this.montant,
+                      date: this.annee+"-"+j+"-31",
+                      type: this.type,
+                    };
+                  }
+
+                this.insertDepense(this.bodyData);
+                //window.location.reload();
+                }
+            }
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de la liste des employes :', error);
+      }
+    );
+  }
+  onTypeChange() {
+    // Gérer les changements de type ici si nécessaire
   }
 }
