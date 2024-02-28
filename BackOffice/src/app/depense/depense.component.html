@@ -63,9 +63,16 @@
                       <option value="12">Décembre</option>
                     </select>
                   </div>
-                  <div class="col-12">
+                  <div class="col-md-6">
                     <label for="inputAddress5" class="form-label">Année</label>
                     <input type="text" class="form-control" id="inputAddres5s">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputAddress5" class="form-label">Type</label>
+                    <select id="inputState" class="form-select">
+                      <option value="1">Salaire</option>
+                      <option value="2">Loyer</option>
+                    </select>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Ajouter</button>
@@ -120,9 +127,7 @@
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Type</label>
                       <div class="col-md-8 col-lg-9">
                         <select class="form-select" [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
-                          <option value="salaire">Salaire</option>
                           <option value="achat" >Achat pieces</option>
-                          <option value="loyer" >Loyer</option>
                           <option value="autre">Autres</option>
                         </select>
                       </div>
