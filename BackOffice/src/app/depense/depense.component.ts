@@ -123,7 +123,7 @@ export class DepenseComponent {
                           this.bodyData = {
                             description: this.type,
                             montant: this.employes[i].salaire,
-                            date: this.annee+"-"+this.mois+"-31",
+                            date: this.annee+"-"+this.mois+"-01",
                             type: this.type,
                           };
                           this.insertDepense(this.bodyData);

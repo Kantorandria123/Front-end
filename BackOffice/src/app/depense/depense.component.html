@@ -90,10 +90,10 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let depense of pagedDepenses">
-                    <td>{{depense.date | dateFormat}}</td>
+                    <td>{{depense.date}}</td>
                     <td>{{depense.description}}</td>
                     <td> {{depense.type}} </td>
-                    <td> {{depense.montant}} </td>
+                    <td> {{ depense.montant | currency:'USD' }} </td>
                   </tr>
                 </tbody>
               </table>
