@@ -34,9 +34,9 @@ export class StatistiqueComponent implements OnInit {
         const dataForGraph1 = this.employeList.map(item => item.temps_travail_moyen_par_jour);
         const dataForGraph2 = this.employeList.map(item => item.temps_travail_moyen_par_mois);
         const dataForGraph3 = this.employeList.map(item => item.temps_travail_moyen_par_semaine);
-        this.createChart('graph1', 'Temps de travail moyen par jour', 'bar', libdataForGraph1, dataForGraph1);
-        this.createChart('graph2', 'Temps de travail moyen par mois', 'line', libdataForGraph1, dataForGraph2);
-        this.createChart('graph3', 'Temps de travail moyen par semaine', 'line', libdataForGraph1, dataForGraph3);
+        this.createChart('graph1', '', 'bar', libdataForGraph1, dataForGraph1);
+        this.createChart('graph2', '', 'line', libdataForGraph1, dataForGraph2);
+        this.createChart('graph3', '', 'line', libdataForGraph1, dataForGraph3);
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des employes :', error);
