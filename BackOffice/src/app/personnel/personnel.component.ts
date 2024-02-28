@@ -16,6 +16,8 @@ export class PersonnelComponent implements OnInit {
   pagedEmployes: any[] = [];
   nom: string = '';
   email: string = '';
+  mdp: string ='';
+  token: string='';
   horaireDebut: string = '';
   horaireFin: string = '';
   pageSize = 10;
@@ -23,6 +25,7 @@ export class PersonnelComponent implements OnInit {
   searchTerm: string = '';
   nbJourTravailSemaine: number = 0;
   nbJourTravailMois: number = 0;
+  salaire: number = 0;
   selectedEmployee: any;
   isModalVisible = false;
   constructor(private http: HttpClient,private modalService: NgbModal) {}
@@ -70,7 +73,10 @@ export class PersonnelComponent implements OnInit {
       heuredebut: heureDebutNum,
       heurefin: heureFinNum,
       nbJourTravailSemaine: this.nbJourTravailSemaine,
-      nbJourTravailMois: this.nbJourTravailMois
+      nbJourTravailMois: this.nbJourTravailMois,
+      salaire: this.salaire,
+      mdp: this.mdp,
+      token: this.token,
     };
     this.http.post(environment.baseUrl + '/employe/create', bodyData).subscribe(
       (resultData: any) => {
@@ -138,6 +144,7 @@ export class PersonnelComponent implements OnInit {
         this.horaireFin = this.selectedEmployee.heurefin;
         this.nbJourTravailSemaine = this.selectedEmployee.nbJourTravailSemaine;
         this.nbJourTravailMois = this.selectedEmployee.nbJourTravailMois;
+        this.salaire = this.selectedEmployee.salaire;
       },
       (error) => {
         console.error('Erreur lors de la récupération des informations de l\'employé :', error);
@@ -160,7 +167,8 @@ export class PersonnelComponent implements OnInit {
       heuredebut: heureDebutNum,
       heureFin: heureFinNum,
       nbJourTravailSemaine: this.nbJourTravailSemaine,
-      nbJourTravailMois: this.nbJourTravailMois
+      nbJourTravailMois: this.nbJourTravailMois,
+      salaire: this.salaire
     };
     window.location.reload();
     this.http.patch<any>(url, bodyData).subscribe(

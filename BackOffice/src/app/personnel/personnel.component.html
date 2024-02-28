@@ -36,6 +36,7 @@
                                             <th></th>
                                             <th scope="col">Nom</th>
                                             <th scope="col">Adresse-email</th>
+                                            <th scope="col">Salaire</th>
                                             <th scope="col">Horaire de travail</th>
                                             <th scope="col">Nombre de jour de travail/semaine</th>
                                             <th scope="col">Nombre de jour de travail/mois</th>
@@ -44,13 +45,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let employe of pagedEmployes">
+                                        <tr *ngFor="let employe of pagedEmployes" style="text-align: center;">
                                             <td><img src="{{employe.image}}" width="50" height="50" /></td>
                                             <td>{{employe.nom}}</td>
                                             <td>{{employe.email}}</td>
+                                            <td> {{employe.salaire}} </td>
                                             <td>{{employe.horaireTravail}}</td>
                                             <td>{{employe.nbJourTravailSemaine}} j</td>
                                             <td>{{employe.nbJourTravailMois}} j</td>
+                                            
                                             <td>
                                               <a (click)="openModal(employe._id, content)" class="btn btn-warning btn-sm" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="bi bi-pencil-square"></i>
@@ -80,6 +83,12 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Mot de passe</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input [(ngModel)]="mdp" [ngModelOptions]="{standalone: true}" type="password" class="form-control" id="mdp">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">Heure début</label>
                                         <div class="col-md-4 col-lg-9">
                                             <input [(ngModel)]="horaireDebut" [ngModelOptions]="{standalone: true}" type="time" class="form-control" id="company">
@@ -101,6 +110,12 @@
                                     <label for="Job" class="col-md-4 col-lg-3 col-form-label">Nombre de jour travail par mois</label>
                                     <div class="col-md-4 col-lg-9">
                                         <input [(ngModel)]="nbJourTravailMois" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="Job">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Salaire</label>
+                                    <div class="col-md-4 col-lg-9">
+                                        <input [(ngModel)]="salaire" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="salaire">
                                     </div>
                                 </div>
                                     <div class="text-center">
@@ -161,6 +176,13 @@
                                     <label for="Job" class="col-md-4 col-lg-3 col-form-label">Nombre de jour travail par mois</label>
                                     <div class="col-md-4 col-lg-9">
                                         <input [(ngModel)]="nbJourTravailMois" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="Job">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Salaire</label>
+                                    <div class="col-md-4 col-lg-9">
+                                        <input [(ngModel)]="salaire" [ngModelOptions]="{standalone: true}" type="number" class="form-control" id="salaire">
                                     </div>
                                 </div>
 
