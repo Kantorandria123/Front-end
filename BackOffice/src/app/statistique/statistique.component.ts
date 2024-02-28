@@ -98,8 +98,8 @@ export class StatistiqueComponent implements OnInit {
         this.beneficeList = beneficeList;
         const libdataForGraph1 = this.beneficeList.map(item => item.mois);
         const dataForGraph1 = this.beneficeList.map(item => item.benefice);
-        this.createChart('graph8', 'Scatter Chart', 'polarArea',libdataForGraph1, dataForGraph1);
-        this.createChart('graph9', 'Pie Chart', 'bar', libdataForGraph1, dataForGraph1);
+        this.createChart('graph8', '', 'bar',libdataForGraph1, dataForGraph1);
+        this.createChart('graph9', '', 'polarArea', libdataForGraph1, dataForGraph1);
       },
       (error) => {
         console.error('Erreur lors de la récupération de la liste des chiffres :', error);
