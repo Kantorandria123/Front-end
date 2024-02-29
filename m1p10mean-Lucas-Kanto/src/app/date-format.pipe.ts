@@ -10,6 +10,6 @@ export class DateFormatPipe implements PipeTransform {
   transform(value: string): string {
     // Utiliser moment.js pour formater la date
     moment.locale('fr');
-    return moment(value, 'DD-MM-YYYY').locale('fr').format('DD MMMM YYYY');
+    return moment(value, 'YYYY-MM-DD').locale('fr').format('DD MMMM YYYY');
   }
 }
