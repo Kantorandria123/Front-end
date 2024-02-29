@@ -49,7 +49,7 @@
                                             <td><img src="{{employe.image}}" width="50" height="50" /></td>
                                             <td>{{employe.nom}}</td>
                                             <td>{{employe.email}}</td>
-                                            <td> {{employe.salaire}} </td>
+                                            <td> {{employe.salaire | currency:'USD'}} </td>
                                             <td>{{employe.horaireTravail}}</td>
                                             <td>{{employe.nbJourTravailSemaine}} j</td>
                                             <td>{{employe.nbJourTravailMois}} j</td>
